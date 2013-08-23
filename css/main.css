@@ -1,0 +1,63 @@
+#board {
+}
+
+/*Clearfix*/
+#board .row:before, #board .row:after {
+	content: " ";
+	display: table;
+}
+#board .row:after {
+	clear: both;
+}
+/*Clearfix*/
+
+#board .row .cell {
+	width: 100px;
+	height: 100px;
+	border: solid black 2px;
+	float: left;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+#board .row .cell.locked {
+	border-color: red;
+}
+
+#board .row .cell.en, #board .row .cell.es, #board .row .cell.sw, #board .row .cell.nw {
+	background-image: url(../gfx/turn.png);
+}
+
+#board .row .cell.en {
+	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+}
+
+#board .row .cell.es {
+	transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
+}
+
+#board .row .cell.sw {
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+}
+
+#board .row .cell.nw {
+	transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+}
+
+#board .row .cell.ew, #board .row .cell.ns {
+	background-image: url(../gfx/straight.png);
+}
+
+#board .row .cell.ew {
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+}
+
+#board .row .cell.ns {
+	transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+}
