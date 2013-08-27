@@ -90,7 +90,7 @@
 		 */
 		this.getStartTiles = function() {
 			return startTiles;
-		}
+		};
 
 		/**
 		 * Get array of ending tiles.
@@ -98,7 +98,7 @@
 		 */
 		this.getEndTiles = function() {
 			return endTiles;
-		}
+		};
 
 		/**
 		 * Return single tile at given position.

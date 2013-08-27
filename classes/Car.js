@@ -17,12 +17,12 @@
 		function updateBezierValues(x, y){
 			//TODO: get cell from board and switch points to pixels values
 
-			this.p0 = { x: 0; y:0 }; //start point
-			this.p1 = { x: 0; y:0 };
-			this.p2 = { x: 0; y:0 };
-			this.p3 = { x: 0; y:0 }; //end point
+			this.p0 = { x: 0, y:0 }; //start point
+			this.p1 = { x: 0, y:0 };
+			this.p2 = { x: 0, y:0 };
+			this.p3 = { x: 0, y:0 }; //end point
 
-			this.cx = 3 * (this.p1.x - this.p0.x)
+			this.cx = 3 * (this.p1.x - this.p0.x);
 			this.bx = 3 * (this.p2.x - this.p1.x) - this.cx;
 			this.ax = this.p3.x - this.p0.x - this.cx - this.bx;
 
@@ -50,4 +50,4 @@
 
 
 	}
-})()
+})();
