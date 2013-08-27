@@ -26,34 +26,41 @@
 					tile.rotateRight();
 				}
 
-				that.draw();
+				setTileClass(e.target, tile);
 			};
 		}
+		
+		function setTileClass(div, tile) {
+			var tileTypeClass = '';
 
-		function createTile(area) {
-			var div = document.createElement('div'),
-				tileTypeClass = '';
+			div.className = '';
 
-			tileTypeClass += area.hasEastRoad() ? 'e':'';
-			tileTypeClass += area.hasNorthRoad() ? 'n':'';
-			tileTypeClass += area.hasSouthRoad() ? 's':'';
-			tileTypeClass += area.hasWestRoad() ? 'w':'';
+			tileTypeClass += tile.hasEastRoad() ? 'e':'';
+			tileTypeClass += tile.hasNorthRoad() ? 'n':'';
+			tileTypeClass += tile.hasSouthRoad() ? 's':'';
+			tileTypeClass += tile.hasWestRoad() ? 'w':'';
 
 			div.classList.add('tile');
 			if(tileTypeClass) {
 				div.classList.add(tileTypeClass);
 			}
 
-			if(area.isStart()) {
+			if(tile.isStart()) {
 				div.classList.add('start');
-			} else if (area.isEnd()) {
+			} else if (tile.isEnd()) {
 				div.classList.add('end');
-			} else if(area.isLocked()) {
+			} else if(tile.isLocked()) {
 				div.classList.add('locked');
 			}
+		}
 
-			div.dataset.x = area.getX();
-			div.dataset.y = area.getY();
+		function createTile(tile) {
+			var div = document.createElement('div');
+
+			setTileClass(div, tile);
+
+			div.dataset.x = tile.getX();
+			div.dataset.y = tile.getY();
 
 			return div;
 		}
@@ -70,6 +77,7 @@
 				currentRow = emptyRow.cloneNode();
 				for (x = 0; x < w; x++) {
 					tile = options.board.getTile(x, y);
+					//TODO extract HTMLTile class
 					currentRow.appendChild( createTile(tile) );
 				}
 				newBoard.appendChild(currentRow);
