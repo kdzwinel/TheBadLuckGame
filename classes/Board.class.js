@@ -1,36 +1,65 @@
 (function() {
-	window.Board = function(options) {
-		var board = [];
-		var locks = [];
+	"use strict";
+
+	/**
+	 * JSON tile definition.
+	 *
+	 * @class JSONTile
+	 * @property {Object} road
+	 * @property {boolean} start
+	 * @property {boolean} end
+	 * @property {boolean} locked
+	 */
+
+	/**
+	 * JSON map definition.
+	 *
+	 * @class JSONMap
+	 * @property {number} height
+	 * @property {number} width
+	 * @property {JSONTile[]} tiles
+	 */
+
+	/**
+	 * @param {JSONMap} map
+	 * @constructor
+	 */
+	window.Board = function(map) {
+		var startTiles = [];
+		var endTiles = [];
 
 		function init() {
-			board = options.board;
-			locks = options.locks;
+			var x, y, tile;
+
+			for(y=0; y < map.height; y++) {
+				for(x=0; x < map.width; x++) {
+					if(!map.tiles[y] || !map.tiles[y][x]) {
+						throw "Map definition is invalid. Tile " + x + "," + y + " doesn't exist.";
+					}
+
+					tile = new Tile(x, y, map.tiles[y][x]);
+					map.tiles[y][x] = tile;
+
+					if(tile.isStart()) {
+						startTiles.push(tile);
+					}
+					if(tile.isEnd()) {
+						endTiles.push(tile);
+					}
+				}
+			}
+
+			if(!startTiles.length) {
+				throw "Map definition is invalid. There are no start tiles.";
+			}
+			if(!endTiles.length) {
+				throw "Map definition is invalid. There are no end tiles.";
+			}
 		}
 		init();
 
-		function encodeArea(area) {
-			var num = 1;
-
-			num *= (area.w) ? 2 : 1;
-			num *= (area.n) ? 3 : 1;
-			num *= (area.e) ? 5 : 1;
-			num *= (area.s) ? 7 : 1;
-
-			return num;
-		}
-
-		function decodeArea(number) {
-			return {
-				w: (number % 2 === 0),
-				n: (number % 3 === 0),
-				e: (number % 5 === 0),
-				s: (number % 7 === 0)
-			};
-		}
-
-		function failIfInvalidArea(x, y) {
-			if(board[y] === undefined || board[y][x] === undefined) {
+		function failIfInvalidTile(x, y) {
+			if(map.tiles[y] === undefined || map.tiles[y][x] === undefined) {
 				throw 'Invalid area index ' + x + ', ' + y;
 			}
 		}
@@ -39,58 +68,49 @@
 		******* PUBLIC *******
 		**********************/
 
-		this.rotateAreaLeft = function(x, y) {
-			var area = this.getArea(x, y);
-
-			board[y][x] = encodeArea({
-				w: area.n,
-				e: area.s,
-				n: area.e,
-				s: area.w
-			});
-		};
-
-		this.rotateAreaRight = function(x, y) {
-			var area = this.getArea(x, y);
-
-			board[y][x] = encodeArea({
-				w: area.s,
-				e: area.n,
-				n: area.w,
-				s: area.e
-			});
-		};
-
+		/**
+		 * Get map width.
+		 * @returns {number}
+		 */
 		this.getWidth = function() {
-			return (board[0] !== undefined) ? board[0].length : 0;
+			return map.width;
 		};
 
+		/**
+		 * Get map height.
+		 * @returns {number}
+		 */
 		this.getHeight = function() {
-			return board.length;
+			return map.height;
 		};
 
-		this.getArea = function(x, y) {
-			failIfInvalidArea(x, y);
+		/**
+		 * Get array of starting tiles.
+		 * @returns {Tile[]}
+		 */
+		this.getStartTiles = function() {
+			return startTiles;
+		}
 
-			return decodeArea(board[y][x]);
-		};
+		/**
+		 * Get array of ending tiles.
+		 * @returns {Tile[]}
+		 */
+		this.getEndTiles = function() {
+			return endTiles;
+		}
 
-		this.isLocked = function(x, y) {
-			failIfInvalidArea(x, y);
+		/**
+		 * Return single tile at given position.
+		 *
+		 * @param x {number}
+		 * @param y {number}
+		 * @returns {Tile}
+		 */
+		this.getTile = function(x, y) {
+			failIfInvalidTile(x, y);
 
-			return locks[y][x];
-		};
-
-		this.lockArea = function(x, y) {
-			failIfInvalidArea(x, y);
-
-			locks[y][x] = true;
-		};
-
-		this.unlockArea = function(x, y) {
-			failIfInvalidArea(x, y);
-
-			locks[y][x] = false;
+			return map.tiles[y][x];
 		};
 	};
 }());

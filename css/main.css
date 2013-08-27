@@ -11,53 +11,61 @@
 }
 /*Clearfix*/
 
-#board .row .cell {
-	width: 100px;
-	height: 100px;
+#board .row .tile {
+	width: 150px;
+	height: 150px;
 	border: solid black 2px;
 	float: left;
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-size: 150px;
 }
 
-#board .row .cell.locked {
+#board .row .tile.start {
+	border-color: green;
+}
+
+#board .row .tile.end {
+	border-color: blue;
+}
+
+#board .row .tile.locked {
 	border-color: red;
 }
 
-#board .row .cell.en, #board .row .cell.es, #board .row .cell.sw, #board .row .cell.nw {
+#board .row .tile.en, #board .row .tile.es, #board .row .tile.sw, #board .row .tile.nw {
 	background-image: url(../gfx/turn.png);
 }
 
-#board .row .cell.en {
+#board .row .tile.en {
 	transform: rotate(180deg);
 	-webkit-transform: rotate(180deg);
 }
 
-#board .row .cell.es {
+#board .row .tile.es {
 	transform: rotate(270deg);
 	-webkit-transform: rotate(270deg);
 }
 
-#board .row .cell.sw {
+#board .row .tile.sw {
 	transform: rotate(0deg);
 	-webkit-transform: rotate(0deg);
 }
 
-#board .row .cell.nw {
+#board .row .tile.nw {
 	transform: rotate(90deg);
 	-webkit-transform: rotate(90deg);
 }
 
-#board .row .cell.ew, #board .row .cell.ns {
+#board .row .tile.ew, #board .row .tile.ns {
 	background-image: url(../gfx/straight.png);
 }
 
-#board .row .cell.ew {
+#board .row .tile.ew {
 	transform: rotate(0deg);
 	-webkit-transform: rotate(0deg);
 }
 
-#board .row .cell.ns {
+#board .row .tile.ns {
 	transform: rotate(90deg);
 	-webkit-transform: rotate(90deg);
 }

@@ -9,37 +9,51 @@
 
 		function addListeners() {
 			options.element.onclick = function(e) {
-				if(!e.target.classList.contains('cell') || e.target.classList.contains('locked')) {
+				if(!e.target.classList.contains('tile')) {
 					return;
 				}
 
-				var cell = e.target;
-				if(e.altKey) {
-					options.board.rotateAreaLeft(cell.dataset.x, cell.dataset.y);
-				} else {
-					options.board.rotateAreaRight(cell.dataset.x, cell.dataset.y);
+				var tileDiv = e.target,
+					tile = options.board.getTile(tileDiv.dataset.x, tileDiv.dataset.y);
+
+				if(tile.isLocked()) {
+					return;
 				}
+
+				if(e.altKey) {
+					tile.rotateLeft();
+				} else {
+					tile.rotateRight();
+				}
+
 				that.draw();
 			};
 		}
 
-		function createCell(area, x, y, locked) {
+		function createTile(area) {
 			var div = document.createElement('div'),
-				cellTypeClass = '';
+				tileTypeClass = '';
 
-			cellTypeClass += area.e ? 'e':'';
-			cellTypeClass += area.n ? 'n':'';
-			cellTypeClass += area.s ? 's':'';
-			cellTypeClass += area.w ? 'w':'';
+			tileTypeClass += area.hasEastRoad() ? 'e':'';
+			tileTypeClass += area.hasNorthRoad() ? 'n':'';
+			tileTypeClass += area.hasSouthRoad() ? 's':'';
+			tileTypeClass += area.hasWestRoad() ? 'w':'';
 
-			div.classList.add('cell');
-			div.classList.add(cellTypeClass);
-			if(locked) {
+			div.classList.add('tile');
+			if(tileTypeClass) {
+				div.classList.add(tileTypeClass);
+			}
+
+			if(area.isStart()) {
+				div.classList.add('start');
+			} else if (area.isEnd()) {
+				div.classList.add('end');
+			} else if(area.isLocked()) {
 				div.classList.add('locked');
 			}
 
-			div.dataset.x = x;
-			div.dataset.y = y;
+			div.dataset.x = area.getX();
+			div.dataset.y = area.getY();
 
 			return div;
 		}
@@ -49,21 +63,20 @@
 				h = options.board.getHeight(),
 				newBoard = document.createDocumentFragment(),
 				emptyRow = document.createElement('div'),
-				currentRow, x, y, area;
+				currentRow, x, y, tile;
 
 			emptyRow.className = 'row';
 			for(y = 0; y < h; y++) {
 				currentRow = emptyRow.cloneNode();
 				for (x = 0; x < w; x++) {
-					area = options.board.getArea(x, y);
-					currentRow.appendChild( createCell(area, x, y, options.board.isLocked(x, y)) );
+					tile = options.board.getTile(x, y);
+					currentRow.appendChild( createTile(tile) );
 				}
 				newBoard.appendChild(currentRow);
 			}
 
 			options.element.innerHTML = '';
 			options.element.appendChild(newBoard);
-
 		};
 
 		init();

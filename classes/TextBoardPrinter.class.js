@@ -23,7 +23,7 @@
 			var w = board.getWidth(),
 				h = board.getHeight(),
 				pixels = new Array(h * 3),
-				x, y, area;
+				x, y, tile;
 
 			for(y = 0; y < h; y++) {
 				pixels[y * 3] = new Array(w * 3);
@@ -31,21 +31,21 @@
 				pixels[y * 3 + 2] = new Array(w * 3);
 
 				for (x = 0; x < w; x++) {
-					area = board.getArea(x, y);
+					tile = board.getTile(x, y);
 
-					if(area.w) {
+					if(tile.hasWestRoad()) {
 						pixels[y * 3 + 1][x * 3] = 1;
 					}
-					if(area.n) {
+					if(tile.hasNorthRoad()) {
 						pixels[y * 3][x * 3 + 1] = 1;
 					}
-					if(area.s) {
+					if(tile.hasSouthRoad()) {
 						pixels[y * 3 + 2][x * 3 + 1] = 1;
 					}
-					if(area.e) {
+					if(tile.hasEastRoad()) {
 						pixels[y * 3 + 1][x * 3 + 2] = 1;
 					}
-					if(area.w || area.e || area.n || area.s) {
+					if(tile.hasRoad()) {
 						pixels[y * 3 + 1][x * 3 + 1] = 1;
 					}
 				}
