@@ -1,0 +1,87 @@
+{
+	"map": {
+		"width": 5,
+		"height": 3,
+		"tiles": [
+			[
+				{
+					"road": {
+						"w": true,
+						"e": true
+					},
+					"start": true
+				},
+				{
+					"road": {
+						"n": true,
+						"s": true
+					}
+				},
+				{
+					"road": {
+						"n": true,
+						"e": true
+					}
+				},
+				{
+					"road": {
+						"w": true,
+						"s": true
+					},
+					"locked": true
+				},
+				{}
+			],
+			[
+				{},
+				{
+					"road": {
+						"e": true,
+						"s": true
+					}
+				},
+				{
+					"road": {
+						"n": true,
+						"e": true
+					}
+				},
+				{
+					"road": {
+						"w": true,
+						"e": true
+					}
+				},
+				{}
+			],
+			[
+				{},
+				{
+					"road": {
+						"w": true,
+						"s": true
+					}
+				},
+				{
+					"road": {
+						"n": true,
+						"s": true
+					}
+				},
+				{
+					"road": {
+						"w": true,
+						"e": true
+					}
+				},
+				{
+					"road": {
+						"w": true,
+						"e": true
+					},
+					"end": true
+				}
+			]
+		]
+	}
+}
