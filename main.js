@@ -1,4 +1,4 @@
-var board, printer, htmlBoard;
+var board, printer, htmlBoard, canvasManager;
 
 function initMap(level) {
 	board = new Board(level.map);
@@ -10,6 +10,8 @@ function initMap(level) {
 		board: board,
 		element: document.getElementById('board')
 	});
+
+	canvasManager = new CanvasManager();
 }
 
 /*

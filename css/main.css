@@ -44,3 +44,14 @@
 #board .row .tile.straight {
 	background-image: url(../gfx/straight.png);
 }
+
+#board-container {
+	position: relative;
+}
+
+#canvas {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	pointer-events:none;
+}

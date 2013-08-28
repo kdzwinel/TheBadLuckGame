@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Bad Luck Game</title>
+    <script src="classes/Car.js"></script>
+    <script src="classes/CanvasManager.class.js"></script>
     <script src="classes/Tile.class.js"></script>
     <script src="classes/Board.class.js"></script>
     <script src="classes/TextBoardPrinter.class.js"></script>
@@ -13,7 +15,10 @@
     <p>Starting tiles <span class='color-box start'></span></p>
     <p>Ending tiles <span class='color-box end'></span></p>
     <p>Locked tiles <span class='color-box locked'></span></p>
-    <div id="board"></div>
+    <div id="board-container">
+        <div id="board"></div>
+        <canvas id="canvas"></div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
