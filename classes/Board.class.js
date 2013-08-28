@@ -2,25 +2,6 @@
 	"use strict";
 
 	/**
-	 * JSON tile definition.
-	 *
-	 * @class JSONTile
-	 * @property {Object} road
-	 * @property {boolean} start
-	 * @property {boolean} end
-	 * @property {boolean} locked
-	 */
-
-	/**
-	 * JSON map definition.
-	 *
-	 * @class JSONMap
-	 * @property {number} height
-	 * @property {number} width
-	 * @property {JSONTile[]} tiles
-	 */
-
-	/**
 	 * @param {JSONMap} map
 	 * @constructor
 	 */
