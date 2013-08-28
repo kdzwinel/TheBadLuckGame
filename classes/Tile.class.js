@@ -24,7 +24,7 @@
 			throw 'Unknown event "' + event + '"';
 		}
 
-		for(var i= 0, l=this._listeners[event]; i < l; i++) {
+		for(var i= 0, l=this._listeners[event].length; i < l; i++) {
 			this._listeners[event][i](this, data);
 		}
 	};
@@ -39,7 +39,7 @@
 			throw 'Unknown event "' + event + '"';
 		}
 
-		if(typeof callback === "function") {
+		if(typeof callback !== "function") {
 			throw 'Second argument must be a function.';
 		}
 

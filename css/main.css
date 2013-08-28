@@ -4,6 +4,7 @@
 }
 
 #board {
+	display: inline-block;
 }
 
 #board .row {
@@ -36,40 +37,10 @@
 	border-color: red;
 }
 
-#board .row .tile.en, #board .row .tile.es, #board .row .tile.sw, #board .row .tile.nw {
+#board .row .tile.turn {
 	background-image: url(../gfx/turn.png);
 }
 
-#board .row .tile.en {
-	transform: rotate(180deg);
-	-webkit-transform: rotate(180deg);
-}
-
-#board .row .tile.es {
-	transform: rotate(270deg);
-	-webkit-transform: rotate(270deg);
-}
-
-#board .row .tile.sw {
-	transform: rotate(360deg);
-	-webkit-transform: rotate(0deg);
-}
-
-#board .row .tile.nw {
-	transform: rotate(90deg);
-	-webkit-transform: rotate(90deg);
-}
-
-#board .row .tile.ew, #board .row .tile.ns {
+#board .row .tile.straight {
 	background-image: url(../gfx/straight.png);
-}
-
-#board .row .tile.ew {
-	transform: rotate(0deg);
-	-webkit-transform: rotate(0deg);
-}
-
-#board .row .tile.ns {
-	transform: rotate(90deg);
-	-webkit-transform: rotate(90deg);
 }
