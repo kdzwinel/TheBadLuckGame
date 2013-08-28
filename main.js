@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-var board, printer, htmlBoard, canvasManager;
-=======
-var board, printer, htmlBoard, mapLoader, game;
->>>>>>> e430470bd610f8e95a3f849546460189d18bb53c
+
+var board, printer, htmlBoard, canvasManager, mapLoader, game;
 
 /**
  * @param {JSONLevel} level
@@ -14,7 +11,6 @@ function initLevel(level) {
 		board: game.getBoard(),
 		element: document.getElementById('board')
 	});
-<<<<<<< HEAD
 
 	canvasManager = new CanvasManager();
 }
@@ -33,8 +29,6 @@ xhr.onreadystatechange = function () {
 	if (xhr.status !== 200) {
 		throw "Error fetching level JSON.";
 	}
-=======
->>>>>>> e430470bd610f8e95a3f849546460189d18bb53c
 
 	/* DEBUG */
 	printer = new TextBoardPrinter();
