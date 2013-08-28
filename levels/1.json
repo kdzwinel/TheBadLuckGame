@@ -1,4 +1,8 @@
 {
+	"carCount": 2,
+	"carsToWin": 1,
+	"startTimeout": 5000,
+	"carTimeout": 15000,
 	"map": {
 		"width": 5,
 		"height": 3,
