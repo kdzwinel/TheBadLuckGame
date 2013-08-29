@@ -1,5 +1,4 @@
-
-var board, printer, htmlBoard, canvasManager, mapLoader, game;
+var printer, htmlBoard, canvasManager, mapLoader, game;
 
 /**
  * @param {JSONLevel} level
@@ -13,22 +12,6 @@ function initLevel(level) {
 	});
 
 	canvasManager = new CanvasManager();
-}
-
-/*
-MAP LOADING
-TODO Move this to 'MapLoader'
- */
-var xhr = new XMLHttpRequest();
-
-xhr.onreadystatechange = function () {
-	if (xhr.readyState !== 4) {
-		return;
-	}
-
-	if (xhr.status !== 200) {
-		throw "Error fetching level JSON.";
-	}
 
 	/* DEBUG */
 	printer = new TextBoardPrinter();

@@ -22,6 +22,14 @@
 			startTimer, carTimer;
 
 		function init() {
+			if(level.carCount < 1) {
+				throw "Level needs at least one car.";
+			}
+
+			if(level.carCount < level.carsToWin) {
+				throw "Invalid number of cars required to win the game.";
+			}
+
 			board = new Board(level.map);
 			startTimer = setTimeout(startGame, level.startTimeout);
 		}

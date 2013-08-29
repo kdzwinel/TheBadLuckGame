@@ -23,7 +23,7 @@
 			} else {
 				managers.splice(priority, 0, manager);
 			}
-		}
+		};
 
 		this.animate = function() {
 			context.clearRect(0, 0, canvas.width, canvas.height);
@@ -38,4 +38,4 @@
 		init();
 		
 	}
-})(window)
+})(window);
