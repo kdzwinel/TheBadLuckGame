@@ -1,17 +1,15 @@
 (function(global, undefined) {
 	"use strict";
 
-	global.CanvasManager = function(){
+	global.CanvasManager = function(options){
 		var canvas,
 			context,
 			managers;
 
 		function init() {
-			var htmlBoard  = document.getElementById('board');
-
-			canvas     	  = document.getElementById('canvas');
-			canvas.width  = htmlBoard.clientWidth;
-			canvas.height = htmlBoard.clientHeight;
+			canvas     	  = options.element;
+			canvas.width  = options.width;
+			canvas.height = options.height;
 
 			context = canvas.getContext('2d');
 			managers = [];
