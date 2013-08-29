@@ -16,7 +16,7 @@
 		this._node.style.webkitTransform = "rotate(" + this._rotation + "deg)";
 	};
 
-	HTMLTile.prototype._wasRotated = function(tile, rotation) {
+	HTMLTile.prototype._wasRotated = function(rotation) {
 		if(rotation === "left") {
 			this._rotation -= 90;
 		} else if (rotation === "right") {

@@ -43,6 +43,11 @@
 			printer = new TextBoardPrinter();
 			printer.print(game.getBoard());
 			new GameStatusListener(game);
+
+			window.printer = printer;
+			window.game = game;
+			window.htmlBoard = htmlBoard;
+			window.canvasManager = canvasManager;
 		}
 
 		/**
