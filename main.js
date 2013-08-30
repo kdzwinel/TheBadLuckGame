@@ -1,5 +1,5 @@
 
-var board, printer, htmlBoard, canvasManager, mapLoader, game;
+var board, printer, htmlBoard, canvasManager, carManager, mapLoader, game;
 
 /**
  * @param {JSONLevel} level
@@ -13,6 +13,14 @@ function initLevel(level) {
 	});
 
 	canvasManager = new CanvasManager();
+	carManager	= new CarManager();
+	setInterval(carManager.addCar, 2000);
+//	carManager.addCar();
+//	carManager.addCar();
+
+	canvasManager.addManager(carManager);
+	canvasManager.startAnimation();
+
 }
 
 /*
