@@ -40,10 +40,6 @@
 
 		this._initialDirection = 'w';
 		this._endDirection 	   = 'e';
-
-		this._updateDirections();
-		this._updateRoadPoints();
-		this._updateBezierValues();
 	}
 
 	global.Car.prototype._updateDirections = function() {
@@ -269,6 +265,12 @@
 	global.Car.prototype.drive = function(tileSize) {
 		var nextX, 
 			nextY;
+
+		if(this._currentTile.isStart()) {
+			this._updateDirections();
+			this._updateRoadPoints(tileSize);
+			this._updateBezierValues();
+		}	
 
 		if(this._t > 1) {
 			this._t = 0.0;
