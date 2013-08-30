@@ -45,6 +45,9 @@
 		}
 
 		function addCar() {
+			if(state === 'lost' || state === 'won') {
+				throw "Game is already finished. Can't add cars.";
+			}
 			deployedCarsCount++;
 			listenersMgr.trigger('car-added');
 
@@ -58,6 +61,7 @@
 				//too many cars have been destroyed - game lost
 				state = "lost";
 				listenersMgr.trigger('game-lost');
+				clearInterval(carTimer);
 			} else if(wonCarsCount + lostCarsCount === level.carCount) {
 				//all cars have arrived or have been destroyed (but enough to win the game)
 				state = "won";

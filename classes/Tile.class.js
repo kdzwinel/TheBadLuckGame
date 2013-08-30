@@ -44,6 +44,10 @@
 	 * Locks tile to prevent rotation.
 	 */
 	Tile.prototype.lock = function() {
+		if(this.isStart() || this.isEnd()) {
+			throw "It's impossible to lock start/end tile."
+		}
+
 		this._locked = true;
 		this._listenersMgr.trigger('lock');
 	};
