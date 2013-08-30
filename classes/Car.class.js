@@ -55,8 +55,8 @@
 				if(this._endDirection === 'n') {
 					this._initialDirection = 's';
 				} else {
-					this._initialDirection = 's';
-					this._endDirection = 'n';
+					this._initialDirection = 'n';
+					this._endDirection = 's';
 				}
 			} else if ( w && e && !n && !s ) { //stright - horizontal
 				if(this._endDirection === 'w') {
