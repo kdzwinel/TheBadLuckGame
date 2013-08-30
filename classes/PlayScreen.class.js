@@ -33,11 +33,11 @@
 				element: options.element.querySelector('.tiles')
 			});
 
-            carManager = new CarManager(game);
+			carManager = new CarManager(game);
 
-            game.on('car-added', function(){
-                carManager.addCar();
-            });
+			game.on('car-added', function(){
+				carManager.addCar();
+			});
 
 			canvasManager = new CanvasManager({
 				element        : options.element.querySelector('#canvas'),
@@ -45,8 +45,8 @@
 				tilesVertical  : game.getBoard().getHeight()
 			});
 
-            canvasManager.addManager(carManager);
-            canvasManager.startAnimation();
+			canvasManager.addManager(carManager);
+			canvasManager.startAnimation();
 
 			/* DEBUG */
 			printer = new TextBoardPrinter();

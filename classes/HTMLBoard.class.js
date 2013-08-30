@@ -7,6 +7,14 @@
 			addListeners();
 		}
 
+		function adjustBoardSize() {
+			var boardMargin = 10,
+				tileMargin = 4,
+				tileSize;
+			tileSize = Math.floor( (window.innerWidth - boardMargin) / options.board.getWidth()) - tileMargin;
+			document.styleSheets[0].addRule('.tiles .row .tile', 'width: ' + tileSize + 'px; height: ' + tileSize + 'px');
+		}
+
 		function addListeners() {
 			options.element.onclick = function(e) {
 				if(!e.target.classList.contains('tile')) {
@@ -26,6 +34,8 @@
 					tile.rotateRight();
 				}
 			};
+
+			window.onresize = adjustBoardSize;
 		}
 
 		this.getDOMNode = function() {
@@ -53,6 +63,7 @@
 
 			options.element.innerHTML = '';
 			options.element.appendChild(newBoard);
+			adjustBoardSize();
 		};
 
 		init();
