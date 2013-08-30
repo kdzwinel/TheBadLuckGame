@@ -1,6 +1,6 @@
 (function(global, undefined) {
 	
-	global.Car = function(startTileX, startTileY, endTileX, endTileY, type) {
+	global.Car = function(options) {
 		
 		this.alive 	= true;
 		this.x 	   	= 0;
@@ -14,18 +14,17 @@
 		this.width = 175;
 		this.height = 84;
 
-		this.skin.src = 'gfx/' + type + '.png';
+		this.skin.src = 'gfx/' + options.type + '.png';
 
 		this._t 	   = 0.0;	
 		this._velocity = 0.02;
 
-		this._board 	  = game.getBoard();
-		this._tileSize 	  = canvasManager.getWidth() / this._board.getWidth();
-		this._currentTile = this._board.getTile(startTileX, startTileY);
+		this._board 	  = options.board;
+		this._currentTile = options.board.getTile(options.startTileX, options.startTileY);
 		this._prevTile 	  = this._currentTile;
 		
-		this._endTileX = endTileX;
-		this._endTileY = endTileY;
+		this._endTileX = options.endTileX;
+		this._endTileY = options.endTileY;
 
 		this._p0 = { x : 0, y : 0 };
 		this._p1 = { x : 0, y : 0 };
@@ -107,44 +106,44 @@
 
 	};
 
-	global.Car.prototype._updateRoadPoints = function() {
+	global.Car.prototype._updateRoadPoints = function(tileSize) {
 		var n = this._currentTile.hasNorthRoad(),
 			s = this._currentTile.hasSouthRoad(),
 			e = this._currentTile.hasEastRoad(),
 			w = this._currentTile.hasWestRoad(),
 
-			offsetX = this._currentTile.getX() * this._tileSize,
-			offsetY = this._currentTile.getY() * this._tileSize;
+			offsetX = this._currentTile.getX() * tileSize,
+			offsetY = this._currentTile.getY() * tileSize;
 
 		if( n && s && !w && !e ) {  //stright - vertical
 
-			this._p0.x = this._p1.x = this._p2.x = this._p3.x = offsetX + this._tileSize/2;
+			this._p0.x = this._p1.x = this._p2.x = this._p3.x = offsetX + tileSize/2;
 			
 			if(this._initialDirection === 'n') { //start from north
 				this._p0.y = offsetY;
-				this._p1.y = offsetY + this._tileSize / 4;
-				this._p2.y = offsetY + this._tileSize / 4 * 3; 
-				this._p3.y = offsetY + this._tileSize - 1;
+				this._p1.y = offsetY + tileSize / 4;
+				this._p2.y = offsetY + tileSize / 4 * 3; 
+				this._p3.y = offsetY + tileSize - 1;
 			} else {
-				this._p0.y = offsetY + this._tileSize - 1;
-				this._p1.y = offsetY + this._tileSize / 4 * 3;
-				this._p2.y = offsetY + this._tileSize / 4;
+				this._p0.y = offsetY + tileSize - 1;
+				this._p1.y = offsetY + tileSize / 4 * 3;
+				this._p2.y = offsetY + tileSize / 4;
 				this._p3.y = offsetY;
 			}
 
 		} else if( w && e && !n && !s ) { //stright - horizontal
 
-			this._p0.y = this._p1.y = this._p2.y = this._p3.y = offsetY + this._tileSize/2;
+			this._p0.y = this._p1.y = this._p2.y = this._p3.y = offsetY + tileSize/2;
 
 			if (this._initialDirection === 'w') { //start from west
 				this._p0.x = offsetX;
-				this._p1.x = offsetX + this._tileSize / 4;
-				this._p2.x = offsetX + this._tileSize / 4 * 3; 
-				this._p3.x = offsetX + this._tileSize - 1;
+				this._p1.x = offsetX + tileSize / 4;
+				this._p2.x = offsetX + tileSize / 4 * 3; 
+				this._p3.x = offsetX + tileSize - 1;
 			} else {
-				this._p0.x = offsetX + this._tileSize - 1;
-				this._p1.x = offsetX + this._tileSize / 4 * 3; 
-				this._p2.x = offsetX + this._tileSize / 4;
+				this._p0.x = offsetX + tileSize - 1;
+				this._p1.x = offsetX + tileSize / 4 * 3; 
+				this._p2.x = offsetX + tileSize / 4;
 				this._p3.x = offsetX;
 			}
 			
@@ -152,81 +151,81 @@
 		} else if( w && !e && n && !s ) { //turn - west north
 
 			if (this._initialDirection === 'w') { //start from west		
-				this._p0.y = this._p1.y = offsetY + this._tileSize / 2;
-				this._p2.x = this._p3.x = offsetX + this._tileSize / 2;
+				this._p0.y = this._p1.y = offsetY + tileSize / 2;
+				this._p2.x = this._p3.x = offsetX + tileSize / 2;
 
 				this._p0.x = offsetX;
-				this._p1.x = offsetX + this._tileSize / 2;
-				this._p2.y = offsetY + this._tileSize / 2;
+				this._p1.x = offsetX + tileSize / 2;
+				this._p2.y = offsetY + tileSize / 2;
 				this._p3.y = offsetY;
 			} else {
-				this._p0.x = this._p1.x = offsetX + this._tileSize / 2;
-				this._p2.y = this._p3.y = offsetY + this._tileSize / 2;
+				this._p0.x = this._p1.x = offsetX + tileSize / 2;
+				this._p2.y = this._p3.y = offsetY + tileSize / 2;
 
 				this._p0.y = offsetY;
-				this._p1.y = offsetY + this._tileSize / 2;
-				this._p2.x = offsetX + this._tileSize / 2;
+				this._p1.y = offsetY + tileSize / 2;
+				this._p2.x = offsetX + tileSize / 2;
 				this._p3.x = offsetX;
 			}
 
 		} else if( w && !e && !n && s ) { //turn - west south
 
 			if (this._initialDirection === 'w') { //start from west		
-				this._p0.y = this._p1.y = offsetY + this._tileSize / 2;
-				this._p2.x = this._p3.x = offsetX + this._tileSize / 2;
+				this._p0.y = this._p1.y = offsetY + tileSize / 2;
+				this._p2.x = this._p3.x = offsetX + tileSize / 2;
 
 				this._p0.x = offsetX;
-				this._p1.x = offsetX + this._tileSize / 2;
-				this._p2.y = offsetY + this._tileSize / 2;
-				this._p3.y = offsetY + this._tileSize - 1;
+				this._p1.x = offsetX + tileSize / 2;
+				this._p2.y = offsetY + tileSize / 2;
+				this._p3.y = offsetY + tileSize - 1;
 			} else {
-				this._p0.x = this._p1.x = offsetX + this._tileSize / 2;
-				this._p2.y = this._p3.y = offsetY + this._tileSize / 2;
+				this._p0.x = this._p1.x = offsetX + tileSize / 2;
+				this._p2.y = this._p3.y = offsetY + tileSize / 2;
 
-				this._p0.y = offsetY + this._tileSize - 1;
-				this._p1.y = offsetY + this._tileSize / 2;
-				this._p2.x = offsetX + this._tileSize / 2;
+				this._p0.y = offsetY + tileSize - 1;
+				this._p1.y = offsetY + tileSize / 2;
+				this._p2.x = offsetX + tileSize / 2;
 				this._p3.x = offsetX;
 			}
 
 		} else if( !w && e && n && !s ) { //turn - east north
 
 			if(this._initialDirection === 'e') { // start from east
-				this._p0.y = this._p1.y = offsetY + this._tileSize / 2;
-				this._p2.x = this._p3.x = offsetX + this._tileSize / 2;
+				this._p0.y = this._p1.y = offsetY + tileSize / 2;
+				this._p2.x = this._p3.x = offsetX + tileSize / 2;
 
-				this._p0.x = offsetX + this._tileSize - 1;
-				this._p1.x = offsetX + this._tileSize / 2;
-				this._p2.y = offsetY + this._tileSize / 2;
+				this._p0.x = offsetX + tileSize - 1;
+				this._p1.x = offsetX + tileSize / 2;
+				this._p2.y = offsetY + tileSize / 2;
 				this._p3.y = offsetY;
 			} else {
-				this._p0.x = this._p1.x = offsetX + this._tileSize / 2;
-				this._p2.y = this._p3.y = offsetY + this._tileSize / 2;
+				this._p0.x = this._p1.x = offsetX + tileSize / 2;
+				this._p2.y = this._p3.y = offsetY + tileSize / 2;
 
 				this._p0.y = offsetY;
-				this._p1.y = offsetY + this._tileSize / 2;
-				this._p2.x = offsetX + this._tileSize / 2;
-				this._p3.x = offsetX + this._tileSize - 1;
+				this._p1.y = offsetY + tileSize / 2;
+				this._p2.x = offsetX + tileSize / 2;
+				this._p3.x = offsetX + tileSize - 1;
 			}
 
 		} else if( !w && e && !n && s ) { //turn - east south
 			
 			if(this._initialDirection === 'e') { // start from east
-				this._p0.y = this._p1.y = offsetY + this._tileSize / 2;
-				this._p2.x = this._p3.x = offsetX + this._tileSize / 2;
+				this._p0.y = this._p1.y = offsetY + tileSize / 2;
+				this._p2.x = this._p3.x = offsetX + tileSize / 2;
 
-				this._p0.x = offsetX + this._tileSize - 1;
-				this._p1.x = offsetX + this._tileSize / 2;
-				this._p2.y = offsetY + this._tileSize / 2;
-				this._p3.y = offsetY + this._tileSize - 1;
+				this._p0.x = offsetX + tileSize - 1;
+				this._p1.x = offsetX + tileSize / 2;
+				this._p2.y = offsetY + tileSize / 2;
+				this._p3.y = offsetY + tileSize - 1;
 			} else {
-				this._p0.x = this._p1.x = offsetX + this._tileSize / 2;
-				this._p2.y = this._p3.y = offsetY + this._tileSize / 2;
+				this._p0.x = this._p1.x = offsetX + tileSize / 2;
+				this._p2.y = this._p3.y = offsetY + tileSize / 2;
 
-				this._p0.y = offsetY + this._tileSize - 1;
-				this._p1.y = offsetY + this._tileSize / 2;
-				this._p2.x = offsetX + this._tileSize / 2;
-				this._p3.x = offsetX + this._tileSize - 1;
+				this._p0.y = offsetY + tileSize - 1;
+				this._p1.y = offsetY + tileSize / 2;
+				this._p2.x = offsetX + tileSize / 2;
+				this._p3.x = offsetX + tileSize - 1;
 			}
 		}
 	}
@@ -267,7 +266,7 @@
 		this.alive = false;
 	}
 
-	global.Car.prototype.drive = function() {
+	global.Car.prototype.drive = function(tileSize) {
 		var nextX, 
 			nextY;
 
@@ -349,7 +348,7 @@
 
 			this._currentTile.lock();
 			this._updateDirections();
-			this._updateRoadPoints(); 
+			this._updateRoadPoints(tileSize); 
 			this._updateBezierValues();
 		}
 

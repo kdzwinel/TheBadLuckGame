@@ -1,46 +1,54 @@
 (function(global, undefined) {
 	"use strict";
 
-	global.CarManager = function() {
+	global.CarManager = function(game) {
 
 
-		var startTiles = game.getBoard().getStartTiles(),
-			endTiles = game.getBoard().getEndTiles(),
-			carsTypes = ['sedan', 'truck', 'van'],
-			cars = [],
-			toRadians = Math.PI/180; 
+		var _board      = game.getBoard(),
+            _startTiles = _board.getStartTiles(),
+			_endTiles   = _board.getEndTiles(),
+			_carsTypes  = ['sedan', 'truck', 'van'],
+			_cars       = [],
+			_toRadians  = Math.PI/180;
 
 		//PUBLIC
 
-		this.addCar = function(startX, startY, endX, endY) {
+		this.addCar = function(options) {
 
-			var startTile,
-				endTile,
-				carType = carsTypes[Math.floor(Math.random() * carsTypes.length)];
-			
-			if(startX !== undefined && startY !== undefined && endX !== undefined && endY !== undefined) {
-				cars.push(new Car(startX, startY, endX, endY, carType))	
-			} else {
-				startTile = startTiles[Math.floor(Math.random() * startTiles.length)];
-				endTile   = endTiles[Math.floor(Math.random() * endTiles.length)];
-				cars.push(new Car(startTile._x, startTile._y, endTile._x, endTile._y, carType));
-			}		
-		}
+			var options   = options || {},
+                startTile = _startTiles[Math.floor(Math.random() * _startTiles.length)],
+				endTile   = _endTiles[Math.floor(Math.random() * _endTiles.length)],
+				carType   = _carsTypes[Math.floor(Math.random() * _carsTypes.length)],
 
-		this.render = function(context) {
-			var i = cars.length;
+                startX    = options.startX || startTile.getX(),
+                startY    = options.startY || startTile.getY(),
+                endX      = options.endX || endTile.getX(),
+                endY      = options.endY || endTile.getY();
+
+            _cars.push(new Car({startTileX : startX,
+                startTileY : startY,
+                endTileX   : endX,
+                endTileY   : endY,
+                type       : carType,
+                board      : _board,
+                tileSize   : 200}));
+
+		};
+
+		this.render = function(context, tileSize) {
+			var i = _cars.length;
 
 			while(i) {
-				if(cars[--i].alive) {
-					cars[i].drive();
+				if(_cars[--i].alive) {
+					_cars[i].drive(tileSize);
 					context.save();
-					context.translate(cars[i].x, cars[i].y);
-					context.rotate(cars[i].rotate * toRadians);
-					context.drawImage(cars[i].skin, -(cars[i].width/8), -(cars[i].height/8), cars[i].width/4, cars[i].height/4);
+					context.translate(_cars[i].x, _cars[i].y);
+					context.rotate(_cars[i].rotate * _toRadians);
+					context.drawImage(_cars[i].skin, -(_cars[i].width/8), -(_cars[i].height/8), _cars[i].width/4, _cars[i].height/4);
 					context.restore();
 				}
 			}
-		}
+		};
 	}
 
 })(window)

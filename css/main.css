@@ -1,18 +1,39 @@
+/*
+GENERAL STYLES
+*/
+
+.screen {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: 10px;
+	display: none;
+}
+
+.screen.visible {
+	display: block;
+}
+
+/*
+PLAY SCREEN STYLES
+*/
 .color-box {
 	display:inline-block;
 	border: solid black 5px;
 }
 
-#board {
+.tiles {
 	display: inline-block;
 }
 
-#board .row {
+.tiles .row {
 	white-space: nowrap;
 	line-height: 0;
 }
 
-#board .row .tile {
+.tiles .row .tile {
 	width: 150px;
 	height: 150px;
 	border: solid black 2px;
@@ -25,23 +46,23 @@
 	-webkit-transition: -webkit-transform 0.3s;
 }
 
-#board .row .tile.start, .color-box.start {
+.tiles .row .tile.start, .color-box.start {
 	border-color: green;
 }
 
-#board .row .tile.end, .color-box.end {
+.tiles .row .tile.end, .color-box.end {
 	border-color: blue;
 }
 
-#board .row .tile.locked, .color-box.locked {
+.tiles .row .tile.locked, .color-box.locked {
 	border-color: red;
 }
 
-#board .row .tile.turn {
+.tiles .row .tile.turn {
 	background-image: url(../gfx/turn.png);
 }
 
-#board .row .tile.straight {
+.tiles .row .tile.straight {
 	background-image: url(../gfx/straight.png);
 }
 
@@ -51,7 +72,7 @@
 
 #canvas {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	pointer-events:none;
 }

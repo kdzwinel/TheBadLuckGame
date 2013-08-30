@@ -1,19 +1,18 @@
 (function(global, undefined) {
 	"use strict";
 
-	global.CanvasManager = function(){
+	global.CanvasManager = function(options){
 		var canvas,
+            tileSize,
 			context,
 			managers;
 
 
 		function init() {
-			var htmlBoard  = document.getElementById('board');
-
-			canvas     	  = document.getElementById('canvas');
-			canvas.width  = htmlBoard.clientWidth;
-			canvas.height = htmlBoard.clientHeight;
-
+			canvas     	  = options.element;
+            tileSize      = 154;
+            canvas.width  = options.tilesHorizontal * tileSize;
+			canvas.height = options.tilesVertical * tileSize;
 			context = canvas.getContext('2d');
 			managers = [];
 		}
@@ -23,11 +22,11 @@
 			
 			context.clearRect(0, 0, canvas.width, canvas.height);
 			while(i) {
-				managers[--i].render(context);
+				managers[--i].render(context, tileSize);
 			}
 			
 			global.requestAnimationFrame(animate);
-		};
+		}
 
 		this.addManager = function(manager, priority) {
 			if(priority  === undefined) {
@@ -35,21 +34,21 @@
 			} else {
 				managers.splice(priority, 0, manager);
 			}
-		}
+		};
 
 		this.startAnimation = function(){
 			animate();
-		}
+		};
 
 		this.getWidth = function() {
 			return canvas.width;
-		}
+		};
 
 		this.getHeight = function() {
 			return canvas.height;
-		}
+		};
 
 		init();
 		
 	}
-})(window)
+})(window);

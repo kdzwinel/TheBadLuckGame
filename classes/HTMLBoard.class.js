@@ -28,6 +28,10 @@
 			};
 		}
 
+		this.getDOMNode = function() {
+			return options.element;
+		};
+
 		this.draw = function() {
 			var w = options.board.getWidth(),
 				h = options.board.getHeight(),

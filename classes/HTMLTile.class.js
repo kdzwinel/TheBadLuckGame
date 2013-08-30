@@ -2,7 +2,6 @@
 	"use strict";
 
 	/**
-	 *
 	 * @param {Tile} tile
 	 * @constructor
 	 */
@@ -15,9 +14,9 @@
 	HTMLTile.prototype._rotate = function() {
 		this._node.style.transform = "rotate(" + this._rotation + "deg)";
 		this._node.style.webkitTransform = "rotate(" + this._rotation + "deg)";
-	}
+	};
 
-	HTMLTile.prototype._wasRotated = function(tile, rotation) {
+	HTMLTile.prototype._wasRotated = function(rotation) {
 		if(rotation === "left") {
 			this._rotation -= 90;
 		} else if (rotation === "right") {

@@ -32,31 +32,10 @@
 	"use strict";
 
 	window.MapLoader = function () {
-		var listeners = {
-			'load': [],
-			'error': []
-		};
-
-		function trigger(event, data) {
-			if (listeners[event] === undefined) {
-				throw 'Unknown event "' + event + '"';
-			}
-
-			for (var i = 0, l = listeners[event].length; i < l; i++) {
-				listeners[event][i](data);
-			}
-		}
+		var listenersMgr = new EventListenersManager(['load','error']);
 
 		this.on = function (event, callback) {
-			if (listeners[event] === undefined) {
-				throw 'Unknown event "' + event + '"';
-			}
-
-			if (typeof callback !== "function") {
-				throw 'Second argument must be a function.';
-			}
-
-			listeners[event].push(callback);
+			listenersMgr.addEventListener(event, callback);
 		};
 
 		this.load = function (name) {
@@ -69,7 +48,7 @@
 				}
 
 				if (xhr.status !== 200) {
-					trigger('error', "Error fetching level file.");
+					listenersMgr.trigger('error', "Error fetching level file.");
 					return;
 				}
 
@@ -79,11 +58,11 @@
 					 */
 					level = JSON.parse(xhr.responseText)
 				} catch (e) {
-					trigger('error', "Error parsing level file.");
+					listenersMgr.trigger('error', "Error parsing level file.");
 					return;
 				}
 
-				trigger('load', level);
+				listenersMgr.trigger('load', level);
 			};
 
 			xhr.open('GET', 'levels/' + name + '.json');

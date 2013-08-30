@@ -6,14 +6,7 @@
 	 * @constructor
 	 */
 	window.Game = function (level) {
-		var listeners = {
-			'game-started': [],
-			'car-added': [],
-			'car-lost': [],
-			'car-won': [],
-			'game-won': [],
-			'game-lost': []
-			},
+		var listenersMgr,
 			board,
 			deployedCarsCount = 0,
 			lostCarsCount = 0,
@@ -22,6 +15,23 @@
 			startTimer, carTimer;
 
 		function init() {
+			listenersMgr = new EventListenersManager([
+				'game-started',
+				'car-added',
+				'car-lost',
+				'car-won',
+				'game-won',
+				'game-lost'
+			]);
+
+			if(level.carCount < 1) {
+				throw "Level needs at least one car.";
+			}
+
+			if(level.carCount < level.carsToWin) {
+				throw "Invalid number of cars required to win the game.";
+			}
+
 			board = new Board(level.map);
 			startTimer = setTimeout(startGame, level.startTimeout);
 		}
@@ -29,27 +39,17 @@
 
 		function startGame() {
 			state = 'running';
-			trigger('game-started');
+			listenersMgr.trigger('game-started');
 
 			addCar();
 		}
 
 		function addCar() {
 			deployedCarsCount++;
-			trigger('car-added');
+			listenersMgr.trigger('car-added');
 
 			if(deployedCarsCount < level.carCount) {
 				carTimer = setTimeout(addCar, level.carTimeout);
-			}
-		}
-
-		function trigger(event, data) {
-			if (listeners[event] === undefined) {
-				throw 'Unknown event "' + event + '"';
-			}
-
-			for (var i = 0, l = listeners[event].length; i < l; i++) {
-				listeners[event][i](this, data);
 			}
 		}
 
@@ -57,11 +57,11 @@
 			if((level.carCount - lostCarsCount) < level.carsToWin) {
 				//too many cars have been destroyed - game lost
 				state = "lost";
-				trigger('game-lost');
+				listenersMgr.trigger('game-lost');
 			} else if(wonCarsCount + lostCarsCount === level.carCount) {
 				//all cars have arrived or have been destroyed (but enough to win the game)
 				state = "won";
-				trigger('game-won');
+				listenersMgr.trigger('game-won');
 			}
 		}
 
@@ -126,7 +126,7 @@
 		 */
 		this.carWon = function() {
 			wonCarsCount++;
-			trigger('car-won');
+			listenersMgr.trigger('car-won');
 
 			checkIfGameFinished();
 		};
@@ -136,7 +136,7 @@
 		 */
 		this.carLost = function() {
 			lostCarsCount++;
-			trigger('car-lost');
+			listenersMgr.trigger('car-lost');
 
 			checkIfGameFinished();
 		};
@@ -147,15 +147,7 @@
 		 * @param {function} callback
 		 */
 		this.on = function (event, callback) {
-			if (listeners[event] === undefined) {
-				throw 'Unknown event "' + event + '"';
-			}
-
-			if (typeof callback !== "function") {
-				throw 'Second argument must be a function.';
-			}
-
-			listeners[event].push(callback);
+			listenersMgr.addEventListener(event, callback);
 		};
 	}
 })();

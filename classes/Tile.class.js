@@ -12,21 +12,7 @@
 		this._start = options.start;
 		this._end = options.end;
 		this._locked = options.locked;
-		this._listeners = {
-			'rotate': [],
-			'lock': [],
-			'unlock': []
-		};
-	};
-
-	Tile.prototype._trigger = function(event, data) {
-		if(this._listeners[event] === undefined) {
-			throw 'Unknown event "' + event + '"';
-		}
-
-		for(var i= 0, l=this._listeners[event].length; i < l; i++) {
-			this._listeners[event][i](this, data);
-		}
+		this._listenersMgr = new EventListenersManager(['rotate','lock', 'unlock']);
 	};
 
 	/**
@@ -35,15 +21,7 @@
 	 * @param {function} callback
 	 */
 	Tile.prototype.on = function(event, callback) {
-		if(this._listeners[event] === undefined) {
-			throw 'Unknown event "' + event + '"';
-		}
-
-		if(typeof callback !== "function") {
-			throw 'Second argument must be a function.';
-		}
-
-		this._listeners[event].push(callback);
+		this._listenersMgr.addEventListener(event, callback);
 	};
 
 	/**
@@ -67,7 +45,7 @@
 	 */
 	Tile.prototype.lock = function() {
 		this._locked = true;
-		this._trigger('lock');
+		this._listenersMgr.trigger('lock');
 	};
 
 	/**
@@ -79,7 +57,7 @@
 		}
 
 		this._locked = false;
-		this._trigger('unlock');
+		this._listenersMgr.trigger('unlock');
 	};
 
 	/**
@@ -96,7 +74,7 @@
 			w: this._roads.n,
 			e: this._roads.s
 		};
-		this._trigger('rotate', 'left');
+		this._listenersMgr.trigger('rotate', 'left');
 	};
 
 	/**
@@ -113,7 +91,7 @@
 			w: this._roads.s,
 			e: this._roads.n
 		};
-		this._trigger('rotate', 'right');
+		this._listenersMgr.trigger('rotate', 'right');
 	};
 
 	Tile.prototype.hasNorthRoad = function() {

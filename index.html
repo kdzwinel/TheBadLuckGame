@@ -3,26 +3,51 @@
 <head>
     <title>Bad Luck Game</title>
 
+    <!-- TOOLS -->
+    <script src="classes/EventListenersManager.class.js"></script>
+
+    <!-- CANVAS -->
     <script src="classes/Car.class.js"></script>
     <script src="classes/CarManager.class.js"></script>
     <script src="classes/CanvasManager.class.js"></script>
-    <script src="classes/MapLoader.class.js"></script>
+
+    <!-- GENERAL GAME CLASSES -->
     <script src="classes/Tile.class.js"></script>
     <script src="classes/Board.class.js"></script>
     <script src="classes/Game.class.js"></script>
-    <script src="classes/debug/TextBoardPrinter.class.js"></script>
-    <script src="classes/debug/GameStatusListener.class.js"></script>
+
+    <!-- HTML ELEMENTS -->
+    <script src="classes/MapLoader.class.js"></script>
     <script src="classes/HTMLTile.class.js"></script>
     <script src="classes/HTMLBoard.class.js"></script>
+    <script src="classes/ScreenManager.class.js"></script>
+    <script src="classes/MainScreen.class.js"></script>
+    <script src="classes/PlayScreen.class.js"></script>
+
+    <!-- DEBUG -->
+    <script src="classes/debug/TextBoardPrinter.class.js"></script>
+    <script src="classes/debug/GameStatusListener.class.js"></script>
+
     <link href='css/main.css' rel='stylesheet' type='text/css' />
 </head>
 <body>
-    <p>Starting tiles <span class='color-box start'></span></p>
-    <p>Ending tiles <span class='color-box end'></span></p>
-    <p>Locked tiles <span class='color-box locked'></span></p>
-    <div id="board-container">
-        <div id="board"></div>
-        <canvas id="canvas"></div>
+    <div id='main-screen' class='screen'>
+        <h2>Main screen</h2>
+        <ul class='levels'>
+            <li data-level-name="1">#1</li>
+            <li data-level-name="2">#2</li>
+        </ul>
+    </div>
+    <div id='play-screen' class='screen'>
+        <h2>Play screen</h2>
+        <p>Starting tiles <span class='color-box start'></span></p>
+        <p>Ending tiles <span class='color-box end'></span></p>
+        <p>Locked tiles <span class='color-box locked'></span></p>
+        <p><button class='back-button'>Back</button></p>
+        <div id="board-container">
+            <div class="tiles"></div>
+            <canvas id="canvas"></canvas>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
