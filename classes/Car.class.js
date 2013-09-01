@@ -245,16 +245,16 @@
 			deltaX = nextX - this.x;
 			
 			if(nextT <= 1) {
-				this.rotate = Math.floor(Math.atan2(deltaY,deltaX) * 180 / Math.PI);
+				this.rotate = ~~((Math.atan2(deltaY,deltaX) * 180 / Math.PI) + 0.5);
 			}			
 	}
 
 	global.Car.prototype._getX = function(t) {
-		return Math.floor(this._ax * (t * t * t) + this._bx * (t * t) + this._cx * (t) + this._p0.x);
+		return ~~((this._ax * (t * t * t) + this._bx * (t * t) + this._cx * (t) + this._p0.x) + 0.5);
 	}
 
 	global.Car.prototype._getY = function(t) {
-		return Math.floor(this._ay * (t * t * t) + this._by * (t * t) + this._cy * (t) + this._p0.y);
+		return ~~((this._ay * (t * t * t) + this._by * (t * t) + this._cy * (t) + this._p0.y) + 0.5);
 	}
 
 	global.Car.prototype._crash = function() {
@@ -275,7 +275,7 @@
 		if(this._t > 1) {
 			this._t = 0.0;
 
-			if(this._currentTile.getX() === this.endTileX && this._currentTile.getY() === this.endTileY) { 
+			if(this._currentTile.getX() === this._endTileX && this._currentTile.getY() === this._endTileY) { 
 				game.carWon();
 				this.alive = false;
 				return;
@@ -348,7 +348,10 @@
 				this._prevTile.unlock();
 			}
 
-			this._currentTile.lock();
+			if(!this._currentTile.isEnd) {
+				this._currentTile.lock();
+			}
+
 			this._updateDirections();
 			this._updateRoadPoints(tileSize); 
 			this._updateBezierValues();

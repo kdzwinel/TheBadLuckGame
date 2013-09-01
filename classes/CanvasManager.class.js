@@ -24,8 +24,9 @@
 			while(i) {
 				managers[--i].render(context, tileSize);
 			}
-			
+
 			global.requestAnimationFrame(animate);
+
 		}
 
 		this.addManager = function(manager, priority) {
@@ -47,6 +48,10 @@
 		this.getHeight = function() {
 			return canvas.height;
 		};
+
+		this.getTileSize = function() {
+			return tileSize;
+		}
 
 		init();
 		

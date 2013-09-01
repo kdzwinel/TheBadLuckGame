@@ -33,17 +33,23 @@
 				element: options.element.querySelector('.tiles')
 			});
 
-			carManager = new CarManager(game);
-
-			game.on('car-added', function(){
-				carManager.addCar();
-			});
-
 			canvasManager = new CanvasManager({
 				element        : options.element.querySelector('#canvas'),
 				tilesHorizontal: game.getBoard().getWidth(),
 				tilesVertical  : game.getBoard().getHeight()
 			});
+
+			carManager = new CarManager(game);
+
+			game.on('car-added', function(){;
+				carManager.addCar();
+			});
+
+			game.on('game-started', function() {
+				setInterval(function() {
+					carManager.step(canvasManager.getTileSize());	
+				},16)
+			})
 
 			canvasManager.addManager(carManager);
 			canvasManager.startAnimation();
