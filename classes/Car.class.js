@@ -258,6 +258,7 @@
 	}
 
 	global.Car.prototype._crash = function() {
+		this._prevTile.unlock();
 		game.carLost();
 		this.alive = false;
 	}
@@ -348,7 +349,7 @@
 				this._prevTile.unlock();
 			}
 
-			if(!this._currentTile.isEnd) {
+			if(!this._currentTile.isEnd()) {
 				this._currentTile.lock();
 			}
 
@@ -363,6 +364,6 @@
 		this._updateRotation();
 
 		this._t += this._velocity;
-		//this.velocity *= 1.01;
+		this._velocity *= 1.003;
 	}
 })(window);
