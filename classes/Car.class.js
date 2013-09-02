@@ -2,7 +2,6 @@
 	
 	global.Car = function(options) {
 		
-		this.alive 	= true;
 		this.x 	   	= 0;
 		this.y 	   	= 0;
 		this.rotate = 0;
@@ -11,7 +10,7 @@
 		this.skin = document.createElement('img');
 		//this.width = this.skin.width;
 		//this.height = this.skin.height;
-		this.width = 175;
+		this.width  = 175;
 		this.height = 84;
 
 		this.skin.src = 'gfx/' + options.type + '.png';
@@ -40,7 +39,18 @@
 
 		this._initialDirection = 'w';
 		this._endDirection 	   = 'e';
+
+		this._listenersMgr = new EventListenersManager(['crash', 'trip-end']);
 	}
+
+	/**
+	 * Allows listening to predefined events (lock, unlock, rotate)
+	 * @param {string} event
+	 * @param {function} callback
+	 */
+	global.Car.prototype.on = function(event, callback) {
+		this._listenersMgr.addEventListener(event, callback);
+	};
 
 	global.Car.prototype._updateDirections = function() {
 		var n = this._currentTile.roadFromNorth(),
@@ -258,9 +268,8 @@
 	}
 
 	global.Car.prototype._crash = function() {
+		this._listenersMgr.trigger('crash', this);
 		this._prevTile.unlock();
-		game.carLost();
-		this.alive = false;
 	}
 
 	global.Car.prototype.drive = function(tileSize) {
@@ -277,8 +286,7 @@
 			this._t = 0.0;
 
 			if(this._currentTile.getX() === this._endTileX && this._currentTile.getY() === this._endTileY) { 
-				game.carWon();
-				this.alive = false;
+				this._listenersMgr.trigger('trip-end', this);
 				return;
 			}
 
@@ -364,6 +372,6 @@
 		this._updateRotation();
 
 		this._t += this._velocity;
-		this._velocity *= 1.003;
+		// this._velocity *= 1.003;
 	}
 })(window);
