@@ -137,7 +137,7 @@
 	 * @returns {boolean}
 	 */
 	Tile.prototype.hasAnyRoad = function() {
-		return (this._roads.length > 0);
+		return (this.roadFromNorth() || this.roadFromSouth() || this.roadFromWest() || this.roadFromEast());
 	};
 
 	/**
