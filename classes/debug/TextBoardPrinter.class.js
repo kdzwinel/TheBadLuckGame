@@ -33,19 +33,19 @@
 				for (x = 0; x < w; x++) {
 					tile = board.getTile(x, y);
 
-					if(tile.hasWestRoad()) {
+					if(tile.roadFromWest()) {
 						pixels[y * 3 + 1][x * 3] = 1;
 					}
-					if(tile.hasNorthRoad()) {
+					if(tile.roadFromNorth()) {
 						pixels[y * 3][x * 3 + 1] = 1;
 					}
-					if(tile.hasSouthRoad()) {
+					if(tile.roadFromSouth()) {
 						pixels[y * 3 + 2][x * 3 + 1] = 1;
 					}
-					if(tile.hasEastRoad()) {
+					if(tile.roadFromEast()) {
 						pixels[y * 3 + 1][x * 3 + 2] = 1;
 					}
-					if(tile.hasRoad()) {
+					if(tile.hasAnyRoad()) {
 						pixels[y * 3 + 1][x * 3 + 1] = 1;
 					}
 				}

@@ -63,6 +63,14 @@ PLAY SCREEN STYLES
 	background-image: url(../gfx/turn.png);
 }
 
+.tiles .row .tile.junction {
+	background-image: url(../gfx/junction.png);
+}
+
+.tiles .row .tile.two-turns {
+	background-image: url(../gfx/two-turns.png);
+}
+
 .tiles .row .tile.straight {
 	background-image: url(../gfx/straight.png);
 }

@@ -43,29 +43,38 @@
 	HTMLTile.prototype._createDOMNode = function() {
 		this._node = document.createElement('div');
 		var tileTypeClass = '',
-			n = this._tile.hasNorthRoad(),
-			s = this._tile.hasSouthRoad(),
-			e = this._tile.hasEastRoad(),
-			w = this._tile.hasWestRoad();
+			n = this._tile.roadFromNorth(),
+			s = this._tile.roadFromSouth(),
+			e = this._tile.roadFromEast(),
+			w = this._tile.roadFromWest();
 
-		if( n && s && !w && !e ) {
+		if( n === 's' && s === 'n' && !w && !e ) {
 			tileTypeClass = 'straight';
 			this._rotation = 90;
-		} else if( w && e && !n && !s ) {
+		} else if( w === 'e' && e === 'w' && !n && !s ) {
 			tileTypeClass = 'straight';
 			this._rotation = 0;
-		} else if( w && !e && n && !s ) {
+		} else if( w === 'n' && !e && n === 'w' && !s ) {
 			tileTypeClass = 'turn';
 			this._rotation = 90;
-		} else if( w && !e && !n && s ) {
+		} else if( w === 's' && !e && !n && s === 'w' ) {
 			tileTypeClass = 'turn';
 			this._rotation = 0;
-		} else if( !w && e && n && !s ) {
+		} else if( !w && e === 'n' && n === 'e' && !s ) {
 			tileTypeClass = 'turn';
 			this._rotation = 180;
-		} else if( !w && e && !n && s ) {
+		} else if( !w && e === 's' && !n && s === 'e' ) {
 			tileTypeClass = 'turn';
 			this._rotation = 270;
+		} else if( n === 's' && s === 'n' && w === 'e' && e === 'w' ) {
+			tileTypeClass = 'junction';
+			this._rotation = 0;
+		} else if( n === 'e' && e === 'n' && w === 's' && s === 'w') {
+			tileTypeClass = 'two-turns';
+			this._rotation = 0;
+		} else if( n === 'w' && w === 'n' && e === 's' && s === 'e') {
+			tileTypeClass = 'two-turns';
+			this._rotation = 90;
 		}
 
 		this._node.classList.add('tile');

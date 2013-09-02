@@ -16,7 +16,7 @@
 
 		this.skin.src = 'gfx/' + options.type + '.png';
 
-		this._t 	   = 0.0;	
+		this._t 	   = 0.0;
 		this._velocity = 0.02;
 
 		this._board 	  = options.board;
@@ -43,10 +43,10 @@
 	}
 
 	global.Car.prototype._updateDirections = function() {
-		var n = this._currentTile.hasNorthRoad(),
-			s = this._currentTile.hasSouthRoad(),
-			e = this._currentTile.hasEastRoad(),
-			w = this._currentTile.hasWestRoad();
+		var n = this._currentTile.roadFromNorth(),
+			s = this._currentTile.roadFromSouth(),
+			e = this._currentTile.roadFromEast(),
+			w = this._currentTile.roadFromWest();
 
 		if(this._prevTile === this._currentTile) { //first tile
 
@@ -103,10 +103,10 @@
 	};
 
 	global.Car.prototype._updateRoadPoints = function(tileSize) {
-		var n = this._currentTile.hasNorthRoad(),
-			s = this._currentTile.hasSouthRoad(),
-			e = this._currentTile.hasEastRoad(),
-			w = this._currentTile.hasWestRoad(),
+		var n = this._currentTile.roadFromNorth(),
+			s = this._currentTile.roadFromSouth(),
+			e = this._currentTile.roadFromEast(),
+			w = this._currentTile.roadFromWest();
 
 			offsetX = this._currentTile.getX() * tileSize,
 			offsetY = this._currentTile.getY() * tileSize;
@@ -295,7 +295,7 @@
 					}
 
 					this._currentTile = this._board.getTile(nextX, nextY);
-					if(!this._currentTile.hasEastRoad()) {
+					if(!this._currentTile.roadFromEast()) {
 						this._crash();
 						return;
 					}
@@ -310,7 +310,7 @@
 					}
 
 					this._currentTile = this._board.getTile(nextX, nextY);
-					if(!this._currentTile.hasSouthRoad()) {
+					if(!this._currentTile.roadFromSouth()) {
 						this._crash();
 						return;
 					}
@@ -324,7 +324,7 @@
 						return
 					}
 					this._currentTile = this._board.getTile(nextX, nextY);
-					if(!this._currentTile.hasWestRoad()) {
+					if(!this._currentTile.roadFromWest()) {
 						this._crash();
 						return;
 					}
@@ -338,7 +338,7 @@
 						return
 					}
 					this._currentTile = this._board.getTile(nextX, nextY);
-					if(!this._currentTile.hasNorthRoad()) {
+					if(!this._currentTile.roadFromNorth()) {
 						this._crash();
 						return;
 					}

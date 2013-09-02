@@ -8,7 +8,7 @@
 
 		this._x = x;
 		this._y = y;
-		this._roads = options.road ? options.road : {};
+		this._roads = options.roads ? options.roads : [];
 		this._start = options.start;
 		this._end = options.end;
 		this._locked = options.locked;
@@ -98,28 +98,28 @@
 		this._listenersMgr.trigger('rotate', 'right');
 	};
 
-	Tile.prototype.hasNorthRoad = function() {
-		return (this._roads.n === true);
+	Tile.prototype.roadFromNorth = function() {
+		return this._roads.n;
 	};
 
-	Tile.prototype.hasSouthRoad = function() {
-		return (this._roads.s === true);
+	Tile.prototype.roadFromSouth = function() {
+		return this._roads.s;
 	};
 
-	Tile.prototype.hasWestRoad = function() {
-		return (this._roads.w === true);
+	Tile.prototype.roadFromWest = function() {
+		return this._roads.w;
 	};
 
-	Tile.prototype.hasEastRoad = function() {
-		return (this._roads.e === true);
+	Tile.prototype.roadFromEast = function() {
+		return this._roads.e;
 	};
 
 	/**
 	 * Checks if tile has any roads defined.
 	 * @returns {boolean}
 	 */
-	Tile.prototype.hasRoad = function() {
-		return (this.hasNorthRoad() || this.hasSouthRoad() || this.hasWestRoad() || this.hasEastRoad());
+	Tile.prototype.hasAnyRoad = function() {
+		return (this._roads.length > 0);
 	};
 
 	/**

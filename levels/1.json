@@ -9,28 +9,30 @@
 		"tiles": [
 			[
 				{
-					"road": {
-						"w": true,
-						"e": true
+					"roads": {
+						"w": "e",
+						"e": "w"
 					},
 					"start": true
 				},
 				{
-					"road": {
-						"n": true,
-						"s": true
+					"roads": {
+						"n": "s",
+						"s": "n"
 					}
 				},
 				{
-					"road": {
-						"n": true,
-						"e": true
+					"roads": {
+						"n": "e",
+						"e": "n"
 					}
 				},
 				{
-					"road": {
-						"w": true,
-						"s": true
+					"roads": {
+						"w": "e",
+						"e": "w",
+						"s": "n",
+						"n": "s"
 					},
 					"locked": true
 				},
@@ -39,21 +41,25 @@
 			[
 				{},
 				{
-					"road": {
-						"e": true,
-						"s": true
+					"roads": {
+						"e": "s",
+						"s": "e"
 					}
 				},
 				{
-					"road": {
-						"n": true,
-						"e": true
+					"roads": {
+						"w": "n",
+						"n": "w",
+						"s": "e",
+						"e": "s"
 					}
 				},
 				{
-					"road": {
-						"w": true,
-						"e": true
+					"roads": {
+						"w": "e",
+						"e": "w",
+						"s": "n",
+						"n": "s"
 					}
 				},
 				{}
@@ -61,27 +67,29 @@
 			[
 				{},
 				{
-					"road": {
-						"w": true,
-						"s": true
+					"roads": {
+						"w": "s",
+						"s": "w"
 					}
 				},
 				{
-					"road": {
-						"n": true,
-						"s": true
+					"roads": {
+						"w": "e",
+						"n": "s",
+						"s": "n",
+						"e": "w"
 					}
 				},
 				{
-					"road": {
-						"w": true,
-						"e": true
+					"roads": {
+						"e": "w",
+						"w": "e"
 					}
 				},
 				{
-					"road": {
-						"w": true,
-						"e": true
+					"roads": {
+						"e": "w",
+						"w": "e"
 					},
 					"end": true
 				}

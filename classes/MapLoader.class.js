@@ -22,7 +22,7 @@
  * JSON tile definition.
  *
  * @class JSONTile
- * @property {Object} road
+ * @property {Object} roads
  * @property {boolean} start
  * @property {boolean} end
  * @property {boolean} locked
