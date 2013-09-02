@@ -61,7 +61,7 @@
 		if ( this._prevTile === this._currentTile ) { //first tile
 
 		} else {
-			console.log(this._initialDirection, this._endDirection);
+			//console.log(this._initialDirection, this._endDirection);
 
 			switch (this._endDirection) {
 				case 'n':
@@ -81,7 +81,7 @@
 					this._endDirection = e;
 					break;
 			}
-			console.log(this._initialDirection, this._endDirection)
+			//console.log(this._initialDirection, this._endDirection)
 
 		}
 

@@ -71,12 +71,21 @@
 		if(this.isLocked()) {
 			throw "Locked tiles can't be rotated.";
 		}
+		
+		var translate = function(input) {
+			if(!input) {
+				return input;
+			}
+			
+			var trans = {n: 'w', s: 'e', w: 's', e: 'n'};
+			return trans[input];
+		};
 
 		this._roads = {
-			n: this._roads.e,
-			s: this._roads.w,
-			w: this._roads.n,
-			e: this._roads.s
+			n: translate(this._roads.e),
+			s: translate(this._roads.w),
+			w: translate(this._roads.n),
+			e: translate(this._roads.s)
 		};
 		this._listenersMgr.trigger('rotate', 'left');
 	};
@@ -88,12 +97,21 @@
 		if(this.isLocked()) {
 			throw "Locked tiles can't be rotated.";
 		}
+		
+		var translate = function(input) {
+			if(!input) {
+				return input;
+			}
+			
+			var trans = {n: 'e', s: 'w', w: 'n', e: 's'};
+			return trans[input];
+		};
 
 		this._roads = {
-			n: this._roads.w,
-			s: this._roads.e,
-			w: this._roads.s,
-			e: this._roads.n
+			n: translate(this._roads.w),
+			s: translate(this._roads.e),
+			w: translate(this._roads.s),
+			e: translate(this._roads.n)
 		};
 		this._listenersMgr.trigger('rotate', 'right');
 	};
