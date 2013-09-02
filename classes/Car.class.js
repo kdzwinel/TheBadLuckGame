@@ -50,7 +50,7 @@
 	 */
 	global.Car.prototype.on = function(event, callback) {
 		this._listenersMgr.addEventListener(event, callback);
-	};
+	}
 
 	global.Car.prototype._updateDirections = function() {
 		var n = this._currentTile.roadFromNorth(),
@@ -58,69 +58,198 @@
 			e = this._currentTile.roadFromEast(),
 			w = this._currentTile.roadFromWest();
 
-		if(this._prevTile === this._currentTile) { //first tile
+		if ( this._prevTile === this._currentTile ) { //first tile
 
 		} else {
-			if( n && s && !w && !e ) { //stright - vertical
-				if(this._endDirection === 'n') {
-					this._initialDirection = 's';
-				} else {
-					this._initialDirection = 'n';
-					this._endDirection = 's';
-				}
-			} else if ( w && e && !n && !s ) { //stright - horizontal
-				if(this._endDirection === 'w') {
-					this._initialDirection = 'e';
-				} else {
-					this._initialDirection = 'w';
-					this._endDirection = 'e';
-				}
-			} else if ( w && !e && n && !s ) { //turn - west north
-				if(this._endDirection === 's') {
-					this._initialDirection = 'n';
-					this._endDirection = 'w';
-				} else {
-					this._initialDirection = 'w';
-					this._endDirection = 'n';
-				}
-			} else if ( w && !e && !n && s ) { //turn - west south
-				if(this._endDirection === 'e') {
-					this._initialDirection = 'w';
-					this._endDirection = 's'
-				} else {
-					this._initialDirection = 's';
-					this._endDirection = 'w';
-				}
-			} else if( !w && e && n && !s ) { //turn - east north
-				if(this._endDirection === 's') {
-					this._initialDirection = 'n';
-					this._endDirection = 'e';
-				} else {
-					this._initialDirection = 'e';
-					this._endDirection = 'n';
-				}
-			} else if( !w && e && !n && s ) { //turn - east south
-				if(this._endDirection === 'n') {
-					this._initialDirection = 's';
-					this._endDirection = 'e';
-				} else {
-					this._initialDirection = 'e';
-					this._endDirection = 's';
-				}
+			console.log(this._initialDirection, this._endDirection);
+
+			switch (this._endDirection) {
+				case 'n':
+					this._initialDirection = 's'
+					this._endDirection = s;
+					break;
+				case 's':
+					this._initialDirection = 'n'
+					this._endDirection = n;
+					break;
+				case 'e':
+					this._initialDirection = 'w'
+					this._endDirection = w;
+					break;
+				case 'w':
+					this._initialDirection = 'e'
+					this._endDirection = e;
+					break;
 			}
+			console.log(this._initialDirection, this._endDirection)
+
 		}
 
-	};
+			// if( n && s && !w && !e ) { //stright - vertical
+			// 	if(this._endDirection === 'n') {
+			// 		this._initialDirection = 's';
+			// 	} else {
+			// 		this._initialDirection = 'n';
+			// 		this._endDirection = 's';
+			// 	}
+			// } else if ( w && e && !n && !s ) { //stright - horizontal
+			// 	if(this._endDirection === 'w') {
+			// 		this._initialDirection = 'e';
+			// 	} else {
+			// 		this._initialDirection = 'w';
+			// 		this._endDirection = 'e';
+			// 	}
+			// } else if ( w && !e && n && !s ) { //turn - west north
+			// 	if(this._endDirection === 's') {
+			// 		this._initialDirection = 'n';
+			// 		this._endDirection = 'w';
+			// 	} else {
+			// 		this._initialDirection = 'w';
+			// 		this._endDirection = 'n';
+			// 	}
+			// } else if ( w && !e && !n && s ) { //turn - west south
+			// 	if(this._endDirection === 'e') {
+			// 		this._initialDirection = 'w';
+			// 		this._endDirection = 's'
+			// 	} else {
+			// 		this._initialDirection = 's';
+			// 		this._endDirection = 'w';
+			// 	}
+			// } else if( !w && e && n && !s ) { //turn - east north
+			// 	if(this._endDirection === 's') {
+			// 		this._initialDirection = 'n';
+			// 		this._endDirection = 'e';
+			// 	} else {
+			// 		this._initialDirection = 'e';
+			// 		this._endDirection = 'n';
+			// 	}
+			// } else if( !w && e && !n && s ) { //turn - east south
+			// 	if(this._endDirection === 'n') {
+			// 		this._initialDirection = 's';
+			// 		this._endDirection = 'e';
+			// 	} else {
+			// 		this._initialDirection = 'e';
+			// 		this._endDirection = 's';
+			// 	}
+			// }
+	//	}
+
+	}
 
 	global.Car.prototype._updateRoadPoints = function(tileSize) {
-		var n = this._currentTile.roadFromNorth(),
-			s = this._currentTile.roadFromSouth(),
-			e = this._currentTile.roadFromEast(),
-			w = this._currentTile.roadFromWest();
-
-			offsetX = this._currentTile.getX() * tileSize,
+		var offsetX = this._currentTile.getX() * tileSize,
 			offsetY = this._currentTile.getY() * tileSize;
 
+
+		switch (this._initialDirection) {
+				case 'n':
+					if( this._endDirection === 's') {
+						this._p0.x = this._p1.x = this._p2.x = this._p3.x = offsetX + tileSize/2;
+						this._p0.y = offsetY;
+						this._p1.y = offsetY + tileSize / 4;
+						this._p2.y = offsetY + tileSize / 4 * 3; 
+						this._p3.y = offsetY + tileSize - 1;
+
+					} else if ( this._endDirection === 'w') {
+						this._p0.x = this._p1.x = offsetX + tileSize / 2;
+						this._p2.y = this._p3.y = offsetY + tileSize / 2;
+						this._p0.y = offsetY;
+						this._p1.y = offsetY + tileSize / 2;
+						this._p2.x = offsetX + tileSize / 2;
+						this._p3.x = offsetX;
+
+					} else if ( this._endDirection === 'e') {
+						this._p0.x = this._p1.x = offsetX + tileSize / 2;
+						this._p2.y = this._p3.y = offsetY + tileSize / 2;
+						this._p0.y = offsetY;
+						this._p1.y = offsetY + tileSize / 2;
+						this._p2.x = offsetX + tileSize / 2;
+						this._p3.x = offsetX + tileSize - 1;
+					}
+					break;
+
+				case 's':
+					if( this._endDirection === 'n') {
+						this._p0.x = this._p1.x = this._p2.x = this._p3.x = offsetX + tileSize/2;
+						this._p0.y = offsetY + tileSize - 1;
+						this._p1.y = offsetY + tileSize / 4 * 3;
+						this._p2.y = offsetY + tileSize / 4;
+						this._p3.y = offsetY;
+
+					} else if ( this._endDirection === 'w') {
+						this._p0.x = this._p1.x = offsetX + tileSize / 2;
+						this._p2.y = this._p3.y = offsetY + tileSize / 2;
+						this._p0.y = offsetY + tileSize - 1;
+						this._p1.y = offsetY + tileSize / 2;
+						this._p2.x = offsetX + tileSize / 2;
+						this._p3.x = offsetX;
+
+					} else if ( this._endDirection === 'e') {
+						this._p0.x = this._p1.x = offsetX + tileSize / 2;
+						this._p2.y = this._p3.y = offsetY + tileSize / 2;
+						this._p0.y = offsetY + tileSize - 1;
+						this._p1.y = offsetY + tileSize / 2;
+						this._p2.x = offsetX + tileSize / 2;
+						this._p3.x = offsetX + tileSize - 1;
+
+					}
+					break;
+
+				case 'e':
+					if( this._endDirection === 'w') {
+						this._p0.y = this._p1.y = this._p2.y = this._p3.y = offsetY + tileSize/2;
+						this._p0.x = offsetX + tileSize - 1;
+						this._p1.x = offsetX + tileSize / 4 * 3; 
+						this._p2.x = offsetX + tileSize / 4;
+						this._p3.x = offsetX;
+
+					} else if ( this._endDirection === 'n') {
+						this._p0.y = this._p1.y = offsetY + tileSize / 2;
+						this._p2.x = this._p3.x = offsetX + tileSize / 2;
+						this._p0.x = offsetX + tileSize - 1;
+						this._p1.x = offsetX + tileSize / 2;
+						this._p2.y = offsetY + tileSize / 2;
+						this._p3.y = offsetY;
+
+					} else if ( this._endDirection === 's') {
+						this._p0.y = this._p1.y = offsetY + tileSize / 2;
+						this._p2.x = this._p3.x = offsetX + tileSize / 2;
+						this._p0.x = offsetX + tileSize - 1;
+						this._p1.x = offsetX + tileSize / 2;
+						this._p2.y = offsetY + tileSize / 2;
+						this._p3.y = offsetY + tileSize - 1;
+
+					}
+					break;
+
+				case 'w':
+					if( this._endDirection === 'e') {
+						this._p0.y = this._p1.y = this._p2.y = this._p3.y = offsetY + tileSize/2;
+						this._p0.x = offsetX;
+						this._p1.x = offsetX + tileSize / 4;
+						this._p2.x = offsetX + tileSize / 4 * 3; 
+						this._p3.x = offsetX + tileSize - 1;
+					} else if ( this._endDirection === 'n') {
+						this._p0.y = this._p1.y = offsetY + tileSize / 2;
+						this._p2.x = this._p3.x = offsetX + tileSize / 2;
+						this._p0.x = offsetX;
+						this._p1.x = offsetX + tileSize / 2;
+						this._p2.y = offsetY + tileSize / 2;
+						this._p3.y = offsetY;
+
+					} else if ( this._endDirection === 's') {
+						this._p0.y = this._p1.y = offsetY + tileSize / 2;
+						this._p2.x = this._p3.x = offsetX + tileSize / 2;
+						this._p0.x = offsetX;
+						this._p1.x = offsetX + tileSize / 2;
+						this._p2.y = offsetY + tileSize / 2;
+						this._p3.y = offsetY + tileSize - 1;
+
+					}
+					break;
+			}
+
+/*
 		if( n && s && !w && !e ) {  //stright - vertical
 
 			this._p0.x = this._p1.x = this._p2.x = this._p3.x = offsetX + tileSize/2;
@@ -233,7 +362,7 @@
 				this._p2.x = offsetX + tileSize / 2;
 				this._p3.x = offsetX + tileSize - 1;
 			}
-		}
+		} */
 	}
 
 	global.Car.prototype._updateBezierValues = function() {

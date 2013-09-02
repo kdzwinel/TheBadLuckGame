@@ -2,7 +2,7 @@
 	"use strict";
 
 	window.PlayScreen = function(options) {
-		var mapLoader, game, htmlBoard, canvasManager, carManager, printer, listenersMgr;
+		var mapLoader, game, htmlBoard, canvasManager, carManager, printer, listenersMgr, logicInterval;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['close']);
@@ -46,9 +46,12 @@
 			});
 
 			game.on('game-started', function() {
-				setInterval(function() {
-					carManager.step(canvasManager.getTileSize());	
-				},16)
+				if(!logicInterval) {
+					logicInterval = setInterval(function() {
+						carManager.step(canvasManager.getTileSize());	
+					},16);	
+				};
+				
 			})
 
 			canvasManager.addManager(carManager);
