@@ -6,14 +6,9 @@
 		this.y 	   	= 0;
 		this.rotate = 0;
 
-		//TODO: create asset manager;
-		this.skin = document.createElement('img');
-		//this.width = this.skin.width;
-		//this.height = this.skin.height;
-		this.width  = 175;
-		this.height = 84;
-
-		this.skin.src = 'gfx/' + options.type + '.png';
+		this.skin = resource.get(options.type);
+		this.width = this.skin.width;
+		this.height = this.skin.height;
 
 		this._t 	   = 0.0;
 		this._velocity = 0.02;

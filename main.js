@@ -1,3 +1,11 @@
+var resource = new Resource();
+	resource.add(['sedan', 'van', 'truck']);
+	resource.on('load', function() {
+		console.log(resource.getPercentage());
+		console.log('image loaded');
+	});
+	resource.load();
+
 var mainScreen = new MainScreen({
 	element: document.getElementById('main-screen')
 });
