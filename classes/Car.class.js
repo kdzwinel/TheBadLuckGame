@@ -37,8 +37,8 @@
 		this._cx = 0;
 		this._cy = 0;
 
-		this._initialDirection = 'w';
-		this._endDirection 	   = 'e';
+		this._initialDirection = '';
+		this._endDirection 	   = '';
 
 		this._listenersMgr = new EventListenersManager(['crash', 'trip-end']);
 	};
@@ -56,10 +56,68 @@
 		var n = this._currentTile.roadFromNorth(),
 			s = this._currentTile.roadFromSouth(),
 			e = this._currentTile.roadFromEast(),
-			w = this._currentTile.roadFromWest();
+			w = this._currentTile.roadFromWest()
+
+			maxX = this._board.getWidth() - 1,
+			maxY = this._board.getHeight() - 1;
 
 		if ( this._prevTile === this._currentTile ) { //first tile
+			if (this._currentTile.getX() === 0) { // start from left side
 
+				if (this._currentTile.getY() === 0 && !w) {
+					this._initialDirection = 'n'
+					this._endDirection = n;
+
+				} else if (this._currentTile.getY() === maxY && !w) {
+					this._initialDirection = 's'
+					this._endDirection = s;
+				} else {
+					this._initialDirection = 'w'
+					this._endDirection = w;
+				}
+
+			} else if (this._currentTile.getX() === maxX) {
+				
+				if (this._currentTile.getY() === 0 && !e) {
+					this._initialDirection = 'n'
+					this._endDirection = n;
+
+				} else if (this._currentTile.getY() === maxY && !e) {
+					this._initialDirection = 's'
+					this._endDirection = s;
+
+				} else {
+					this._initialDirection = 'e'
+					this._endDirection = e;
+				}
+
+			} else if (this._currentTile.getY() === 0) {
+				this._initialDirection = 'n'
+				this._endDirection = n;
+
+			} else if (this._currentTile.getY() === maxY) {
+				this._initialDirection = 's'
+				this._endDirection = s;
+
+			} else {
+				if (n) {
+					this._initialDirection = 'n'
+					this._endDirection  = n;	
+				} else if (s) {
+					this._initialDirection = 's'
+					this._endDirection = s;
+				} else if (w) {
+					this._initialDirection = 'w'
+					this._endDirection = w;
+				} else {
+					this._initialDirection = 'e'
+					this._endDirection = e;
+				}
+
+				this._initialDirection = 's'
+				this._endDirection = n || s || w || e;
+
+			}
 		} else {
 			switch (this._endDirection) {
 				case 'n':
@@ -238,7 +296,7 @@
 		var nextX, 
 			nextY;
 
-		if(this._currentTile.isStart()) {
+		if(this._currentTile.isStart() && this._t === 0) {
 			this._updateDirections();
 			this._updateRoadPoints(tileSize);
 			this._updateBezierValues();
