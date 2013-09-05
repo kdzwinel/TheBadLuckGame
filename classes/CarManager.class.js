@@ -32,7 +32,7 @@
 				}
 			}
 		}
-		
+
 		//PUBLIC
 
 		this.addCar = function(options) {
@@ -61,19 +61,26 @@
 	        car.on('trip-end', _carTripEnd);       
 
             _cars.push(car);
+            return car;
 
 		};
 
 		this.render = function(context) {
 			var i = _cars.length;
+			var collision = new Collision;
 
 			while(i--) {	
 				context.save();
 				context.translate(_cars[i].x, _cars[i].y);
 				context.rotate(_cars[i].rotate * _toRadians);
-				context.drawImage(_cars[i].skin, -(_cars[i].width/8), -(_cars[i].height/8), _cars[i].width/4, _cars[i].height/4);
+				context.drawImage(_cars[i].skin, -(_cars[i].width/2), -(_cars[i].height/2), _cars[i].width, _cars[i].height);
 				context.restore();
+
+				collision.debugPoints(context, _cars[i]);
 			}
+
+			
+				
 		};
 
 		this.step = function(tileSize) {
