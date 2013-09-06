@@ -12,25 +12,23 @@
 			_toRadians  = Math.PI/180;
 
 		function _removeCar(carReference) {
-			var i = _cars.length
+			var i = _cars.length;
 
 			while(i--) {
 				if(carReference === _cars[i]) {
 					_cars.splice(i,1);	
-					game.carLost();
 				}
 			}
 		}
 
-		function _carTripEnd(carReference) {
-			var i = _cars.length
+		function _carLost(carReference) {
+			_removeCar(carReference);
+			 game.carLost();
+		}
 
-			while(i--) {
-				if(carReference === _cars[i]) {
-					_cars.splice(i,1);	
-					game.carWon();
-				}
-			}
+		function _carTripEnd(carReference) {
+			_removeCar(carReference);
+			game.carWon();
 		}
 
 		//PUBLIC
@@ -44,8 +42,8 @@
 
                 startX    = options.startX || startTile.getX(),
                 startY    = options.startY || startTile.getY(),
-                endX      = options.endX || endTile.getX(),
-                endY      = options.endY || endTile.getY(),
+                endX      = options.endX   || endTile.getX(),
+                endY      = options.endY   || endTile.getY(),
                 
                 car = new Car({
                 	startTileX : startX,
@@ -57,7 +55,7 @@
 	                tileSize   : 200
 	            });
 
-	        car.on('crash', _removeCar);
+	        car.on('crash', _carLost);
 	        car.on('trip-end', _carTripEnd);       
 
             _cars.push(car);
@@ -67,7 +65,6 @@
 
 		this.render = function(context) {
 			var i = _cars.length;
-			var collision = new Collision;
 
 			while(i--) {	
 				context.save();
@@ -75,12 +72,7 @@
 				context.rotate(_cars[i].rotate * _toRadians);
 				context.drawImage(_cars[i].skin, -(_cars[i].width/2), -(_cars[i].height/2), _cars[i].width, _cars[i].height);
 				context.restore();
-
-				collision.debugPoints(context, _cars[i]);
 			}
-
-			
-				
 		};
 
 		this.step = function(tileSize) {
@@ -92,4 +84,4 @@
 		};
 	}
 
-})(window)
+})(window);

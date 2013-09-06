@@ -19,7 +19,7 @@
 
 		function animate() {
 			var i = managers.length;
-			
+
 			context.clearRect(0, 0, canvas.width, canvas.height);
 			while(i) {
 				managers[--i].render(context, tileSize);

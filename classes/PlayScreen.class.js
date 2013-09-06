@@ -2,7 +2,7 @@
 	"use strict";
 
 	window.PlayScreen = function(options) {
-		var mapLoader, game, htmlBoard, canvasManager, carManager, printer, listenersMgr, logicInterval;
+		var mapLoader, game, htmlBoard, canvasManager, carManager, collisionDetector, printer, listenersMgr, logicInterval;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['close']);
@@ -41,14 +41,19 @@
 
 			carManager = new CarManager(game);
 
+			collisionDetector = new CollisionDetector();
+
+
 			game.on('car-added', function(){;
-				carManager.addCar();
+				collisionDetector.addObject(carManager.addCar());
 			});
 
 			game.on('game-started', function() {
 				if(!logicInterval) {
 					logicInterval = setInterval(function() {
-						carManager.step(canvasManager.getTileSize());	
+
+						carManager.step(canvasManager.getTileSize());
+						collisionDetector.checkCollisions();
 					},16);	
 				};
 				

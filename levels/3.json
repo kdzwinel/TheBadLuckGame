@@ -1,0 +1,102 @@
+{
+	"carCount": 2,
+	"carsToWin": 1,
+	"startTimeout": 500,
+	"carTimeout": 500,
+	"map": {
+		"width": 5,
+		"height": 3,
+		"tiles": [
+			[
+				{
+					"roads": {
+						"w": "e",
+						"e": "w"
+					},
+					"start": true
+				},
+				{
+					"roads": {
+						"w": "e",
+						"e": "w"
+					}
+				},
+				{
+					"roads": {
+						"w": "s",
+						"s": "w"
+					}
+				},
+				{
+					"roads": {
+						"w": "e",
+						"e": "w",
+						"s": "n",
+						"n": "s"
+					}
+				},
+				{}
+			],
+			[
+				{
+					"end": true
+				},
+				{
+					"roads": {
+						"e": "s",
+						"s": "e"
+					}
+				},
+				{
+					"roads": {
+						"w": "s",
+						"n": "e",
+						"s": "w",
+						"e": "n"
+					}
+				},
+				{
+					"roads": {
+						"w": "s",
+						"n": "e",
+						"s": "w",
+						"e": "n"
+					}
+				},
+				{}
+			],
+			[
+				{},
+				{
+					"roads": {
+						"n": "e",
+						"e": "n"
+					}
+				},
+				{
+					"roads": {
+						"e": "n",
+						"w": "s",
+						"n": "e",
+						"s": "w"
+					}
+				},
+				{
+					"roads": {
+						"e": "n",
+						"w": "s",
+						"n": "e",
+						"s": "w"
+					}
+				},
+				{
+					"roads": {
+						"e": "w",
+						"w": "e"
+					},
+					"start": true
+				}
+			]
+		]
+	}
+}

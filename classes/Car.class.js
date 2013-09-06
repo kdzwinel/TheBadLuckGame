@@ -5,8 +5,10 @@
 		this.x 	   	= 0;
 		this.y 	   	= 0;
 		this.rotate = 0;
+		this.alive  = true;
 
 		this.skin = resource.get(options.type);
+		this.color = (['#FF0000', '#00FF00','#0000FF'])[Math.round(Math.random()*2)];
 		this.width = this.skin.width;
 		this.height = this.skin.height;
 
@@ -280,12 +282,18 @@
 		return ~~((this._ay * (t * t * t) + this._by * (t * t) + this._cy * (t) + this._p0.y) + 0.5);
 	};
 
-	global.Car.prototype._crash = function() {
+	global.Car.prototype.collision = function(collisionObject) {
+
 		this._listenersMgr.trigger('crash', this);
+		this.alive = false;
 		if(!this._prevTile.isStart() && !this._prevTile.isEnd()) {
 			this._prevTile.unlock();
 		}
-	};
+
+		if(collisionObject) {
+			this._currentTile.unlock();
+		}
+	}
 
 	global.Car.prototype.drive = function(tileSize) {
 		var nextX, 
@@ -313,13 +321,13 @@
 					nextY = this._currentTile.getY();
 
 					if(nextX >= this._board.getWidth() || nextX < 0 || nextY >= this._board.getHeight() || nextY < 0) {
-						this._crash();
+						this.collision();
 						return
 					}
 
 					this._currentTile = this._board.getTile(nextX, nextY);
 					if(!this._currentTile.roadFromEast()) {
-						this._crash();
+						this.collision();
 						return;
 					}
 					break;
@@ -328,13 +336,13 @@
 					nextY = this._currentTile.getY() - 1;
 
 					if(nextX >= this._board.getWidth() || nextX < 0 || nextY >= this._board.getHeight() || nextY < 0) {
-						this._crash();
+						this.collision();
 						return
 					}
 
 					this._currentTile = this._board.getTile(nextX, nextY);
 					if(!this._currentTile.roadFromSouth()) {
-						this._crash();
+						this.collision();
 						return;
 					}
 					break;
@@ -343,12 +351,12 @@
 					nextY = this._currentTile.getY();
 
 					if(nextX >= this._board.getWidth() || nextX < 0 || nextY >= this._board.getHeight() || nextY < 0) {
-						this._crash();
+						this.collision();
 						return
 					}
 					this._currentTile = this._board.getTile(nextX, nextY);
 					if(!this._currentTile.roadFromWest()) {
-						this._crash();
+						this.collision();
 						return;
 					}
 					break;
@@ -357,12 +365,12 @@
 					nextY = this._currentTile.getY() + 1;
 
 					if(nextX >= this._board.getWidth() || nextX < 0 || nextY >= this._board.getHeight() || nextY < 0) {
-						this._crash();
+						this.collision();
 						return
 					}
 					this._currentTile = this._board.getTile(nextX, nextY);
 					if(!this._currentTile.roadFromNorth()) {
-						this._crash();
+						this.collision();
 						return;
 					}
 					break;
