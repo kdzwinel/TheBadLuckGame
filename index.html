@@ -37,20 +37,24 @@
     <script src="classes/debug/GameStatusListener.class.js"></script>
 
     <link href='css/main.css' rel='stylesheet' type='text/css' />
+    <link href='css/responsive.css' rel='stylesheet' type='text/css' />
 </head>
 <body>
     <section id='intro-screen' class='screen'>
-        <div id="platform"></div>
-        <canvas class="particles" width="1200" height="800"></canvas>
-        <div id="city"></div>
+        <div id="scene">
+            <div id="platform"></div>
+            <canvas class="particles"></canvas>
+            <div id="city"></div>
 
-        <div id="blue_car"></div>
-        <div id="the-bad-luck"></div>
-        <div id="road"></div>
-        <div id="black_car"></div>
-        <div id="loader"><span>0%</span><div class='bar'></div></div>
-        <button id="play-button" class='hidden'>PLAY</button>
-        <div class="frame"></div>
+            <div id="blue_car"></div>
+            <div id="the-bad-luck"></div>
+            <div id="road"></div>
+            <div id="black_car"></div>
+        </div>
+        <div id="loader-wrapper">
+            <div id="loader"><span>0%</span><div class='bar'></div></div>
+            <button id="play-button" class='hidden'>PLAY</button>
+        </div>
     </section>
 
     <section id='levels-screen' class='screen'>
@@ -101,8 +105,6 @@
                 </div>
             </li>
         </ul>
-
-        <div class="frame"></div>
     </section>
 
     <section id='play-screen' class='screen'>

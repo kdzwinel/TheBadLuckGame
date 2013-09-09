@@ -34,8 +34,8 @@
 			var image = document.createElement('img');
 			canvas = options.element.querySelector('.particles');
 			context = canvas.getContext('2d');
-			screenWidth = 1200;
-			screenHeight = 800;
+			screenWidth = window.innerWidth;
+			screenHeight = window.innerHeight;
 			emitter = new jEmitter.ParticleEmitter({
 				spreadX : 0,
 				spreadY : 800,

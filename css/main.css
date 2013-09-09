@@ -6,8 +6,8 @@ body {
 	background: #4A4A4A;
 	font-family:  "Myriad Pro", "Trebuchet MS", sans-serif;
 	font-style: italic;
+	overflow: hidden;
 }
-
 
 button {
 	line-height: 22px;
@@ -38,7 +38,6 @@ button:hover {
 	box-shadow: inset -3px -3px 0 3px rgba(255,255,255,0.4);
 }
 
-
 .screen {
 	position: absolute;
 	left: 0;
@@ -46,10 +45,9 @@ button:hover {
 	top: 0;
 	bottom: 0;
 	display: none;
+	overflow: hidden;
 
 	z-index: 1;
-	width: 1200px;
-	height: 800px;
 	margin: 10px auto;
 	background-color: #5a2e75;
 	background-image: -ms-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
@@ -64,14 +62,17 @@ button:hover {
 	display: block;
 }
 
-.frame {
+.screen:after{
+	content: '';
+	display: block;
 	background-image: url('../gfx/mainscreen/frame.png');
-	width: 1200px;
-	height: 800px;
+	width: 100%;
+	height: 100%;
 	pointer-events:none;
 	position: absolute;
 	top: 0;
 	left: 0;
+	background-size: 100% 100%;
 }
 
 .particles {
@@ -84,6 +85,16 @@ button:hover {
 INTRO SCREEN
 */
 
+#scene {
+	position: absolute;
+	left: 50%;
+	width: 1000px;
+	margin-left: -500px;
+	top: 50%;
+	height: 600px;
+	margin-top: -350px;
+}
+
 #city, #blue_car, #black_car, #the-bad-luck, #road, #platform, #loader, .button {
 	position: absolute;
 }
@@ -95,8 +106,6 @@ INTRO SCREEN
 	opacity: 0.25;
 	left: 50%;
 	margin-left: -400px;
-	top:120px;
-
 }
 
 #platform {
@@ -110,7 +119,14 @@ INTRO SCREEN
 	width: 1200px;
 	height: 175px;
 	border-radius: 50%;
-	top: 505px;
+	top: 385px;
+}
+
+#scene .particles {
+	width: 100%;
+	bottom: 150px;
+	top: auto;
+	left: auto;
 }
 
 #blue_car {
@@ -119,7 +135,7 @@ INTRO SCREEN
 	height: 211px;
 
 	left: 50%;
-	top: 397px;
+	top: 277px;
 	margin-left: 25px;
 }
 
@@ -130,7 +146,7 @@ INTRO SCREEN
 
 	left: 50%;
 	margin-left: -450px;
-	top: 370px;
+	top: 250px;
 }
 
 #the-bad-luck {
@@ -140,7 +156,7 @@ INTRO SCREEN
 
 	left: 50%;
 	margin-left: -433px;
-	top: 332px;
+	top: 212px;
 }
 
 #road {
@@ -150,13 +166,21 @@ INTRO SCREEN
 
 	left: 50%;
 	margin-left: 199px;
-	top: 342px;
+	top: 222px;
+}
+
+#loader-wrapper {
+	position: absolute;
+	bottom: 10%;
+	left: 50%;
+	margin-left: -200px;
+	width: 400px;
+	height: 60px;
 }
 
 #play-button {
 	position: absolute;
 	left: 50%;
-	bottom: 50px;
 	margin-left: -100px;
 	opacity: 1;
 	visibility: visible;
@@ -169,9 +193,6 @@ INTRO SCREEN
 }
 
 #loader {
-	left: 50%;
-	margin-left: -200px;
-	bottom: 50px;
 	width: 400px;
 	height:40px;
 	padding: 2px;
@@ -243,6 +264,8 @@ LEVEL SCREEN
 */
 .levels {
 	list-style-type: none;
+	margin: 20px;
+	padding: 0;
 }
 
 .levels li {
@@ -251,7 +274,7 @@ LEVEL SCREEN
 	height: 170px;
 	position: relative;
 	display: inline-block;
-	margin: 70px 0 0 58px;
+	margin: 30px;
 
 	transition: all 0.3s;
 }

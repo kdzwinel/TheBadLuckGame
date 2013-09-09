@@ -1,0 +1,71 @@
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+	#the-bad-luck {
+		width: 328px;
+		height: 74px;
+		left: 50%;
+		margin-left: -241px;
+		top: 259px;
+		background-size: 328px 74px;
+	}
+
+	#road {
+		width: 125px;
+		height: 65px;
+		left: 50%;
+		margin-left: 85px;
+		top: 269px;
+		background-size: 125px 65px;
+	}
+
+	.levels {
+		margin: 0;
+	}
+
+	.levels li {
+		width: 100px;
+		height: 100px;
+		background-size: 100px;
+	}
+
+	.levels li h1 {
+		top: -30px;
+		font-size: 3em;
+	}
+
+	.levels li .star{
+		width: 35px;
+		height: 35px;
+		background-size: 35px;
+	}
+
+	.levels li .star.first {
+		top: 26px;
+		left: 0px;
+	}
+
+	.levels li .star.second {
+		top: 48px;
+		left: 25px;
+	}
+
+	.levels li .star.third {
+		left: 59px;
+		top: 29px;
+	}
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}

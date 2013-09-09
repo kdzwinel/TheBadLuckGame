@@ -35,8 +35,8 @@
 			/* Init Emitter */
 			canvas = options.element.querySelector('.particles');
 			context = canvas.getContext('2d');
-			screenWidth = 1200;
-			screenHeight = 800;
+			screenWidth = window.innerWidth;
+			screenHeight = window.innerHeight;
 			emitter = new jEmitter.ParticleEmitter({
 				poolSize: 500,
 				spreadX: 400,
@@ -94,7 +94,7 @@
 			animate();
 
 			emitInterval = setInterval(function () {
-				emitter.emit(screenWidth / 2, screenHeight / 2 + 130);
+				emitter.emit(screenWidth / 2, screenHeight);
 			}, 100);
 		};
 
