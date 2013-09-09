@@ -11,9 +11,10 @@
 			listenersMgr = new EventListenersManager(['start']);
 
 			var playButton = options.element.querySelector('#play-button');
-			playButton.onclick = function () {
+			new Tap(playButton);
+			playButton.addEventListener('tap', function () {
 				listenersMgr.trigger('start');
-			};
+			}, false);
 
 			/* Init Loader */
 			var loader = options.element.querySelector('#loader');
