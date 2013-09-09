@@ -51,9 +51,18 @@
 					emitter.emit(car.x, car.y);
 
 					if(!car.alive) {
+						var classes = options.element.className;
 						collisionDetector.removeObject(car);
+						options.element.className =classes + ' shake';
+						setTimeout(function() {
+							options.element.className = classes.replace('shake','');
+						}, 400);
 					}
 				});
+
+				car.on('trip-end', function(car) {
+					collisionDetector.removeObject(car);
+				})
 
 				collisionDetector.addObject(car);
 			});
