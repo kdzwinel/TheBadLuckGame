@@ -9,7 +9,7 @@
 		function getParentByTagName(obj, tag)
 		{
 			var parent = obj.parentNode;
-			if (!parent) {
+			if (!parent || !parent.tagName) {
 				return false;
 			}
 
@@ -20,7 +20,8 @@
 			listenersMgr = new EventListenersManager(['level-chosen']);
 
 			var levels = options.element.querySelector('.levels');
-			levels.onclick = function(e) {
+			new Tap(levels);
+			levels.addEventListener('tap', function(e) {
 				var li = getParentByTagName(e.target, 'li');
 
 				if (li && !li.classList.contains('inactive')) {
@@ -28,7 +29,7 @@
 						levelName: li.dataset.levelName
 					});
 				}
-			};
+			}, false);
 
 			/* Init Emitter */
 			var image = document.createElement('img');

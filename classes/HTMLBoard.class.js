@@ -8,15 +8,20 @@
 		}
 
 		function adjustBoardSize() {
-			var boardMargin = 10,
+			var widthMargin = 10,
+				heightMargin = 20,
 				tileMargin = 4,
-				tileSize;
-			tileSize = Math.floor( (window.innerWidth - boardMargin) / options.board.getWidth()) - tileMargin;
+				tileSize,
+				widthTileSize = Math.floor( (window.innerWidth - widthMargin) / options.board.getWidth()) - tileMargin,
+				heightTileSize = Math.floor( (window.innerHeight - heightMargin) / options.board.getHeight()) - tileMargin;
+
+			tileSize = (widthTileSize < heightTileSize) ? widthTileSize : heightTileSize;
 			document.styleSheets[0].addRule('.tiles .row .tile', 'width: ' + tileSize + 'px; height: ' + tileSize + 'px');
 		}
 
 		function addListeners() {
-			options.element.onclick = function(e) {
+			new Tap(options.element);
+			options.element.addEventListener('tap', function(e) {
 				if(!e.target.classList.contains('tile')) {
 					return;
 				}
@@ -33,7 +38,7 @@
 				} else {
 					tile.rotateRight();
 				}
-			};
+			}, false);
 
 			window.onresize = adjustBoardSize;
 		}

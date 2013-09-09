@@ -16,7 +16,7 @@ button {
 	text-shadow: 3px 3px 0 #000;
 	box-shadow: inset -0px -8px 0 3px rgba(255,255,255,0.3),-1px 4px 0 #000;
 	height: 61px;
-	width: 221px;
+	width: 200px;
 	border-radius: 30px;
 	padding: 10px;
 	border: 2px solid #000;
@@ -36,8 +36,8 @@ button {
 }
 
 button:hover {
-	height: 49px;
-	box-shadow: inset -3px -3px 0px 3px rgba(255,255,255,0.4), -1px 1px 0 #000;;
+	height: 48px;
+	box-shadow: inset -3px -3px 0 3px rgba(255,255,255,0.4);
 }
 
 .screen {
@@ -186,8 +186,7 @@ INTRO SCREEN
 	margin-left: -100px;
 	opacity: 1;
 	visibility: visible;
-	transition: opacity 0.3s 0.3s, visibility 0, height 0.3s, box-shadow 0.3s, height 0.3s;
-	bottom: 0px;
+	transition: opacity 0.3s 0.3s, visibility 0, height 0.3s;
 }
 
 #play-button.hidden {
