@@ -383,6 +383,10 @@ PLAY SCREEN STYLES
 	border-color: red;
 }
 
+.tiles .row .tile {
+	background-image: url(../gfx/tiles/tile.png);
+}
+
 .tiles .row .tile.turn {
 	background-image: url(../gfx/tiles/turn.png);
 }
