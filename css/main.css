@@ -29,9 +29,9 @@ button {
 	background-image: -webkit-linear-gradient(top, #DC5D8E 0%, #80090C 100%);
 	background-image: linear-gradient(to bottom, #DC5D8E 0%, #80090C 100%);
 
-	transition: height 0.3s;
-	-webkit-transition: height 0.3s;
-	-moz-transition: height 0.3s;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
 	text-decoration: none;
 }
 
@@ -75,6 +75,12 @@ button:hover {
 	top: 0;
 	left: 0;
 	background-size: 100% 100%;
+}
+
+.particles {
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 
 /*
@@ -121,7 +127,8 @@ INTRO SCREEN
 #scene .particles {
 	width: 100%;
 	bottom: 150px;
-	position: absolute;
+	top: auto;
+	left: auto;
 }
 
 #blue_car {
@@ -180,8 +187,6 @@ INTRO SCREEN
 	opacity: 1;
 	visibility: visible;
 	transition: opacity 0.3s 0.3s, visibility 0, height 0.3s;
-	-webkit-transition: opacity 0.3s 0.3s, visibility 0, height 0.3s;
-	-moz-transition: opacity 0.3s 0.3s, visibility 0, height 0.3s;
 }
 
 #play-button.hidden {
@@ -203,8 +208,6 @@ INTRO SCREEN
 	background-image: linear-gradient(to right, #7F5F93 0%, #543766 50%, #7F5F93 100%);
 
 	transition: opacity 0.3s;
-	-webkit-transition: opacity 0.3s;
-	-moz-transition: opacity 0.3s;
 }
 
 #loader:before {
@@ -238,8 +241,6 @@ INTRO SCREEN
 	background-image: linear-gradient(to bottom, #DC5D8E 0%, #80090C 100%);
 
 	transition: width 0.15s;
-	-webkit-transition: width 0.15s;
-	-moz-transition: width 0.15s;
 }
 
 #loader>span {
@@ -263,14 +264,6 @@ INTRO SCREEN
 /*
 LEVEL SCREEN
 */
-#levels-screen .particles {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-}
-
 .levels {
 	list-style-type: none;
 	margin: 20px;
@@ -286,8 +279,6 @@ LEVEL SCREEN
 	margin: 30px;
 
 	transition: all 0.3s;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
 }
 
 .levels li:hover {
