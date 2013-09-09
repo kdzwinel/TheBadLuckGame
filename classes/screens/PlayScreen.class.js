@@ -64,7 +64,7 @@
 
 						carManager.step(canvasManager.getTileSize());
 						collisionDetector.checkCollisions();
-					},16);	
+					},16);
 				}
 			});
 
@@ -125,6 +125,7 @@
 			canvasManager = null;
 
 			clearInterval(logicInterval);
+			logicInterval = null;
 		};
 	}
 })();
