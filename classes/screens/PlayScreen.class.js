@@ -41,7 +41,6 @@
 
 			carManager = new CarManager(game);
 			particleEmitterManager = new ParticleEmitterManager();
-
 			collisionDetector = new CollisionDetector();
 
 
@@ -51,6 +50,10 @@
 
 				car.on('crash', function(car){
 					emitter.emit(car.x, car.y);
+
+					if(!car.alive) {
+						collisionDetector.removeObject(car);
+					}
 				});
 
 				collisionDetector.addObject(car);

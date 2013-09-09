@@ -282,9 +282,8 @@
 	};
 
 	global.Car.prototype.collision = function(collisionObject) {
-
-		this._listenersMgr.trigger('crash', this);
 		this.alive = false;
+		this._listenersMgr.trigger('crash', this);
 		if(!this._prevTile.isStart() && !this._prevTile.isEnd()) {
 			this._prevTile.unlock();
 		}

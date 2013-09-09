@@ -1,5 +1,5 @@
 var resource = new ResourceLoader();
-	resource.add(['sedan', 'van', 'particle_1', 'particle_smoke', 'particle_flare', 'particle_flare_1']);
+	resource.add(['sedan', 'van', 'particle_smoke', 'particle_flare', 'particle_flare_1']);
 	resource.load();
 
 var introScreen = new IntroScreen({

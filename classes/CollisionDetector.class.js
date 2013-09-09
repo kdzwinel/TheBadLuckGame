@@ -185,16 +185,8 @@
 					objectTwo = pool[j];
 
 					if (isCollision(objectOne, objectTwo)) {
-						
 						objectOne.collision(objectTwo);
-						if(!objectOne.alive) {
-							this.removeObject(objectOne);
-						}
-
 						objectTwo.collision(objectOne);
-						if(!objectTwo.alive) {
-							this.removeObject(objectTwo);	
-						}						
 					} 
 				}
 			}
