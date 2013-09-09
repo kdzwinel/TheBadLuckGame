@@ -2,8 +2,8 @@
 	
 	global.Car = function(options) {
 		
-		this.x 	   	= 0;
-		this.y 	   	= 0;
+		this.x 	   	= -100;
+		this.y 	   	= -100;
 		this.rotate = 0;
 		this.alive  = true;
 
