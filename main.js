@@ -1,13 +1,14 @@
-var resource = new Resource();
-	resource.add(['sedan', 'van', 'truck']);
-	resource.on('load', function() {
-		console.log(resource.getPercentage());
-		console.log('image loaded');
-	});
+var resource = new ResourceLoader();
+	resource.add(['sedan', 'van']);
 	resource.load();
 
-var mainScreen = new MainScreen({
-	element: document.getElementById('main-screen')
+var introScreen = new IntroScreen({
+	element: document.getElementById('intro-screen'),
+	loader: resource
+});
+
+var levelsScreen = new LevelsScreen({
+	element: document.getElementById('levels-screen')
 });
 
 var playScreen = new PlayScreen({
@@ -15,14 +16,18 @@ var playScreen = new PlayScreen({
 });
 
 var screenMgr = new ScreenManager();
-screenMgr.addScreen(mainScreen, 'main');
+screenMgr.addScreen(introScreen, 'intro');
+screenMgr.addScreen(levelsScreen, 'levels');
 screenMgr.addScreen(playScreen, 'play');
 
-mainScreen.on('level-chosen', function(data) {
+introScreen.on('start', function() {
+	screenMgr.goToScreen('levels');
+});
+levelsScreen.on('level-chosen', function(data) {
 	screenMgr.goToScreen('play', data);
 });
 playScreen.on('close', function() {
-	screenMgr.goToScreen('main');
+	screenMgr.goToScreen('levels');
 });
 
-screenMgr.goToScreen('main');
+screenMgr.goToScreen('intro');

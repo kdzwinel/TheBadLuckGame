@@ -44,20 +44,18 @@
 			collisionDetector = new CollisionDetector();
 
 
-			game.on('car-added', function(){;
+			game.on('car-added', function(){
 				collisionDetector.addObject(carManager.addCar());
 			});
 
 			game.on('game-started', function() {
 				if(!logicInterval) {
 					logicInterval = setInterval(function() {
-
 						carManager.step(canvasManager.getTileSize());
 						collisionDetector.checkCollisions();
-					},16);	
-				};
-				
-			})
+					},16);
+				}
+			});
 
 			canvasManager.addManager(carManager);
 			canvasManager.startAnimation();

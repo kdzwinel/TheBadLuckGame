@@ -2,18 +2,301 @@
 GENERAL STYLES
 */
 
+body {
+	background: #4A4A4A;
+	font-family:  "Myriad Pro", "Trebuchet MS", sans-serif;
+	font-style: italic;
+}
+
+
+button {
+	line-height: 22px;
+	text-align: center;
+	color: #fff;
+	text-shadow: 3px 3px 0 #000;
+	box-shadow: inset -0px -8px 0 3px rgba(255,255,255,0.3),-1px 4px 0 #000;
+	height: 61px;
+	width: 200px;
+	border-radius: 30px;
+	padding: 10px;
+	border: 2px solid #000;
+	font-size: 1.5em;
+	font-weight: bold;
+	background-image: -ms-linear-gradient(top, #DC5D8E 0%, #80090C 100%);
+	background-image: -moz-linear-gradient(top, #DC5D8E 0%, #80090C 100%);
+	background-image: -o-linear-gradient(top, #DC5D8E 0%, #80090C 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #DC5D8E), color-stop(1, #80090C));
+	background-image: -webkit-linear-gradient(top, #DC5D8E 0%, #80090C 100%);
+	background-image: linear-gradient(to bottom, #DC5D8E 0%, #80090C 100%);
+
+	transition: all 0.3s;
+	text-decoration: none;
+}
+
+button:hover {
+	height: 48px;
+	box-shadow: inset -3px -3px 0 3px rgba(255,255,255,0.4);
+}
+
+
 .screen {
 	position: absolute;
 	left: 0;
 	right: 0;
 	top: 0;
 	bottom: 0;
-	padding: 10px;
 	display: none;
+
+	z-index: 1;
+	width: 1200px;
+	height: 800px;
+	margin: 10px auto;
+	background-color: #5a2e75;
+	background-image: -ms-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
+	background-image: -moz-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
+	background-image: -o-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
+	background-image: -webkit-gradient(radial, center center, 0, center center, 505, color-stop(0, #835B9C), color-stop(1, #5A2E75));
+	background-image: -webkit-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
+	background-image: radial-gradient(circle closest-corner at center, #835B9C 0%, #5A2E75 100%);
 }
 
 .screen.visible {
 	display: block;
+}
+
+.frame {
+	background-image: url('../gfx/mainscreen/frame.png');
+	width: 1200px;
+	height: 800px;
+	pointer-events:none;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.particles {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+/*
+INTRO SCREEN
+*/
+
+#city, #blue_car, #black_car, #the-bad-luck, #road, #platform, #loader, .button {
+	position: absolute;
+}
+
+#city {
+	background-image: url('../gfx/mainscreen/city.png');
+	width: 789px;
+	height: 396px;
+	opacity: 0.25;
+	left: 50%;
+	margin-left: -400px;
+	top:120px;
+
+}
+
+#platform {
+	background-color: #57326e;
+	background-image: -ms-linear-gradient(top, #703991 0%, #57326E 100%);
+	background-image: -moz-linear-gradient(top, #703991 0%, #57326E 100%);
+	background-image: -o-linear-gradient(top, #703991 0%, #57326E 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #703991), color-stop(1, #57326E));
+	background-image: -webkit-linear-gradient(top, #703991 0%, #57326E 100%);
+	background-image: linear-gradient(to bottom, #703991 0%, #57326E 100%);
+	width: 1200px;
+	height: 175px;
+	border-radius: 50%;
+	top: 505px;
+}
+
+#blue_car {
+	background-image: url('../gfx/mainscreen/car-two-theme.png');
+	width: 512px;
+	height: 211px;
+
+	left: 50%;
+	top: 397px;
+	margin-left: 25px;
+}
+
+#black_car {
+	background-image: url('../gfx/mainscreen/car-one-theme.png');
+	width: 511px;
+	height: 304px;
+
+	left: 50%;
+	margin-left: -450px;
+	top: 370px;
+}
+
+#the-bad-luck {
+	background-image: url('../gfx/mainscreen/the-bad-luck.png');
+	width: 656px;
+	height: 148px;
+
+	left: 50%;
+	margin-left: -433px;
+	top: 332px;
+}
+
+#road {
+	background-image: url('../gfx/mainscreen/road.png');
+	width: 251px;
+	height: 130px;
+
+	left: 50%;
+	margin-left: 199px;
+	top: 342px;
+}
+
+#play-button {
+	position: absolute;
+	left:50%;
+	bottom: 50px;
+	margin-left: -100px;
+}
+
+#play-button.hidden {
+	display: none;
+}
+
+#loader {
+	left: 50%;
+	margin-left: -200px;
+	bottom: 50px;
+	width: 400px;
+	height:40px;
+	padding: 2px;
+	border-radius: 10px;
+
+	background-image: -ms-linear-gradient(left, #7F5F93 0%, #543766 50%, #7F5F93 100%);
+	background-image: -moz-linear-gradient(left, #7F5F93 0%, #543766 50%, #7F5F93 100%);
+	background-image: -o-linear-gradient(left, #7F5F93 0%, #543766 50%, #7F5F93 100%);
+	background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7F5F93), color-stop(0.5, #543766), color-stop(1, #7F5F93));
+	background-image: -webkit-linear-gradient(left, #7F5F93 0%, #543766 50%, #7F5F93 100%);
+	background-image: linear-gradient(to right, #7F5F93 0%, #543766 50%, #7F5F93 100%);
+}
+
+#loader:before {
+	width: 400px;
+	height: 40px;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 14px -2px #000;
+	display: block;
+
+	background-color: #5a2e75;
+	content: "";
+}
+
+#loader .bar {
+	width: 40%;
+	height: 28px;
+	content: "";
+	display: block;
+	position: absolute;
+	top: 7px;
+	left: 7px;
+	max-width: 390px;
+	border: 1px solid #000;
+	border-radius: 7px;
+
+	background-image: -ms-linear-gradient(top, #DC5D8E 0%, #80090C 100%);
+	background-image: -moz-linear-gradient(top, #DC5D8E 0%, #80090C 100%);
+	background-image: -o-linear-gradient(top, #DC5D8E 0%, #80090C 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #DC5D8E), color-stop(1, #80090C));
+	background-image: -webkit-linear-gradient(top, #DC5D8E 0%, #80090C 100%);
+	background-image: linear-gradient(to bottom, #DC5D8E 0%, #80090C 100%);
+}
+
+#loader>span {
+	position: absolute;
+	top: -54px;
+	color: #ffffff;
+	font-size: 3em;
+	text-shadow: 2px 3px 0px #000;
+	left: 50%;
+	margin-left: -60px;
+	width: 120px;
+	text-align: center;
+	z-index: 1;
+	font-weight: bold;
+}
+
+#loader.hidden {
+	display: none;
+}
+
+/*
+LEVEL SCREEN
+*/
+.levels {
+	list-style-type: none;
+}
+
+.levels li {
+	background-image: url('../gfx/level-label.png');
+	width: 170px;
+	height: 170px;
+	position: relative;
+	display: inline-block;
+	margin: 70px 0 0 58px;
+
+	transition: all 0.3s;
+}
+
+.levels li:hover {
+	transform: scale(1.1) ;
+	-webkit-transform: scale(1.1) ;
+	-moz-transform: scale(1.1) ;
+	-o-transform: scale(1.1) ;
+	-ms-transform: scale(1.1) ;
+}
+
+.levels li.inactive {
+	background-image: url('../gfx/level-label-unactive.png');
+}
+
+.levels li .star {
+	background-image: url('../gfx/star-active.png');
+	position: absolute;
+	width: 70px;
+	height: 72px;
+}
+
+.levels li h1 {
+	font-size: 4em;
+	color: #ffffff;
+	text-shadow: 3px 3px 0px #000;
+	position: absolute;
+	left: 50%;
+	margin-left: -35px;
+	width: 70px;
+	text-align: center;
+	top: -15px;
+
+}
+
+.levels li .star.inactive {
+	background-image: url('../gfx/star-unactive.png');
+}
+
+.levels li .star.first {
+	top: 36px;
+	left: -14px;
+}
+
+.levels li .star.second {
+	top: 90px;
+	left: 45px
+}
+
+.levels li .star.third {
+	left: 115px;
+	top: 40px;
 }
 
 /*
@@ -60,19 +343,19 @@ PLAY SCREEN STYLES
 }
 
 .tiles .row .tile.turn {
-	background-image: url(../gfx/turn.png);
+	background-image: url(../gfx/tiles/turn.png);
 }
 
 .tiles .row .tile.junction {
-	background-image: url(../gfx/junction.png);
+	background-image: url(../gfx/tiles/junction.png);
 }
 
 .tiles .row .tile.two-turns {
-	background-image: url(../gfx/two-turns.png);
+	background-image: url(../gfx/tiles/two-turns.png);
 }
 
 .tiles .row .tile.straight {
-	background-image: url(../gfx/straight.png);
+	background-image: url(../gfx/tiles/straight.png);
 }
 
 #board-container {

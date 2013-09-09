@@ -5,9 +5,13 @@
 
     <!-- TOOLS -->
     <script src="tools/requestAnimationFrame.js"></script>
-    <script src="classes/Resource.class.js"></script>
+    <script src="classes/ResourceLoader.class.js"></script>
     <script src="classes/CollisionDetector.class.js"></script>
     <script src="classes/EventListenersManager.class.js"></script>
+    <script src="classes/jEmitter/utils.js"></script>
+    <script src="classes/jEmitter/vector.js"></script>
+    <script src="classes/jEmitter/particle.js"></script>
+    <script src="classes/jEmitter/particleEmitter.js"></script>
 
     <!-- CANVAS -->
     <script src="classes/Car.class.js"></script>
@@ -23,9 +27,10 @@
     <script src="classes/MapLoader.class.js"></script>
     <script src="classes/HTMLTile.class.js"></script>
     <script src="classes/HTMLBoard.class.js"></script>
-    <script src="classes/ScreenManager.class.js"></script>
-    <script src="classes/MainScreen.class.js"></script>
-    <script src="classes/PlayScreen.class.js"></script>
+    <script src="classes/screens/ScreenManager.class.js"></script>
+    <script src="classes/screens/IntroScreen.class.js"></script>
+    <script src="classes/screens/LevelsScreen.class.js"></script>
+    <script src="classes/screens/PlayScreen.class.js"></script>
 
     <!-- DEBUG -->
     <script src="classes/debug/TextBoardPrinter.class.js"></script>
@@ -34,25 +39,80 @@
     <link href='css/main.css' rel='stylesheet' type='text/css' />
 </head>
 <body>
-    <div id='main-screen' class='screen'>
-        <h2>Main screen</h2>
+    <section id='intro-screen' class='screen'>
+        <div id="platform"></div>
+        <canvas class="particles" width="1200" height="800"></canvas>
+        <div id="city"></div>
+
+        <div id="blue_car"></div>
+        <div id="the-bad-luck"></div>
+        <div id="road"></div>
+        <div id="black_car"></div>
+        <div id="loader"><span>48%</span><div class='bar'></div></div>
+        <button id="play-button" class='hidden'>PLAY</button>
+        <div class="frame"></div>
+    </section>
+
+    <section id='levels-screen' class='screen'>
+        <canvas class="particles" width="1200" height="800"></canvas>
         <ul class='levels'>
-            <li data-level-name="1">#1</li>
-            <li data-level-name="2">#2</li>
-            <li data-level-name="3">#3</li>
+            <li data-level-name="1">
+                <h1>1</h1>
+
+                <div class="star-container">
+                    <p class="star first"></p>
+
+                    <p class="star second"></p>
+
+                    <p class="star third inactive"></p>
+                </div>
+            </li>
+            <li data-level-name="2">
+                <h1>2</h1>
+
+                <div class="star-container">
+                    <p class="star first"></p>
+
+                    <p class="star second"></p>
+
+                    <p class="star third inactive"></p>
+                </div>
+            </li>
+            <li data-level-name="3">
+                <h1>3</h1>
+
+                <div class="star-container">
+                    <p class="star first"></p>
+
+                    <p class="star second"></p>
+
+                    <p class="star third inactive"></p>
+                </div>
+            </li>
+            <li class="inactive">
+                <h1>4</h1>
+
+                <div class="star-container">
+                    <p class="star first"></p>
+
+                    <p class="star second"></p>
+
+                    <p class="star third inactive"></p>
+                </div>
+            </li>
         </ul>
-    </div>
-    <div id='play-screen' class='screen'>
-        <h2>Play screen</h2>
-        <p>Starting tiles <span class='color-box start'></span></p>
-        <p>Ending tiles <span class='color-box end'></span></p>
-        <p>Locked tiles <span class='color-box locked'></span></p>
-        <p><button class='back-button'>Back</button></p>
+
+        <div class="frame"></div>
+    </section>
+
+    <section id='play-screen' class='screen'>
         <div id="board-container">
             <div class="tiles"></div>
             <canvas id="canvas"></canvas>
         </div>
-    </div>
+        <p><button class='back-button'>Back</button></p>
+    </section>
+
     <script src="main.js"></script>
 </body>
 </html>

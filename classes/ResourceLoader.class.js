@@ -1,14 +1,16 @@
 (function(global, undefined) {
+	"use strict";
 	
-	global.Resource = function(options) {
+	global.ResourceLoader = function() {
 		var images = [],
 			elements = {},
 			loaded = 0,
-			listenersMgr = new EventListenersManager(['load']);
+			listenersMgr = new EventListenersManager(['load']),
+			that = this;
 
-		function onLoad(e) {
+		function onLoad() {
 			loaded++;
-			listenersMgr.trigger('load');
+			listenersMgr.trigger('load', that.getPercentage());
 		}
 
 		/**
@@ -18,7 +20,7 @@
 		 */
 		this.on = function(event, callback) {
 			listenersMgr.addEventListener(event, callback);
-		}
+		};
 
 		this.add = function(files) {
 			var i;
@@ -28,30 +30,36 @@
 				while(i--) {
 					images.push(files[i]);
 				}
-			}		
-		}
+			}
+		};
 
 		this.load = function() {
 			var element,
 				i = images.length;
 
 			while(i--) {
-				element = document.createElement('img');
-				element.onload = onLoad;
-				element.src = 'gfx/' + images[i] + '.png';
-				elements[images[i]] = element; 
-			};		
-		}
+				//TODO remove timeout when on production
+				(function() {
+					var img = images[i];
+					setTimeout(function() {
+						element = document.createElement('img');
+						element.onload = onLoad;
+						element.src = 'gfx/' + img + '.png';
+						elements[img] = element;
+					}, i * 500);
+				})();
+			}
+		};
 
 		this.get = function(name) {
 			if(!elements[name]) {
 				throw 'No "' + name + '" resource in collection';
 			}
 			return elements[name]; 
-		}
+		};
 
 		this.getPercentage = function() {
 			return ~~((loaded / images.length) * 100 + 0.5); 
 		}
 	}
-})(window)
+})(window);
