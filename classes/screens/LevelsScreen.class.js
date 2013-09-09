@@ -23,7 +23,7 @@
 			levels.onclick = function(e) {
 				var li = getParentByTagName(e.target, 'li');
 
-				if (li) {
+				if (li && !li.classList.contains('inactive')) {
 					listenersMgr.trigger('level-chosen', {
 						levelName: li.dataset.levelName
 					});
