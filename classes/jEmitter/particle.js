@@ -33,6 +33,7 @@ var jEmitter = jEmitter || {};
 		this.rotateStep  = settings.rotateStep || 0;
 		this.rotateAngle = 0;
 		this.alive 	  	 = true;
+		this.image       = settings.image;
 	}
 
 	o.Particle.prototype.move = function() {
