@@ -54,7 +54,7 @@
 				minRotateStep : -1,
 				maxRotateStep : 1,
 
-				image : image
+				images : [image]
 			});
 
 			canvas.width = screenWidth;

@@ -7,10 +7,9 @@
 		this.rotate = 0;
 		this.alive  = true;
 
-		this.skin = resource.get(options.type);
-		this.color = (['#FF0000', '#00FF00','#0000FF'])[Math.round(Math.random()*2)];
-		this.width = this.skin.width;
-		this.height = this.skin.height;
+		this.appearance = options.appearance;
+		this.width = this.appearance.skin.width;
+		this.height = this.appearance.skin.height;
 
 		this._t 	   = 0.0;
 		this._velocity = 0.02;

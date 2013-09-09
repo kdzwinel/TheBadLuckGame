@@ -7,7 +7,12 @@
 		var _board      = game.getBoard(),
             _startTiles = _board.getStartTiles(),
 			_endTiles   = _board.getEndTiles(),
-			_carsTypes  = ['sedan', 'truck', 'van'],
+			_carsAppearance  = [
+				new CarApperance('sedan'),
+				new CarApperance('van')
+			]
+
+			,
 			_cars       = [],
 			_toRadians  = Math.PI/180;
 
@@ -38,7 +43,8 @@
 			var options   = options || {},
                 startTile = _startTiles[Math.floor(Math.random() * _startTiles.length)],
 				endTile   = _endTiles[Math.floor(Math.random() * _endTiles.length)],
-				carType   = _carsTypes[Math.floor(Math.random() * _carsTypes.length)],
+				carAppearance  = _carsAppearance[Math.floor(Math.random() * _carsAppearance.length)],
+
 
                 startX    = options.startX || startTile.getX(),
                 startY    = options.startY || startTile.getY(),
@@ -50,7 +56,7 @@
 	                startTileY : startY,
 	                endTileX   : endX,
 	                endTileY   : endY,
-	                type       : carType,
+	                appearance : carAppearance,
 	                board      : _board,
 	                tileSize   : 200
 	            });
@@ -70,7 +76,7 @@
 				context.save();
 				context.translate(_cars[i].x, _cars[i].y);
 				context.rotate(_cars[i].rotate * _toRadians);
-				context.drawImage(_cars[i].skin, -(_cars[i].width/2), -(_cars[i].height/2), _cars[i].width, _cars[i].height);
+				context.drawImage(_cars[i].appearance.skin, -(_cars[i].width/2), -(_cars[i].height/2), _cars[i].width, _cars[i].height);
 				context.restore();
 			}
 		};

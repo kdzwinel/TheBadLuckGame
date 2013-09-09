@@ -2,7 +2,7 @@
 	"use strict";
 
 	window.PlayScreen = function(options) {
-		var mapLoader, game, htmlBoard, canvasManager, carManager, collisionDetector, printer, listenersMgr, logicInterval;
+		var mapLoader, game, htmlBoard, canvasManager, carManager, particleEmitterManager, collisionDetector, printer, listenersMgr, logicInterval;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['close']);
@@ -40,24 +40,34 @@
 			});
 
 			carManager = new CarManager(game);
+			particleEmitterManager = new ParticleEmitterManager();
 
 			collisionDetector = new CollisionDetector();
 
 
 			game.on('car-added', function(){
-				collisionDetector.addObject(carManager.addCar());
+				var car = carManager.addCar(),
+					emitter = particleEmitterManager.addEmitter(car.appearance.getExplosionObject());
+
+				car.on('crash', function(car){
+					emitter.emit(car.x, car.y);
+				});
+
+				collisionDetector.addObject(car);
 			});
 
 			game.on('game-started', function() {
 				if(!logicInterval) {
 					logicInterval = setInterval(function() {
+
 						carManager.step(canvasManager.getTileSize());
 						collisionDetector.checkCollisions();
-					},16);
+					},16);	
 				}
 			});
 
 			canvasManager.addManager(carManager);
+			canvasManager.addManager(particleEmitterManager);
 			canvasManager.startAnimation();
 
 			/* DEBUG */

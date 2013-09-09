@@ -37,7 +37,7 @@ var jEmitter = jEmitter || {};
 		this.maxAlpha			= settings.maxAlpha			 || 100;
 		this.minFadeStep		= settings.minFadeStep		 || 0;
 		this.maxFadeStep		= settings.maxFadeStep		 || 0;
-		this.image 			    = settings.image;
+		this.images 			= settings.images;
 
 		this.TWO_PI   = 2 * Math.PI;		
 		this.RAD_CONS = Math.PI/180;
@@ -62,7 +62,8 @@ var jEmitter = jEmitter || {};
 			velocityRadius,
 			radians,
 			velocityX,
-			velocityY;
+			velocityY,
+			image;
 		
 		for (var i = 0; i < max; i++ ) {
 
@@ -77,6 +78,10 @@ var jEmitter = jEmitter || {};
 				fadeStep   = random(this.minFadeStep, this.maxFadeStep)/100;
 				rotateStep = random(this.minRotateStep, this.maxRotateStep);
 				velocity   = random(this.minVelocity, this.maxVelocity);
+
+				if(this.images) {
+					image = this.images[Math.floor((Math.random() * this.images.length))];
+				}
 
 				 if(this.equalRadius) {
 				 	velocityRadius = this.minVelocityRadius + (((this.maxVelocityRadius - this.minVelocityRadius) / (max)) * i);
@@ -107,6 +112,7 @@ var jEmitter = jEmitter || {};
 						alpha	 	: alpha,
 						fadeStep 	: fadeStep,
 						rotateStep : rotateStep,
+						image      : image
 					});
 			} else {
 				particle = new o.Particle(
@@ -122,6 +128,7 @@ var jEmitter = jEmitter || {};
 						alpha	   : alpha,
 						fadeStep   : fadeStep,
 						rotateStep : rotateStep,
+						image      : image
 					});
 			}
 
@@ -148,7 +155,7 @@ var jEmitter = jEmitter || {};
 		ctx.globalAlpha = particle.alpha;
 		ctx.translate(particle.position.x, particle.position.y)
 		ctx.rotate(particle.rotateAngle * this.RAD_CONS);
-		if(!this.image) {
+		if(!this.images) {
 				ctx.beginPath();
 				ctx.arc(-halfSize,
 						-halfSize,
@@ -159,8 +166,8 @@ var jEmitter = jEmitter || {};
 			ctx.fillStyle = particle.color;
 			ctx.fill();	
 		} else {
-			ctx.drawImage(this.image, 
-						  -halfSize, 
+			ctx.drawImage(particle.image,
+						  -halfSize,
 						  -halfSize, 
 						  particle.size, 
 						  particle.size);
