@@ -288,7 +288,7 @@
 			this._prevTile.unlock();
 		}
 
-		if(collisionObject) {
+		if(collisionObject && !this._prevTile.isStart() && !this._prevTile.isEnd()) {
 			this._currentTile.unlock();
 		}
 	}
