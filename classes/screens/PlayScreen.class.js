@@ -43,7 +43,6 @@
 			particleEmitterManager = new ParticleEmitterManager();
 			collisionDetector = new CollisionDetector();
 
-
 			game.on('car-added', function(){
 				var car = carManager.addCar(),
 					emitter = particleEmitterManager.addEmitter(car.appearance.getExplosionObject());
@@ -110,7 +109,22 @@
 		};
 
 		this.afterHide = function() {
+			htmlBoard.destroy();
+			htmlBoard = null;
 
+			game.destroy();
+			game = null;
+
+			carManager = null;
+
+			particleEmitterManager = null;
+
+			collisionDetector = null;
+
+			canvasManager.destroy();
+			canvasManager = null;
+
+			clearInterval(logicInterval);
 		};
 	}
 })();

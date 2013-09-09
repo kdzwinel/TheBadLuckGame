@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-	var resource = new ResourceLoader();
+	window.resource = new ResourceLoader();
 	resource.add(['sedan', 'van', 'particle_smoke', 'particle_flare', 'particle_flare_1']);
 	resource.load();
 

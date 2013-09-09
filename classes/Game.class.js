@@ -153,5 +153,18 @@
 		this.on = function (event, callback) {
 			listenersMgr.addEventListener(event, callback);
 		};
+
+		/**
+		 * Destroys object (cleans all timeouts and listeners).
+		 */
+		this.destroy = function() {
+			listenersMgr.removeEventListener();
+			if(startTimer) {
+				clearTimeout(startTimer);
+			}
+			if(carTimer) {
+				clearTimeout(carTimer);
+			}
+		}
 	}
 })();

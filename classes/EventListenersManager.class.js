@@ -41,8 +41,11 @@
 		};
 
 		this.removeEventListener = function(event, callback) {
-			if (listeners[event] === undefined) {
+			if (event && listeners[event] === undefined) {
 				throw 'Unknown event "' + event + '"';
+			} else if(!event) {
+				listeners = [];
+				return;
 			}
 
 			if(!callback) {

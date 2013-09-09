@@ -6,16 +6,6 @@
 			isVisible = false,
 			emitInterval, canvas, context, screenWidth, screenHeight, emitter;
 
-		function getParentByTagName(obj, tag)
-		{
-			var parent = obj.parentNode;
-			if (!parent || !parent.tagName) {
-				return false;
-			}
-
-			return (parent.tagName.toLowerCase() == tag) ? parent : getParentByTagName(parent, tag);
-		}
-
 		function init() {
 			listenersMgr = new EventListenersManager(['level-chosen']);
 
