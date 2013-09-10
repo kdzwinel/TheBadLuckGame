@@ -82,13 +82,17 @@
 		};
 
 		this.beforeShow = function () {
+
+		};
+
+		this.afterShow = function () {
 			isVisible = true;
 
 			var animate = function () {
-				context.clearRect(0, 0, screenWidth, screenHeight);
-				emitter.render(context);
-
 				if (isVisible) {
+					context.clearRect(0, 0, screenWidth, screenHeight);
+					emitter.render(context);
+
 					window.requestAnimationFrame(animate);
 				}
 			};
@@ -99,17 +103,17 @@
 			}, 100);
 		};
 
-		this.afterShow = function () {
-
-		};
-
 		this.beforeHide = function () {
-
+			clearInterval(emitInterval);
+			emitInterval = null;
+			isVisible = false;
 		};
 
 		this.afterHide = function () {
-			clearInterval(emitInterval);
-			isVisible = false;
+			canvas = null;
+			context = null;
+			emitter = null;
+			options.element.innerHTML = '';
 		};
 	}
 })();

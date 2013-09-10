@@ -17,9 +17,10 @@
 
 		function addEventListeners() {
 			var backButton = options.element.querySelector('.back-button');
-			backButton.onclick = function() {
+			new Tap(backButton);
+			backButton.addEventListener('tap', function() {
 				listenersMgr.trigger('close');
-			};
+			});
 		}
 
 		/**
@@ -114,7 +115,7 @@
 		};
 
 		this.beforeHide = function() {
-
+			unbindAllEvents(options.element.querySelector('.back-button'));
 		};
 
 		this.afterHide = function() {

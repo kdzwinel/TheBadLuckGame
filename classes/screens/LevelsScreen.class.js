@@ -69,6 +69,10 @@
 		};
 
 		this.beforeShow = function() {
+
+		};
+
+		this.afterShow = function() {
 			isVisible = true;
 
 			var animate = function () {
@@ -86,17 +90,13 @@
 			}, 100);
 		};
 
-		this.afterShow = function() {
-
-		};
-
 		this.beforeHide = function() {
-
+			clearInterval(emitInterval);
+			isVisible = false;
 		};
 
 		this.afterHide = function() {
-			clearInterval(emitInterval);
-			isVisible = false;
+
 		};
 	}
 })();
