@@ -6,8 +6,9 @@
 	 * @constructor
 	 */
 	window.Board = function(map) {
-		var startTiles = [];
-		var endTiles = [];
+		var startTiles = [],
+			endTiles = [],
+			swappableTile = null;
 
 		function init() {
 			var x, y, tile;
@@ -35,6 +36,13 @@
 			}
 			if(!endTiles.length) {
 				throw "Map definition is invalid. There are no end tiles.";
+			}
+
+			if(map.swapTile) {
+				//make sure that swap tile is swappable
+				map.swapTile.swappable = true;
+
+				swappableTile = new Tile(0, 0, map.swapTile);
 			}
 		}
 		init();
@@ -79,6 +87,14 @@
 		 */
 		this.getEndTiles = function() {
 			return endTiles;
+		};
+
+		/**
+		 * Get extra tile that may be swapped.
+		 * @returns {Tile}
+		 */
+		this.getSwapTile = function() {
+			return swappableTile;
 		};
 
 		/**

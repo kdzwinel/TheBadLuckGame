@@ -12,15 +12,8 @@ function getParentByTagName(obj, tag)
 	return (parent.tagName.toLowerCase() == tag) ? parent : getParentByTagName(parent, tag);
 }
 
-function getElementPosition(obj) {
-	var o = obj;
-	var l =o.offsetLeft;
-	var t = o.offsetTop;
-
-	while (o=o.offsetParent) {
-		l += o.offsetLeft;
-		t += o.offsetTop;
+function purgeElement(ele) {
+	while (ele.hasChildNodes()) {
+		ele.removeChild(ele.lastChild);
 	}
-
-	return [l,t];
 }

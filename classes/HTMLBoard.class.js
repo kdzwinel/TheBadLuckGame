@@ -1,6 +1,7 @@
 (function() {
 	window.HTMLBoard = function(options) {
 		var that = this;
+		var swapMode = false;
 
 		function init() {
 			that.draw();
@@ -21,7 +22,7 @@
 			stylesheet.insertRule('.tiles .row .tile { width: ' + tileSize + 'px; height: ' + tileSize + 'px }', stylesheet.cssRules.length);
 		}
 
-		function rotateTile(e) {
+		function rotateOrSwapTile(e) {
 			if(!e.target.classList.contains('tile')) {
 				return;
 			}
@@ -29,6 +30,14 @@
 			var tileDiv = e.target,
 				tile = options.board.getTile(tileDiv.dataset.x, tileDiv.dataset.y);
 
+			if(!swapMode) {
+				rotateTile(tile, e);
+			} else {
+				swapTile(tile);
+			}
+		}
+
+		function rotateTile(tile, e) {
 			if(tile.isLocked()) {
 				return;
 			}
@@ -40,9 +49,36 @@
 			}
 		}
 
+		function swapTile(tile) {
+			if(tile.isLocked() || !tile.isSwappable()) {
+				return;
+			}
+
+			var clone = tile.clone();
+			var tileToSwap = options.board.getSwapTile();
+
+			tile.swap(tileToSwap);
+			tileToSwap.swap(clone);
+
+			toggleSwapMode();
+		}
+
+		function toggleSwapMode() {
+			if(!swapMode) {
+				options.element.classList.add('swap-mode');
+				swapMode = true;
+			} else {
+				options.element.classList.remove('swap-mode');
+				swapMode = false;
+			}
+		}
+
 		function addListeners() {
 			new Tap(options.element);
-			options.element.addEventListener('tap', rotateTile, false);
+			options.element.addEventListener('tap', rotateOrSwapTile, false);
+
+			new Tap(options.swapContainer);
+			options.swapContainer.addEventListener('tap', toggleSwapMode);
 
 			window.addEventListener('resize', adjustBoardSize);
 		}
@@ -56,11 +92,12 @@
 				h = options.board.getHeight(),
 				newBoard = document.createDocumentFragment(),
 				emptyRow = document.createElement('div'),
-				currentRow, x, y, tile, htmlTile;
+				currentRow, x, y, tile, htmlTile, domNode;
 
+			//Board
 			emptyRow.className = 'row';
 			for(y = 0; y < h; y++) {
-				currentRow = emptyRow.cloneNode();
+				currentRow = emptyRow.cloneNode(false);
 				for (x = 0; x < w; x++) {
 					tile = options.board.getTile(x, y);
 					htmlTile = new HTMLTile(tile);
@@ -70,14 +107,30 @@
 				newBoard.appendChild(currentRow);
 			}
 
-			options.element.innerHTML = '';
+			purgeElement(options.element);
 			options.element.appendChild(newBoard);
 			adjustBoardSize();
+
+			//Swap Tile
+			tile = options.board.getSwapTile();
+			if(tile) {
+				var swappableTile = new HTMLTile(tile);
+				domNode = swappableTile.getDOMNode();
+
+				options.swapContainer.appendChild( domNode );
+			}
+
 		};
 
 		this.destroy = function() {
+			purgeElement(options.element);
 			unbindAllEvents(options.element);
-			options.element.innerHTML = '';
+			options.element.classList.remove('swap-mode');
+
+			purgeElement(options.swapContainer);
+			unbindAllEvents(options.swapContainer);
+
+			swapMode = false;
 			window.removeEventListener('resize', adjustBoardSize);
 		};
 

@@ -11,8 +11,9 @@
 		this._roads = options.roads ? options.roads : [];
 		this._start = options.start;
 		this._end = options.end;
+		this._swappable = options.swappable;
 		this._locked = options.locked;
-		this._listenersMgr = new EventListenersManager(['rotate','lock', 'unlock']);
+		this._listenersMgr = new EventListenersManager(['rotate','lock','unlock','swap']);
 	};
 
 	/**
@@ -91,6 +92,47 @@
 	};
 
 	/**
+	 * Overrides current tile settings (excluding X and Y position) with settings from other tile.
+	 *
+	 * @param otherTile
+	 */
+	Tile.prototype.swap = function(otherTile) {
+		if(this.isLocked() || !this.isSwappable()) {
+			throw "Tile can't be swapped.";
+		}
+
+		console.log('swapping', this.clone(), otherTile.clone());
+
+		this._roads = {
+			n: otherTile.roadFromNorth(),
+			s: otherTile.roadFromSouth(),
+			w: otherTile.roadFromWest(),
+			e: otherTile.roadFromEast()
+		};
+		this._locked = otherTile.isLocked();
+		this._start = otherTile.isStart();
+		this._end = otherTile.isEnd();
+		this._swappable = otherTile.isSwappable();
+
+		this._listenersMgr.trigger('swap');
+	};
+
+	/**
+	 * Clones a tile.
+	 *
+	 * @returns {Tile}
+	 */
+	Tile.prototype.clone = function() {
+		return new Tile(this.getX(), this.getY(), {
+			roads: this._roads,
+			start: this._start,
+			end: this._end,
+			swappable: this._swappable,
+			locked: this._locked
+		})
+	};
+
+	/**
 	 * Rotates tile right.
 	 */
 	Tile.prototype.rotateRight = function() {
@@ -154,6 +196,14 @@
 	 */
 	Tile.prototype.isEnd = function() {
 		return (this._end === true);
+	};
+
+	/**
+	 * Returns true if tile can be swapped with extra tile.
+	 * @returns {boolean}
+	 */
+	Tile.prototype.isSwappable = function() {
+		return this._swappable;
 	};
 
 	/**

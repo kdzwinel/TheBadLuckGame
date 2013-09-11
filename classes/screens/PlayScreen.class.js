@@ -31,6 +31,7 @@
 
 			htmlBoard = new HTMLBoard({
 				board: game.getBoard(),
+				swapContainer: options.element.querySelector('#swap-tile'),
 				element: options.element.querySelector('.tiles')
 			});
 
@@ -52,21 +53,20 @@
 					emitter.emit(car.x, car.y);
 
 					if(!car.alive) {
-						var classes = options.element.className;
 						collisionDetector.removeObject(car);
 						setTimeout(function() {
 							options.element.classList.add('shake');
 							setTimeout(function() {
 								options.element.classList.remove('shake');
 							}, 400);
-						} ,70) // do not block ui
+						} ,70); // do not block ui
 
 					}
 				});
 
 				car.on('trip-end', function(car) {
 					collisionDetector.removeObject(car);
-				})
+				});
 
 				collisionDetector.addObject(car);
 			});
