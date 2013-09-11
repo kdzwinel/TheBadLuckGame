@@ -3,7 +3,7 @@ GENERAL STYLES
 */
 
 body {
-	background: #4A4A4A;
+	background: #000;
 	font-family:  "Myriad Pro", "Trebuchet MS", sans-serif;
 	font-style: italic;
 	overflow: hidden;
@@ -74,7 +74,7 @@ button:hover {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	margin: 10px auto;
+	margin: 0px auto;
 
 	transition: transform 0.5s;
 	-webkit-transition: -webkit-transform 0.5s;
@@ -94,9 +94,9 @@ button:hover {
 }
 
 #play-screen {
-	transform: translate3d(100%,0,0);
-	-webkit-transform: translate3d(100%,0,0);
-	-moz-transform: translate3d(100%,0,0);
+	transform: translate3d(0,100%,0);
+	-webkit-transform: translate3d(0,100%,0);
+	-moz-transform: translate3d(0,100%,0);
 }
 
 #levels-screen.visible, #play-screen.visible, #intro-screen.visible {
@@ -214,7 +214,8 @@ INTRO SCREEN
 	margin-left: -100px;
 	opacity: 1;
 	visibility: visible;
-	transition: opacity 0.3s 0.3s, visibility 0, height 0.3s;
+	transition: opacity 0.3s 0.3s, visibility 0, height 0.3s, box-shadow 0.3s;
+	bottom: 0px;
 }
 
 #play-button.hidden {
@@ -329,12 +330,18 @@ LEVEL SCREEN
 	-ms-transform: none;
 }
 
-.levels li .star {
+.star.inactive {
+	background-image: url('../gfx/star-unactive.png');
+}
+
+.star {
 	background-image: url('../gfx/star-active.png');
 	position: absolute;
 	width: 70px;
 	height: 72px;
 }
+
+
 
 .levels li h1 {
 	font-size: 4em;
@@ -349,9 +356,7 @@ LEVEL SCREEN
 
 }
 
-.levels li .star.inactive {
-	background-image: url('../gfx/star-unactive.png');
-}
+
 
 .levels li .star.first {
 	top: 36px;
@@ -400,15 +405,17 @@ PLAY SCREEN STYLES
 }
 
 .tiles .row .tile.start, .color-box.start {
-	border-color: green;
+
+	/*box-shadow: inset 0px 0px 65px -8px greenyellow;*/
+	/*display:inline-block; */
 }
 
 .tiles .row .tile.end, .color-box.end {
-	border-color: blue;
+	/*box-shadow: inset 0px 0px 65px -8px deepskyblue;*/
 }
 
 .tiles .row .tile.locked, .color-box.locked {
-	border-color: red;
+	/*box-shadow: inset 0px 0px 65px -8px indianred;*/
 }
 
 .tiles .row .tile {
@@ -431,9 +438,33 @@ PLAY SCREEN STYLES
 	background-image: url(../gfx/tiles/straight.png);
 }
 
+#top-panel {
+	height: 80px;
+	box-shadow: -10px 30px 54px -18px #000;
+	position: relative;
+	z-index: 1;
+	background-color: #5a2e75;
+	background-image: -ms-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
+	background-image: -moz-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
+	background-image: -o-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
+	background-image: -webkit-gradient(radial, center center, 0, center center, 505, color-stop(0, #835B9C), color-stop(1, #5A2E75));
+	background-image: -webkit-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
+	background-image: radial-gradient(circle closest-corner at center, #835B9C 0%, #5A2E75 100%);
+	border-bottom: 2px solid #000;
+	border-top: 2px solid #000;
+
+}
+
+#back-button {
+	bottom: -15px;
+	position: absolute;
+	right: 33px;
+}
+
 #board-container {
 	position: relative;
 	display: inline-block;
+	background-color: #000;
 }
 
 #canvas {
@@ -444,6 +475,66 @@ PLAY SCREEN STYLES
 	height: 100%;
 	pointer-events:none;
 }
+
+
+#top-panel .info {
+
+	line-height: 35px;
+	font-size: 1.5em;
+	color: #fff;
+	text-shadow: 3px 3px 3px #000;
+	position: absolute;
+	border-radius: 10px;
+	padding: 10px;
+	left: 50%;
+	bottom: -18px;
+	margin-left: -20%;
+	width: 40%;
+	text-align: center;
+	border: 3px solid #000;
+	-webkit-transform: rotate(-2deg);
+	background-image: -ms-radial-gradient(center, circle closest-corner, #534674 0%, #251630 100%);
+	background-image: -moz-radial-gradient(center, circle closest-corner, #534674 0%, #251630 100%);
+	background-image: -o-radial-gradient(center, circle closest-corner, #534674 0%, #251630 100%);
+	background-image: -webkit-gradient(radial, center center, 0, center center, 505, color-stop(0, #534674), color-stop(1, #251630));
+	background-image: -webkit-radial-gradient(center, circle closest-corner, #534674 0%, #251630 100%);
+	background-image: radial-gradient(circle closest-corner at center, #534674 0%, #251630 100%)
+
+}
+
+#top-panel .info span {
+
+	font-size: 1.8em;
+	color: #DC5D8E;
+	font-weight: bold;
+	top: 7px;
+	position: relative;
+}
+
+
+#top-panel .star-container {
+	position: absolute;
+	top:20px;
+	left:30px;
+}
+
+#top-panel .star.first {
+	top: 0px;
+	left: 0px;
+	-webkit-transform: scale(1.3);
+}
+
+#top-panel .star.second {
+	top: 0px;
+	left: 80px;
+	-webkit-transform: scale(1.2);
+}
+
+#top-panel .star.third {
+	top: 0px;
+	left: 160px;
+}
+
 
 @keyframes shake{
 	0% { transform: translate(2px, 1px) rotate(0deg); }

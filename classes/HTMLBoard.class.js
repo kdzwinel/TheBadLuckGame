@@ -9,7 +9,7 @@
 
 		function adjustBoardSize() {
 			var widthMargin = 10,
-				heightMargin = 20,
+				heightMargin = 84,
 				tileMargin = 4,
 				tileSize,
 				widthTileSize = Math.floor( (window.innerWidth - widthMargin) / options.board.getWidth()) - tileMargin,

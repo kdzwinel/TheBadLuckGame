@@ -16,7 +16,7 @@
 		init();
 
 		function addEventListeners() {
-			var backButton = options.element.querySelector('.back-button');
+			var backButton = options.element.querySelector('#back-button');
 			new Tap(backButton);
 			backButton.addEventListener('tap', function() {
 				listenersMgr.trigger('close');
@@ -54,10 +54,13 @@
 					if(!car.alive) {
 						var classes = options.element.className;
 						collisionDetector.removeObject(car);
-						options.element.className =classes + ' shake';
 						setTimeout(function() {
-							options.element.className = classes.replace('shake','');
-						}, 400);
+							options.element.classList.add('shake');
+							setTimeout(function() {
+								options.element.classList.remove('shake');
+							}, 400);
+						} ,70) // do not block ui
+
 					}
 				});
 
@@ -115,7 +118,7 @@
 		};
 
 		this.beforeHide = function() {
-			unbindAllEvents(options.element.querySelector('.back-button'));
+			unbindAllEvents(options.element.querySelector('#back-button'));
 		};
 
 		this.afterHide = function() {

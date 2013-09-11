@@ -121,16 +121,24 @@
     </section>
 
     <section id='play-screen' class='screen'>
-	    <div class="star-container">
-		    <p class="star first"></p>
-		    <p class="star second"></p>
-		    <p class="star third unactive"></p>
+	    <div id="top-panel">
+		    <div class="star-container">
+			    <p class="star first"></p>
+			    <p class="star second"></p>
+			    <p class="star third inactive"></p>
+		    </div>
+			<div class="info">
+
+				points: <span>1000</span>
+				cars: <span>3/20</span>
+			</div>
+		<button id='back-button'>Back</button>
+
 	    </div>
         <div id="board-container">
             <div class="tiles"></div>
             <canvas id="canvas"></canvas>
         </div>
-        <p><button class='back-button'>Back</button></p>
     </section>
 </div>
     <script src="main.js"></script>
