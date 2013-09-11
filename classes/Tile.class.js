@@ -101,8 +101,6 @@
 			throw "Tile can't be swapped.";
 		}
 
-		console.log('swapping', this.clone(), otherTile.clone());
-
 		this._roads = {
 			n: otherTile.roadFromNorth(),
 			s: otherTile.roadFromSouth(),
