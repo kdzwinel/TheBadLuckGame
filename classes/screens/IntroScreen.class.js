@@ -113,7 +113,7 @@
 			canvas = null;
 			context = null;
 			emitter = null;
-			purgeElement(options.element);
+			DOMHelper.purgeElement(options.element);
 		};
 	}
 })();

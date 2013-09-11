@@ -12,7 +12,7 @@
 			var levels = options.element.querySelector('.levels');
 			new Tap(levels);
 			levels.addEventListener('tap', function(e) {
-				var li = getParentByTagName(e.target, 'li');
+				var li = DOMHelper.getParentByTagName(e.target, 'li');
 
 				if (li && !li.classList.contains('inactive')) {
 					listenersMgr.trigger('level-chosen', {

@@ -118,7 +118,7 @@
 		};
 
 		this.beforeHide = function() {
-			unbindAllEvents(options.element.querySelector('#back-button'));
+			DOMHelper.unbindAllEvents(options.element.querySelector('#back-button'));
 		};
 
 		this.afterHide = function() {

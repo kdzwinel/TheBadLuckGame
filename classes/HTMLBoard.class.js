@@ -107,7 +107,7 @@
 				newBoard.appendChild(currentRow);
 			}
 
-			purgeElement(options.element);
+			DOMHelper.purgeElement(options.element);
 			options.element.appendChild(newBoard);
 			adjustBoardSize();
 
@@ -123,12 +123,12 @@
 		};
 
 		this.destroy = function() {
-			purgeElement(options.element);
-			unbindAllEvents(options.element);
+			DOMHelper.purgeElement(options.element);
+			DOMHelper.unbindAllEvents(options.element);
 			options.element.classList.remove('swap-mode');
 
-			purgeElement(options.swapContainer);
-			unbindAllEvents(options.swapContainer);
+			DOMHelper.purgeElement(options.swapContainer);
+			DOMHelper.unbindAllEvents(options.swapContainer);
 
 			swapMode = false;
 			window.removeEventListener('resize', adjustBoardSize);
