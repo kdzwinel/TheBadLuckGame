@@ -23,7 +23,7 @@
 				playButton.classList.remove('hidden');
 			} else {
 				options.loader.on('load', function(percentage) {
-					loader.querySelector('span').innerText = percentage + '%';
+					loader.querySelector('span').innerHTML = percentage + '%';
 					loader.querySelector('.bar').style.width = percentage + '%';
 
 					if(percentage === 100) {

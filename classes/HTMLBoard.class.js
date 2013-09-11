@@ -8,7 +8,8 @@
 		}
 
 		function adjustBoardSize() {
-			var widthMargin = 10,
+			var stylesheet,
+				widthMargin = 10,
 				heightMargin = 65,
 				tileMargin = 4,
 				tileSize,
@@ -16,7 +17,8 @@
 				heightTileSize = Math.floor( (window.innerHeight - heightMargin) / options.board.getHeight()) - tileMargin;
 
 			tileSize = (widthTileSize < heightTileSize) ? widthTileSize : heightTileSize;
-			document.styleSheets[0].addRule('.tiles .row .tile', 'width: ' + tileSize + 'px; height: ' + tileSize + 'px');
+			stylesheet = document.styleSheets[0];
+			stylesheet.insertRule('.tiles .row .tile { width: ' + tileSize + 'px; height: ' + tileSize + 'px }', stylesheet.cssRules.length);
 		}
 
 		function rotateTile(e) {
