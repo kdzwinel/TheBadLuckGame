@@ -449,6 +449,10 @@ PLAY SCREEN STYLES
 	background-image: url(../gfx/tiles/straight.png);
 }
 
+.tile.t-road {
+	background-image: url(../gfx/tiles/t-road.png);
+}
+
 #menu-panel {
 	height: 60px;
 	box-shadow: -10px -30px 54px -18px #000;
