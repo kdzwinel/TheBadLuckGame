@@ -8,7 +8,8 @@
 			that = this;
 
 		function updateScore() {
-			if(options.game.hasEnded()) {
+			// don't update score after game has finished or score is already 0
+			if(options.game.hasEnded() || currentScore <= 0) {
 				return;
 			}
 
