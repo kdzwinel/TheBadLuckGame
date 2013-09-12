@@ -2,7 +2,18 @@
 	"use strict";
 
 	window.PlayScreen = function (options) {
-		var mapLoader, game, htmlBoard, htmlGameStatus, canvasManager, carManager, particleEmitterManager, collisionDetector, printer, listenersMgr, logicInterval;
+		var mapLoader,
+			game,
+			htmlBoard,
+			htmlGameStatus,
+			canvasManager,
+			carManager,
+			particleEmitterManager,
+			collisionDetector,
+			printer,
+			listenersMgr,
+			logicInterval,
+			scoreTracker;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['close']);
@@ -30,6 +41,10 @@
 		function initLevel(level) {
 			game = new Game(level);
 
+			scoreTracker = new ScoreTracker({
+				game: game
+			});
+
 			htmlBoard = new HTMLBoard({
 				board: game.getBoard(),
 				swapContainer: options.element.querySelector('#swap-tile'),
@@ -38,7 +53,10 @@
 
 			htmlGameStatus = new HTMLGameStatus({
 				game: game,
-				carsStatusContainer: options.element.querySelector('.cars-deployed')
+				scoreTracker: scoreTracker,
+				carsStatusContainer: options.element.querySelector('.cars-deployed'),
+				scoreContainer: options.element.querySelector('.current-score'),
+				starsContainer: options.element.querySelector('.star-container')
 			});
 
 			canvasManager = new CanvasManager({
@@ -128,6 +146,9 @@
 		};
 
 		this.afterHide = function () {
+			scoreTracker.destroy();
+			scoreTracker = null;
+
 			htmlBoard.destroy();
 			htmlBoard = null;
 

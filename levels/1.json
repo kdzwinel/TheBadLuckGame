@@ -3,6 +3,7 @@
 	"carsToWin": 5,
 	"startTimeout": 5000,
 	"carTimeout": 15000,
+	"starLimits": [60, 80, 90],
 	"map": {
 		"width": 5,
 		"height": 3,

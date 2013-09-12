@@ -3,9 +3,16 @@
 	"carsToWin": 1,
 	"startTimeout": 500,
 	"carTimeout": 500,
+	"starLimits": [60, 80, 90],
 	"map": {
 		"width": 5,
 		"height": 5,
+		"swapTile": {
+			"roads": {
+				"s": "n",
+				"n": "s"
+			}
+		},
 		"tiles": [
 			[
 				{

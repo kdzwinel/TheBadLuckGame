@@ -6,6 +6,7 @@
  * @property {number} carTimeout number of ms between each car is deployed
  * @property {number} startTimeout number of ms before game is started
  * @property {number} carsToWin number of cars that need to reach the ending tile to win the game
+ * @property {number[]} starLimits limits of points that allow to calculate number of stars
  * @property {JSONMap} map
  */
 
