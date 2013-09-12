@@ -29,6 +29,7 @@
  * @property {boolean} end
  * @property {boolean} locked
  * @property {boolean} swappable
+ * @property {number[]} cars Indexes of cars that should be deployed from this start tile
  */
 
 (function () {

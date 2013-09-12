@@ -49,11 +49,26 @@
 		}
 
 		function addCar() {
+			var i, l, startTiles, tile;
+
 			if(state === 'lost' || state === 'won') {
 				throw "Game is already finished. Can't add cars.";
 			}
+
+			startTiles = board.getStartTiles();
+
+			for(i=0, l=startTiles.length; i<l; i++) {
+				tile = startTiles[i];
+
+				if(tile.getCarIndexes().indexOf(deployedCarsCount) !== -1) {
+					break;
+				}
+			}
+
 			deployedCarsCount++;
-			listenersMgr.trigger('car-added');
+			listenersMgr.trigger('car-added', {
+				startTile: tile
+			});
 
 			if(deployedCarsCount < level.carCount) {
 				carTimer = setTimeout(addCar, level.carTimeout);

@@ -5,6 +5,9 @@
 		if(options.start && options.end) {
 			throw "Tile can't be both a starting and ending tail.";
 		}
+		if(options.swappable && (options.start || options.end)) {
+			throw "Starting or ending tile can't be swappable.";
+		}
 
 		this._x = x;
 		this._y = y;
@@ -14,6 +17,7 @@
 		this._swappable = options.swappable;
 		this._locked = options.locked;
 		this._listenersMgr = new EventListenersManager(['rotate','lock','unlock','swap']);
+		this._cars = options.cars;
 	};
 
 	/**
@@ -219,5 +223,17 @@
 	 */
 	Tile.prototype.isLocked = function() {
 		return (this._locked === true || this.isStart() || this.isEnd());
+	};
+
+	/**
+	 * Returns indexes of cars that should be deployed from this starting tile.
+	 * @returns {number[]}
+	 */
+	Tile.prototype.getCarIndexes = function() {
+		if(!this.isStart()) {
+			throw "Can't get car indexes of tile that is not a starting tile.";
+		}
+
+		return this._cars;
 	};
 }());

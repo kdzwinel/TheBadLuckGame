@@ -1,8 +1,8 @@
 {
 	"carCount": 10,
-	"carsToWin": 5,
+	"carsToWin": 1,
 	"startTimeout": 5000,
-	"carTimeout": 15000,
+	"carTimeout": 10000,
 	"starLimits": [60, 80, 90],
 	"map": {
 		"width": 5,
@@ -25,8 +25,9 @@
 				},
 				{
 					"roads": {
-						"n": "e",
-						"e": "n"
+						"n": "s",
+						"s": "n",
+						"w": "n"
 					}
 				},
 				{
@@ -34,7 +35,8 @@
 						"s": "n",
 						"n": "s"
 					},
-					"start": true
+					"start": true,
+					"cars": [0,2,4,6,8]
 				},
 				{}
 			],
@@ -79,7 +81,8 @@
 						"s": "n",
 						"n": "s"
 					},
-					"start": true
+					"start": true,
+					"cars": [1,3,5,7,9]
 				},
 				{
 					"roads": {

@@ -69,8 +69,11 @@
 			particleEmitterManager = new ParticleEmitterManager();
 			collisionDetector = new CollisionDetector();
 
-			game.on('car-added', function () {
-				var car = carManager.addCar(),
+			game.on('car-added', function (data) {
+				var car = carManager.addCar({
+						startX: data.startTile.getX(),
+						startY: data.startTile.getY()
+					}),
 					emitter = particleEmitterManager.addEmitter(car.appearance.getExplosionObject());
 
 				car.on('crash', function (car) {

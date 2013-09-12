@@ -38,34 +38,34 @@
 
 		//PUBLIC
 
-		this.addCar = function(options) {
+		this.addCar = function (options) {
 
-			var options   = options || {},
-                startTile = _startTiles[Math.floor(Math.random() * _startTiles.length)],
-				endTile   = _endTiles[Math.floor(Math.random() * _endTiles.length)],
-				carAppearance  = _carsAppearance[Math.floor(Math.random() * _carsAppearance.length)],
+			var options = options || {},
+				startTile = _startTiles[Math.floor(Math.random() * _startTiles.length)],
+				endTile = _endTiles[Math.floor(Math.random() * _endTiles.length)],
+				carAppearance = _carsAppearance[Math.floor(Math.random() * _carsAppearance.length)],
 
 
-                startX    = options.startX || startTile.getX(),
-                startY    = options.startY || startTile.getY(),
-                endX      = options.endX   || endTile.getX(),
-                endY      = options.endY   || endTile.getY(),
-                
-                car = new Car({
-                	startTileX : startX,
-	                startTileY : startY,
-	                endTileX   : endX,
-	                endTileY   : endY,
-	                appearance : carAppearance,
-	                board      : _board,
-	                tileSize   : 200
-	            });
+				startX = (options.startX !== undefined) ? options.startX : startTile.getX(),
+				startY = (options.startY !== undefined) ? options.startY : startTile.getY(),
+				endX = (options.endX !== undefined) ? options.endX : endTile.getX(),
+				endY = (options.endY !== undefined) ? options.endY : endTile.getY(),
 
-	        car.on('crash', _carLost);
-	        car.on('trip-end', _carTripEnd);       
+				car = new Car({
+					startTileX: startX,
+					startTileY: startY,
+					endTileX: endX,
+					endTileY: endY,
+					appearance: carAppearance,
+					board: _board,
+					tileSize: 200
+				});
 
-            _cars.push(car);
-            return car;
+			car.on('crash', _carLost);
+			car.on('trip-end', _carTripEnd);
+
+			_cars.push(car);
+			return car;
 
 		};
 
