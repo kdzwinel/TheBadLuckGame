@@ -618,6 +618,13 @@ PLAY SCREEN STYLES
 	bottom: -20px;
 }
 
+#win-loose #restart-button {
+	position: absolute;
+	left: 50%;
+	margin-left: -100px;
+	bottom: -100px;
+}
+
 /*ANIMATIONS*/
 
 @keyframes blink{

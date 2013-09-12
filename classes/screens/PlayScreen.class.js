@@ -16,7 +16,8 @@
 			scoreTracker,
 			pauseScreen,
 			endScreen,
-			levelName;
+			levelName,
+			that = this;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['close', 'won']);
@@ -35,7 +36,6 @@
 			new Tap(pauseButton);
 			pauseButton.addEventListener('tap', function () {
 				pause();
-
 			});
 		}
 
@@ -68,6 +68,13 @@
 			}
 		}
 
+		function restartLevel() {
+			that.afterHide();
+			that.beforeShow({
+				levelName: levelName
+			});
+		}
+
 		/**
 		 * @param {JSONLevel} level
 		 */
@@ -97,7 +104,9 @@
 
 			endScreen.on('back-to-levels', function() {
 				listenersMgr.trigger('close');
-			})
+			});
+
+			endScreen.on('restart-level', restartLevel);
 
 			htmlBoard = new HTMLBoard({
 				board: game.getBoard(),
@@ -152,6 +161,8 @@
 			});
 
 			game.on('game-won', function() {
+				endScreen.showWin();
+
 				listenersMgr.trigger('won', {
 					levelName: levelName,
 					score: scoreTracker.getCurrentScore(),
@@ -159,13 +170,9 @@
 				});
 			});
 
-			game.on('game-won', function() {
-				endScreen.showWin();
-			})
-
 			game.on('game-lost', function() {
 				endScreen.showLoose();
-			})
+			});
 
 			canvasManager.addManager(carManager);
 			canvasManager.addManager(particleEmitterManager);
