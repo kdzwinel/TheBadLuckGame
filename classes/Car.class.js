@@ -12,7 +12,7 @@
 		this.height = this.appearance.skin.height;
 
 		this._t 	   = 0.0;
-		this._velocity = 0.02;
+		this._velocity = options.velocity;
 
 		this._board 	  = options.board;
 		this._currentTile = options.board.getTile(options.startTileX, options.startTileY);

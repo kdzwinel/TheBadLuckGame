@@ -72,7 +72,8 @@
 			game.on('car-added', function (data) {
 				var car = carManager.addCar({
 						startX: data.startTile.getX(),
-						startY: data.startTile.getY()
+						startY: data.startTile.getY(),
+						velocity: data.velocity
 					}),
 					emitter = particleEmitterManager.addEmitter(car.appearance.getExplosionObject());
 

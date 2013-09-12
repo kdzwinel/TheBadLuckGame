@@ -561,6 +561,8 @@ PLAY SCREEN STYLES
 
 #menu-panel #swap-tile:hover {
 	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 #menu-panel #swap-tile .tile {
@@ -573,15 +575,15 @@ PLAY SCREEN STYLES
 /*ANIMATIONS*/
 
 @keyframes blink{
-	50% { opacity: 0.5 }
+	50% { opacity: 0.5; }
 }
 
 @-moz-keyframes blink{
-	50% { opacity: 0.5 }
+	50% { opacity: 0.5; }
 }
 
 @-webkit-keyframes blink {
-	50% { opacity: 0.5 }
+	50% { opacity: 0.5; }
 }
 
 .tiles .row .tile.start.car-approaching {

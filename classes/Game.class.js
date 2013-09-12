@@ -81,7 +81,8 @@
 
 			deployedCarsCount++;
 			listenersMgr.trigger('car-added', {
-				startTile: startTile
+				startTile: startTile,
+				velocity: level.carSpeed
 			});
 
 			if(deployedCarsCount < level.carCount) {

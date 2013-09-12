@@ -1,8 +1,9 @@
 {
 	"carCount": 3,
 	"carsToWin": 3,
-	"startTimeout": 5000,
+	"startTimeout": 10000,
 	"carTimeout": 10000,
+	"carSpeed": 0.01,
 	"starLimits": [60, 80, 90],
 	"map": {
 		"width": 5,
