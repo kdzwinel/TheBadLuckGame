@@ -461,7 +461,7 @@ PLAY SCREEN STYLES
 	z-index: 1;
 }
 
-#back-button {
+#pause-button {
 	bottom: 6px;
 	position: absolute;
 	right: 33px;
@@ -573,7 +573,7 @@ PLAY SCREEN STYLES
 	box-shadow: inset 0px 0px 20px 0px #000;
 }
 
-#paused {
+#paused, #win-loose {
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -583,7 +583,7 @@ PLAY SCREEN STYLES
 	display: none;
 }
 
-#paused-buttons {
+#paused-buttons, #win, #loose {
 	position: absolute;
 	bottom: 50%;
 	left: 50%;
@@ -597,6 +597,25 @@ PLAY SCREEN STYLES
 
 #paused-buttons #resume-button {
 	bottom: 80px;
+}
+
+#win, #loose {
+	display:none;
+	margin-left: -200px;
+	width: 400px;
+}
+
+#win-loose p {
+	font-size: 3em;
+	color: #fff;
+	text-align: center;
+}
+
+#win-loose button {
+	position: absolute;
+	left: 50%;
+	margin-left: -100px;
+	bottom: -20px;
 }
 
 /*ANIMATIONS*/

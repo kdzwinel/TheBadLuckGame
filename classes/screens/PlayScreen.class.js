@@ -31,9 +31,9 @@
 		init();
 
 		function addEventListeners() {
-			var backButton = options.element.querySelector('#back-button');
-			new Tap(backButton);
-			backButton.addEventListener('tap', function () {
+			var pauseButton = options.element.querySelector('#pause-button');
+			new Tap(pauseButton);
+			pauseButton.addEventListener('tap', function () {
 				pause();
 
 			});
@@ -81,7 +81,10 @@
 			pauseScreen = new PauseScreen({
 				element: options.element.querySelector('#paused')
 			});
-			//endScreen   = new EndScreen();
+
+			endScreen = new EndScreen({
+				element: options.element.querySelector('#win-loose')
+			});
 
 			pauseScreen.on('resume-game', function() {
 				startLogicInterval();
@@ -91,6 +94,10 @@
 			pauseScreen.on('back-to-levels', function() {
 				listenersMgr.trigger('close');
 			});
+
+			endScreen.on('back-to-levels', function() {
+				listenersMgr.trigger('close');
+			})
 
 			htmlBoard = new HTMLBoard({
 				board: game.getBoard(),
@@ -152,6 +159,14 @@
 				});
 			});
 
+			game.on('game-won', function() {
+				endScreen.showWin();
+			})
+
+			game.on('game-lost', function() {
+				endScreen.showLoose();
+			})
+
 			canvasManager.addManager(carManager);
 			canvasManager.addManager(particleEmitterManager);
 			canvasManager.startAnimation();
@@ -190,7 +205,7 @@
 		};
 
 		this.beforeHide = function () {
-			DOMHelper.unbindAllEvents(options.element.querySelector('#back-button'));
+			DOMHelper.unbindAllEvents(options.element.querySelector('#pause-button'));
 		};
 
 		this.afterHide = function () {
@@ -214,6 +229,9 @@
 
 			pauseScreen.destroy();
 			pauseScreen = null;
+
+			endScreen.destroy();
+			endScreen = null;
 
 			clearInterval(logicInterval);
 			logicInterval = null;
