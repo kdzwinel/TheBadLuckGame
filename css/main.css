@@ -384,6 +384,7 @@ PLAY SCREEN STYLES
 .tiles {
 	display: inline-block;
 	line-height: 0;
+	background-image: url(../gfx/tiles/tile.png);
 }
 
 .tiles .row {
@@ -428,9 +429,9 @@ PLAY SCREEN STYLES
 	/*box-shadow: inset 0px 0px 65px -8px indianred;*/
 }
 
-.tile {
-	background-image: url(../gfx/tiles/tile.png);
-}
+/*.tile {*/
+	/*background-image: url(../gfx/tiles/tile.png);*/
+/*}*/
 
 .tile.turn {
 	background-image: url(../gfx/tiles/turn.png);
@@ -453,14 +454,6 @@ PLAY SCREEN STYLES
 	box-shadow: -10px -30px 54px -18px #000;
 	position: relative;
 	z-index: 1;
-	background-color: #5a2e75;
-	background-image: -ms-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
-	background-image: -moz-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
-	background-image: -o-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
-	background-image: -webkit-gradient(radial, center center, 0, center center, 505, color-stop(0, #835B9C), color-stop(1, #5A2E75));
-	background-image: -webkit-radial-gradient(center, circle closest-corner, #835B9C 0%, #5A2E75 100%);
-	background-image: radial-gradient(circle closest-corner at center, #835B9C 0%, #5A2E75 100%);
-
 }
 
 #back-button {
@@ -523,25 +516,55 @@ PLAY SCREEN STYLES
 
 #menu-panel .star-container {
 	position: absolute;
-	top: -50px;
-	left: 30px;
+	top: -90px;
+	left: 50%;
+	z-index: 1;
+	margin-left: -105px;
 }
 
 #menu-panel .star.first {
 	top: 0;
 	left: 0;
-	-webkit-transform: scale(1.3);
 }
 
 #menu-panel .star.second {
 	top: 0;
 	left: 80px;
-	-webkit-transform: scale(1.2);
+	-webkit-transform: scale(0.8);
 }
 
 #menu-panel .star.third {
 	top: 0px;
 	left: 160px;
+	-webkit-transform: scale(0.6);
+}
+
+#menu-panel #swap-tile {
+	-webkit-transform: rotate(2deg);
+	position: absolute;
+	left: 70px;
+	bottom: 10px;
+	overflow: hidden;
+	border: 5px solid #000;
+	width: 120px;
+	height: 120px;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+	background-color: #fff;
+
+}
+
+#menu-panel #swap-tile:hover {
+	-webkit-transform: scale(1.1);
+}
+
+#menu-panel #swap-tile .tile {
+
+	border: none;
+	width: 120px;
+	height: 120px;
+	box-shadow: inset 0px 0px 20px 0px #000;
 }
 
 
