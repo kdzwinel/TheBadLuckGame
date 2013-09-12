@@ -17,13 +17,16 @@ document.addEventListener("DOMContentLoaded", function () {
 				  'tiles/two-turns']);
 	resource.load();
 
+	var progressManager = new ProgressManager();
+
 	var introScreen = new IntroScreen({
 		element: document.getElementById('intro-screen'),
 		loader: resource
 	});
 
 	var levelsScreen = new LevelsScreen({
-		element: document.getElementById('levels-screen')
+		element: document.getElementById('levels-screen'),
+		progressManager: progressManager
 	});
 
 	var playScreen = new PlayScreen({
@@ -43,6 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 	playScreen.on('close', function () {
 		screenMgr.goToScreen('levels');
+	});
+	playScreen.on('won', function(data) {
+		progressManager.update(data);
 	});
 
 	screenMgr.goToScreen('intro');

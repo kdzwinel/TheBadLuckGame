@@ -1,6 +1,6 @@
 {
-	"carCount": 4,
-	"carsToWin": 3,
+	"carCount": 2,
+	"carsToWin": 2,
 	"startTimeout": 5000,
 	"carTimeout": 15000,
 	"starLimits": [60, 80, 90],

@@ -46,7 +46,7 @@
 						element.onload = onLoad;
 						element.src = 'gfx/' + img + '.png';
 						elements[img] = element;
-					}, i * 500);
+					}, i * 100);
 				})();
 			}
 		};

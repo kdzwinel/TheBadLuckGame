@@ -21,6 +21,8 @@
 				}
 			}, false);
 
+			initLevels();
+
 			/* Init Emitter */
 			var image = document.createElement('img');
 			canvas = options.element.querySelector('.particles');
@@ -54,6 +56,57 @@
 			image.src = 'gfx/level-label.png';
 		}
 		init();
+
+		function initLevels() {
+			var i, l, levels = options.element.querySelectorAll('.levels li');
+
+			for(i=0, l=levels.length; i<l; i++) {
+				var levelName = levels[i].dataset.levelName,
+					levelInfo = options.progressManager.getLevelInfo(levelName);
+
+				updateLevelNode(levels[i], levelInfo);
+			}
+
+			unlockNextLevel();
+
+			options.progressManager.on('level-update', function(data) {
+				for(i=0, l=levels.length; i<l; i++) {
+					var levelName = levels[i].dataset.levelName;
+
+					if(levelName === data.levelName) {
+						updateLevelNode(levels[i], data);
+					}
+				}
+			});
+
+			options.progressManager.on('level-unlock', unlockNextLevel);
+		}
+
+		function unlockNextLevel() {
+			var levelNode = options.element.querySelector('.levels li.inactive');
+
+			if(levelNode) {
+				levelNode.classList.remove('inactive');
+			}
+		}
+
+		function updateLevelNode(node, data) {
+			if(!data) {
+				node.classList.add('inactive');
+			} else {
+				node.classList.remove('inactive');
+
+				var starNodes = node.querySelectorAll('.star');
+
+				for(var i=0; i<3; i++) {
+					if(data.stars < (i+1)) {
+						starNodes[i].classList.add('inactive');
+					} else {
+						starNodes[i].classList.remove('inactive');
+					}
+				}
+			}
+		}
 
 		/**
 		 * Allows to listen for various in-game events.

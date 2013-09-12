@@ -15,10 +15,11 @@
 			logicInterval,
 			scoreTracker,
 			pauseScreen,
-			endScreen;
+			endScreen,
+			levelName;
 
 		function init() {
-			listenersMgr = new EventListenersManager(['close']);
+			listenersMgr = new EventListenersManager(['close', 'won']);
 
 			mapLoader = new MapLoader();
 			mapLoader.on('load', initLevel);
@@ -140,7 +141,15 @@
 			});
 
 			game.on('game-started', function () {
-				startLogicInterval()
+				startLogicInterval();
+			});
+
+			game.on('game-won', function() {
+				listenersMgr.trigger('won', {
+					levelName: levelName,
+					score: scoreTracker.getCurrentScore(),
+					stars: scoreTracker.getNumberOfStars()
+				});
 			});
 
 			canvasManager.addManager(carManager);
@@ -172,7 +181,8 @@
 		};
 
 		this.beforeShow = function (data) {
-			mapLoader.load(data.levelName);
+			levelName = data.levelName;
+			mapLoader.load(levelName);
 		};
 
 		this.afterShow = function () {
