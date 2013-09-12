@@ -1,6 +1,6 @@
 {
-	"carCount": 10,
-	"carsToWin": 1,
+	"carCount": 3,
+	"carsToWin": 3,
 	"startTimeout": 5000,
 	"carTimeout": 10000,
 	"starLimits": [60, 80, 90],
@@ -19,15 +19,15 @@
 				{
 					"roads": {
 						"n": "s",
-						"s": "n"
+						"s": "n",
+						"w": "n"
 					},
 					"swappable": true
 				},
 				{
 					"roads": {
 						"n": "s",
-						"s": "n",
-						"w": "n"
+						"s": "n"
 					}
 				},
 				{

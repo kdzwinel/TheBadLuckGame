@@ -14,11 +14,21 @@
 		this._tile.on('lock', this._wasLocked.bind(this));
 		this._tile.on('unlock', this._wasUnlocked.bind(this));
 		this._tile.on('swap', this._wasSwapped.bind(this));
+		this._tile.on('flag-added', this._flagAdded.bind(this));
+		this._tile.on('flag-removed', this._flagRemoved.bind(this));
 	};
 
 	HTMLTile.prototype._rotate = function() {
 		this._node.style.transform = "rotate(" + this._rotation + "deg)";
 		this._node.style.webkitTransform = "rotate(" + this._rotation + "deg)";
+	};
+
+	HTMLTile.prototype._flagAdded = function(flag) {
+		this._node.classList.add(flag);
+	};
+
+	HTMLTile.prototype._flagRemoved = function(flag) {
+		this._node.classList.remove(flag);
 	};
 
 	HTMLTile.prototype._wasRotated = function(rotation) {
@@ -110,6 +120,11 @@
 			this._node.classList.add('locked');
 		} else if (this._tile.isSwappable()) {
 			this._node.classList.add('swappable');
+		}
+
+		var flags = this._tile.getFlags();
+		for(var i= 0, l=flags.length; i<l; i++) {
+			this._flagAdded(flags[i]);
 		}
 
 		this._node.dataset.x = this._tile.getX();

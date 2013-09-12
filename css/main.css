@@ -564,13 +564,45 @@ PLAY SCREEN STYLES
 }
 
 #menu-panel #swap-tile .tile {
-
 	border: none;
 	width: 120px;
 	height: 120px;
 	box-shadow: inset 0px 0px 20px 0px #000;
 }
 
+/*ANIMATIONS*/
+
+@keyframes blink{
+	50% { opacity: 0.5 }
+}
+
+@-moz-keyframes blink{
+	50% { opacity: 0.5 }
+}
+
+@-webkit-keyframes blink {
+	50% { opacity: 0.5 }
+}
+
+.tiles .row .tile.start.car-approaching {
+	animation-name: blink;
+	animation-duration: 0.8s;
+	transform-origin:50% 50%;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+
+	-moz-animation-name: blink;
+	-moz-animation-duration: 0.8s;
+	-moz-transform-origin:50% 50%;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-timing-function: linear;
+
+	-webkit-animation-name: blink;
+	-webkit-animation-duration: 0.8s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
 
 @keyframes shake{
 	0% { transform: translate(2px, 1px) rotate(0deg); }
@@ -614,8 +646,7 @@ PLAY SCREEN STYLES
 	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-.shake{
-/*display:inline-block; */
+.shake {
 	animation-name: shake;
 	animation-duration: 0.8s;
 	transform-origin:50% 50%;

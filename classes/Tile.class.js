@@ -16,8 +16,9 @@
 		this._end = options.end;
 		this._swappable = options.swappable;
 		this._locked = options.locked;
-		this._listenersMgr = new EventListenersManager(['rotate','lock','unlock','swap']);
+		this._listenersMgr = new EventListenersManager(['rotate','lock','unlock','swap','flag-added','flag-removed']);
 		this._cars = options.cars;
+		this._flags = [];
 	};
 
 	/**
@@ -167,6 +168,49 @@
 			e: translate(this._roads.n)
 		};
 		this._listenersMgr.trigger('rotate', 'right');
+	};
+
+	/**
+	 * Adds a custom flag to the tile.
+	 */
+	Tile.prototype.addFlag = function(flagName) {
+		if(this.hasFlag(flagName)) {
+			throw "Flag is already set.";
+		}
+
+		this._flags.push(flagName);
+
+		this._listenersMgr.trigger('flag-added', flagName);
+	};
+
+	/**
+	 * Removes custom flag form a tile.
+	 */
+	Tile.prototype.removeFlag = function(flagName) {
+		if(!this.hasFlag(flagName)) {
+			throw "Flag isn't set.";
+		}
+
+		this._flags.splice(this._flags.indexOf(flagName), 1);
+
+		this._listenersMgr.trigger('flag-removed', flagName);
+	};
+
+	/**
+	 * Checks if given flag is set on current tile.
+	 * @param {string} flagName
+	 * @returns {boolean}
+	 */
+	Tile.prototype.hasFlag = function(flagName) {
+		return (this._flags.indexOf(flagName) !== -1);
+	};
+
+	/**
+	 * Returns list of all flags set on current tile.
+	 * @returns {string[]}
+	 */
+	Tile.prototype.getFlags = function() {
+		return this._flags;
 	};
 
 	Tile.prototype.roadFromNorth = function() {

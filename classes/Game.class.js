@@ -38,6 +38,9 @@
 
 			board = new Board(level.map);
 			startTimer = setTimeout(startGame, level.startTimeout);
+
+			var startTile = getNextStartingTile();
+			startTile.addFlag('car-approaching');
 		}
 		init();
 
@@ -48,30 +51,43 @@
 			addCar();
 		}
 
-		function addCar() {
-			var i, l, startTiles, tile;
-
-			if(state === 'lost' || state === 'won') {
-				throw "Game is already finished. Can't add cars.";
-			}
+		//returns tile that next car will start from
+		function getNextStartingTile() {
+			var i, l, startTiles, tile, carIndexes;
 
 			startTiles = board.getStartTiles();
 
 			for(i=0, l=startTiles.length; i<l; i++) {
 				tile = startTiles[i];
+				carIndexes = tile.getCarIndexes();
 
-				if(tile.getCarIndexes().indexOf(deployedCarsCount) !== -1) {
+				if(carIndexes && carIndexes.indexOf(deployedCarsCount) !== -1) {
 					break;
 				}
 			}
 
+			return tile;
+		}
+
+		function addCar() {
+			var startTile;
+
+			if(state === 'lost' || state === 'won') {
+				throw "Game is already finished. Can't add cars.";
+			}
+
+			startTile = getNextStartingTile();
+			startTile.removeFlag('car-approaching');
+
 			deployedCarsCount++;
 			listenersMgr.trigger('car-added', {
-				startTile: tile
+				startTile: startTile
 			});
 
 			if(deployedCarsCount < level.carCount) {
 				carTimer = setTimeout(addCar, level.carTimeout);
+				startTile = getNextStartingTile();
+				startTile.addFlag('car-approaching');
 			}
 		}
 
