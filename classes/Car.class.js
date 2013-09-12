@@ -141,7 +141,7 @@
 			offsetStart = 0,
 			offsetEnd = 0;
 
-		if(this._currentTile.isStart()) {
+		if(this._currentTile.isStart() && this._currentTile === this._prevTile) {
 			offsetStart = this.width;
 		}
 
