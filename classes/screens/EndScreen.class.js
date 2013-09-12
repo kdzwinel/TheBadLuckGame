@@ -54,7 +54,20 @@
 
 		}
 
-		this.showWin = function() {
+		function updateScore(stars) {
+			var starNodes = options.element.querySelectorAll('.star');
+
+			for(var i=0; i<3; i++) {
+				if(stars < (i+1)) {
+					starNodes[i].classList.add('inactive');
+				} else {
+					starNodes[i].classList.remove('inactive');
+				}
+			}
+		}
+
+		this.showWin = function(score) {
+			updateScore(score);
 			endScreen.style.display = 'block';
 			winSubScreen.style.display = 'block';
 		};

@@ -170,6 +170,10 @@
 				});
 			});
 
+			game.on('game-won', function() {
+				endScreen.showWin(scoreTracker.getNumberOfStars());
+			})
+
 			game.on('game-lost', function() {
 				endScreen.showLoose();
 			});

@@ -527,18 +527,18 @@ PLAY SCREEN STYLES
 	margin-left: -105px;
 }
 
-#menu-panel .star.first {
+#menu-panel .star.first, #win .star.first {
 	top: 0;
 	left: 0;
 }
 
-#menu-panel .star.second {
+#menu-panel .star.second, #win .star.second {
 	top: 0;
 	left: 80px;
 	-webkit-transform: scale(0.8);
 }
 
-#menu-panel .star.third {
+#menu-panel .star.third, #win .star.third {
 	top: 0px;
 	left: 160px;
 	-webkit-transform: scale(0.6);
@@ -603,6 +603,13 @@ PLAY SCREEN STYLES
 	display:none;
 	margin-left: -200px;
 	width: 400px;
+}
+
+#win .star-container {
+	top: -75px;
+	position: absolute;
+	left: 50%;
+	margin-left: -110px;
 }
 
 #win-loose p {
