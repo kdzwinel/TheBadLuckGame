@@ -37,6 +37,7 @@
     <script src="classes/MapLoader.class.js"></script>
     <script src="classes/HTMLTile.class.js"></script>
     <script src="classes/HTMLBoard.class.js"></script>
+    <script src="classes/HTMLGameStatus.class.js"></script>
     <script src="classes/screens/ScreenManager.class.js"></script>
     <script src="classes/screens/IntroScreen.class.js"></script>
     <script src="classes/screens/LevelsScreen.class.js"></script>
@@ -46,8 +47,8 @@
     <script src="classes/debug/TextBoardPrinter.class.js"></script>
     <script src="classes/debug/GameStatusListener.class.js"></script>
 
-    <link href='css/main.css' rel='stylesheet' type='text/css' />
-    <link href='css/responsive.css' rel='stylesheet' type='text/css' />
+    <link href='css/main.css' rel='stylesheet' type='text/css'/>
+    <link href='css/responsive.css' rel='stylesheet' type='text/css'/>
 
     <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no">
     <meta charset="UTF-8">
@@ -66,7 +67,10 @@
             <div id="black_car"></div>
         </div>
         <div id="loader-wrapper">
-            <div id="loader"><span>0%</span><div class='bar'></div></div>
+            <div id="loader"><span>0%</span>
+
+                <div class='bar'></div>
+            </div>
             <button id="play-button" class='hidden'>PLAY</button>
         </div>
     </section>
@@ -127,22 +131,25 @@
             <div class="tiles"></div>
             <canvas id="canvas"></canvas>
         </div>
-	    <div id="top-panel">
-		    <div class="star-container">
-			    <p class="star first"></p>
-			    <p class="star second"></p>
-			    <p class="star third inactive"></p>
-		    </div>
-		    <div class="info">
+        <div id="menu-panel">
+            <div class="star-container">
+                <p class="star first"></p>
 
-			    points: <span>1000</span>
-			    cars: <span>3/20</span>
-		    </div>
-		    <button id='back-button'>Back</button>
+                <p class="star second"></p>
 
-	    </div>
+                <p class="star third inactive"></p>
+            </div>
+            <div class="info">
+
+                points: <span class='current-score'>1000</span>
+                cars: <span class='cars-deployed'>3/20</span>
+            </div>
+            <div id='swap-tile'></div>
+            <button id='back-button'>Back</button>
+
+        </div>
     </section>
 </div>
-    <script src="main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

@@ -15,6 +15,7 @@
  * @class JSONMap
  * @property {number} height
  * @property {number} width
+ * @property {JSONTile} swapTile
  * @property {JSONTile[]} tiles
  */
 
@@ -26,6 +27,7 @@
  * @property {boolean} start
  * @property {boolean} end
  * @property {boolean} locked
+ * @property {boolean} swappable
  */
 
 (function () {

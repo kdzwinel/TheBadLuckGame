@@ -1,26 +1,29 @@
-function unbindAllEvents(ele) {
-	ele.parentNode.replaceChild(ele.cloneNode(true), ele);
-}
+(function(){
+	"use strict";
 
-function getParentByTagName(obj, tag)
-{
-	var parent = obj.parentNode;
-	if (!parent || !parent.tagName) {
-		return false;
+	function unbindAllEvents(ele) {
+		ele.parentNode.replaceChild(ele.cloneNode(true), ele);
 	}
 
-	return (parent.tagName.toLowerCase() == tag) ? parent : getParentByTagName(parent, tag);
-}
+	function getParentByTagName(obj, tag)
+	{
+		var parent = obj.parentNode;
+		if (!parent || !parent.tagName) {
+			return false;
+		}
 
-function getElementPosition(obj) {
-	var o = obj;
-	var l =o.offsetLeft;
-	var t = o.offsetTop;
-
-	while (o=o.offsetParent) {
-		l += o.offsetLeft;
-		t += o.offsetTop;
+		return (parent.tagName.toLowerCase() == tag) ? parent : getParentByTagName(parent, tag);
 	}
 
-	return [l,t];
-}
+	function purgeElement(ele) {
+		while (ele.hasChildNodes()) {
+			ele.removeChild(ele.lastChild);
+		}
+	}
+
+	window.DOMHelper = {
+		unbindAllEvents: unbindAllEvents,
+		getParentByTagName: getParentByTagName,
+		purgeElement: purgeElement
+	};
+})();

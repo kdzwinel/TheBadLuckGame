@@ -1,24 +1,25 @@
-(function() {
+(function () {
 	"use strict";
 
-	window.PlayScreen = function(options) {
-		var mapLoader, game, htmlBoard, canvasManager, carManager, particleEmitterManager, collisionDetector, printer, listenersMgr, logicInterval;
+	window.PlayScreen = function (options) {
+		var mapLoader, game, htmlBoard, htmlGameStatus, canvasManager, carManager, particleEmitterManager, collisionDetector, printer, listenersMgr, logicInterval;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['close']);
 
 			mapLoader = new MapLoader();
 			mapLoader.on('load', initLevel);
-			mapLoader.on('error', function(error) {
+			mapLoader.on('error', function (error) {
 				console.error(error);
 			});
 		}
+
 		init();
 
 		function addEventListeners() {
 			var backButton = options.element.querySelector('#back-button');
 			new Tap(backButton);
-			backButton.addEventListener('tap', function() {
+			backButton.addEventListener('tap', function () {
 				listenersMgr.trigger('close');
 			});
 		}
@@ -31,53 +32,58 @@
 
 			htmlBoard = new HTMLBoard({
 				board: game.getBoard(),
+				swapContainer: options.element.querySelector('#swap-tile'),
 				element: options.element.querySelector('.tiles')
 			});
 
+			htmlGameStatus = new HTMLGameStatus({
+				game: game,
+				carsStatusContainer: options.element.querySelector('.cars-deployed')
+			});
+
 			canvasManager = new CanvasManager({
-				element        : options.element.querySelector('#canvas'),
+				element: options.element.querySelector('#canvas'),
 				tilesHorizontal: game.getBoard().getWidth(),
-				tilesVertical  : game.getBoard().getHeight()
+				tilesVertical: game.getBoard().getHeight()
 			});
 
 			carManager = new CarManager(game);
 			particleEmitterManager = new ParticleEmitterManager();
 			collisionDetector = new CollisionDetector();
 
-			game.on('car-added', function(){
+			game.on('car-added', function () {
 				var car = carManager.addCar(),
 					emitter = particleEmitterManager.addEmitter(car.appearance.getExplosionObject());
 
-				car.on('crash', function(car){
+				car.on('crash', function (car) {
 					emitter.emit(car.x, car.y);
 
-					if(!car.alive) {
-						var classes = options.element.className;
+					if (!car.alive) {
 						collisionDetector.removeObject(car);
-						setTimeout(function() {
+						setTimeout(function () {
 							options.element.classList.add('shake');
-							setTimeout(function() {
+							setTimeout(function () {
 								options.element.classList.remove('shake');
 							}, 400);
-						} ,70) // do not block ui
+						}, 70); // do not block ui
 
 					}
 				});
 
-				car.on('trip-end', function(car) {
+				car.on('trip-end', function (car) {
 					collisionDetector.removeObject(car);
-				})
+				});
 
 				collisionDetector.addObject(car);
 			});
 
-			game.on('game-started', function() {
-				if(!logicInterval) {
-					logicInterval = setInterval(function() {
+			game.on('game-started', function () {
+				if (!logicInterval) {
+					logicInterval = setInterval(function () {
 
 						carManager.step(canvasManager.getTileSize());
 						collisionDetector.checkCollisions();
-					},16);
+					}, 16);
 				}
 			});
 
@@ -105,23 +111,23 @@
 			listenersMgr.addEventListener(event, callback);
 		};
 
-		this.getDOMNode = function() {
+		this.getDOMNode = function () {
 			return options.element;
 		};
 
-		this.beforeShow = function(data) {
+		this.beforeShow = function (data) {
 			mapLoader.load(data.levelName);
 		};
 
-		this.afterShow = function() {
+		this.afterShow = function () {
 			addEventListeners();
 		};
 
-		this.beforeHide = function() {
-			unbindAllEvents(options.element.querySelector('#back-button'));
+		this.beforeHide = function () {
+			DOMHelper.unbindAllEvents(options.element.querySelector('#back-button'));
 		};
 
-		this.afterHide = function() {
+		this.afterHide = function () {
 			htmlBoard.destroy();
 			htmlBoard = null;
 

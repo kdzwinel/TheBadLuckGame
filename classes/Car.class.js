@@ -52,8 +52,7 @@
 		var n = this._currentTile.roadFromNorth(),
 			s = this._currentTile.roadFromSouth(),
 			e = this._currentTile.roadFromEast(),
-			w = this._currentTile.roadFromWest()
-
+			w = this._currentTile.roadFromWest(),
 			maxX = this._board.getWidth() - 1,
 			maxY = this._board.getHeight() - 1;
 
@@ -61,75 +60,75 @@
 			if (this._currentTile.getX() === 0) { // start from left side
 
 				if (this._currentTile.getY() === 0 && !w) {
-					this._initialDirection = 'n'
+					this._initialDirection = 'n';
 					this._endDirection = n;
 
 				} else if (this._currentTile.getY() === maxY && !w) {
-					this._initialDirection = 's'
+					this._initialDirection = 's';
 					this._endDirection = s;
 				} else {
-					this._initialDirection = 'w'
+					this._initialDirection = 'w';
 					this._endDirection = w;
 				}
 
 			} else if (this._currentTile.getX() === maxX) {
 				
 				if (this._currentTile.getY() === 0 && !e) {
-					this._initialDirection = 'n'
+					this._initialDirection = 'n';
 					this._endDirection = n;
 
 				} else if (this._currentTile.getY() === maxY && !e) {
-					this._initialDirection = 's'
+					this._initialDirection = 's';
 					this._endDirection = s;
 
 				} else {
-					this._initialDirection = 'e'
+					this._initialDirection = 'e';
 					this._endDirection = e;
 				}
 
 			} else if (this._currentTile.getY() === 0) {
-				this._initialDirection = 'n'
+				this._initialDirection = 'n';
 				this._endDirection = n;
 
 			} else if (this._currentTile.getY() === maxY) {
-				this._initialDirection = 's'
+				this._initialDirection = 's';
 				this._endDirection = s;
 
 			} else {
 				if (n) {
-					this._initialDirection = 'n'
+					this._initialDirection = 'n';
 					this._endDirection  = n;	
 				} else if (s) {
-					this._initialDirection = 's'
+					this._initialDirection = 's';
 					this._endDirection = s;
 				} else if (w) {
-					this._initialDirection = 'w'
+					this._initialDirection = 'w';
 					this._endDirection = w;
 				} else {
-					this._initialDirection = 'e'
+					this._initialDirection = 'e';
 					this._endDirection = e;
 				}
 
-				this._initialDirection = 's'
+				this._initialDirection = 's';
 				this._endDirection = n || s || w || e;
 
 			}
 		} else {
 			switch (this._endDirection) {
 				case 'n':
-					this._initialDirection = 's'
+					this._initialDirection = 's';
 					this._endDirection = s;
 					break;
 				case 's':
-					this._initialDirection = 'n'
+					this._initialDirection = 'n';
 					this._endDirection = n;
 					break;
 				case 'e':
-					this._initialDirection = 'w'
+					this._initialDirection = 'w';
 					this._endDirection = w;
 					break;
 				case 'w':
-					this._initialDirection = 'e'
+					this._initialDirection = 'e';
 					this._endDirection = e;
 					break;
 			}
@@ -291,17 +290,17 @@
 		return ~~((this._ay * (t * t * t) + this._by * (t * t) + this._cy * (t) + this._p0.y) + 0.5);
 	};
 
-	global.Car.prototype.collision = function(collisionObject) {
+	global.Car.prototype.collision = function (collisionObject) {
 		this.alive = false;
 		this._listenersMgr.trigger('crash', this);
-		if(!this._prevTile.isStart() && !this._prevTile.isEnd()) {
+		if (!this._prevTile.isStart() && !this._prevTile.isEnd()) {
 			this._prevTile.unlock();
 		}
 
-		if(collisionObject && !this._prevTile.isStart() && !this._prevTile.isEnd()) {
+		if (collisionObject && !this._prevTile.isStart() && !this._prevTile.isEnd()) {
 			this._currentTile.unlock();
 		}
-	}
+	};
 
 	global.Car.prototype.drive = function(tileSize) {
 		var nextX, 

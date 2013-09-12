@@ -1,25 +1,26 @@
 {
-	"carCount": 2,
-	"carsToWin": 1,
+	"carCount": 10,
+	"carsToWin": 5,
 	"startTimeout": 5000,
 	"carTimeout": 15000,
 	"map": {
 		"width": 5,
 		"height": 3,
+		"swapTile": {
+			"roads": {
+				"s": "n",
+				"n": "s"
+			}
+		},
 		"tiles": [
 			[
-				{
-					"roads": {
-						"s": "n",
-						"n": "s"
-					},
-					"start": true
-				},
+				{},
 				{
 					"roads": {
 						"n": "s",
 						"s": "n"
-					}
+					},
+					"swappable": true
 				},
 				{
 					"roads": {
@@ -29,23 +30,14 @@
 				},
 				{
 					"roads": {
-						"w": "e",
-						"e": "w",
 						"s": "n",
 						"n": "s"
 					},
-					"locked": true
+					"start": true
 				},
 				{}
 			],
 			[
-				{},
-				{
-					"roads": {
-						"e": "s",
-						"s": "e"
-					}
-				},
 				{
 					"roads": {
 						"w": "n",
@@ -56,10 +48,26 @@
 				},
 				{
 					"roads": {
-						"w": "e",
-						"e": "w",
-						"s": "n",
-						"n": "s"
+						"e": "s",
+						"s": "e"
+					},
+					"swappable": true
+				},
+				{
+					"roads": {
+						"w": "n",
+						"n": "w",
+						"s": "e",
+						"e": "s"
+					},
+					"swappable": true
+				},
+				{
+					"roads": {
+						"w": "n",
+						"n": "w",
+						"s": "e",
+						"e": "s"
 					}
 				},
 				{}
@@ -84,7 +92,8 @@
 						"n": "s",
 						"s": "n",
 						"e": "w"
-					}
+					},
+					"swappable": true
 				},
 				{
 					"roads": {

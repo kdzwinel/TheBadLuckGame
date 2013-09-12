@@ -9,6 +9,11 @@
 		this._tile = tile;
 		this._node = null;
 		this._rotation = 0;
+
+		this._tile.on('rotate', this._wasRotated.bind(this));
+		this._tile.on('lock', this._wasLocked.bind(this));
+		this._tile.on('unlock', this._wasUnlocked.bind(this));
+		this._tile.on('swap', this._wasSwapped.bind(this));
 	};
 
 	HTMLTile.prototype._rotate = function() {
@@ -34,10 +39,11 @@
 		this._node.classList.remove('locked');
 	};
 
-	HTMLTile.prototype._addEventListeners = function() {
-		this._tile.on('rotate', this._wasRotated.bind(this));
-		this._tile.on('lock', this._wasLocked.bind(this));
-		this._tile.on('unlock', this._wasUnlocked.bind(this));
+	HTMLTile.prototype._wasSwapped = function() {
+		var oldNode = this._node;
+		this._createDOMNode();
+
+		oldNode.parentNode.replaceChild(this._node, oldNode);
 	};
 
 	HTMLTile.prototype._createDOMNode = function() {
@@ -90,12 +96,12 @@
 			this._node.classList.add('end');
 		} else if(this._tile.isLocked()) {
 			this._node.classList.add('locked');
+		} else if (this._tile.isSwappable()) {
+			this._node.classList.add('swappable');
 		}
 
 		this._node.dataset.x = this._tile.getX();
 		this._node.dataset.y = this._tile.getY();
-
-		this._addEventListeners();
 	};
 
 	/**
