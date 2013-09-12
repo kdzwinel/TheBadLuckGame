@@ -138,30 +138,6 @@
 		};
 
 		/**
-		 * Returns number of cars that have been lost.
-		 * @returns {number}
-		 */
-		this.getLostCarsCount = function() {
-			return lostCarsCount;
-		};
-
-		/**
-		 * Returns number of cars that have reached the ending tile.
-		 * @returns {number}
-		 */
-		this.getWonCarsCount = function() {
-			return wonCarsCount;
-		};
-
-		/**
-		 * Returns number of cars that are required to reach ending tile in order to win the game.
-		 * @returns {number}
-		 */
-		this.getRequiredCarsCount = function() {
-			return level.carsToWin;
-		};
-
-		/**
 		 * Returns number of all cars (these that have been deployed + these that haven't been deployed yet)
 		 * @returns {number}
 		 */

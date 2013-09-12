@@ -25,7 +25,6 @@
 			new Tap(looseLevelsButton);
 			new Tap(looseRestartButton);
 
-
 			looseLevelsButton.addEventListener('tap', function(e) {
 				hideLoose();
 				listenersMgr.trigger('back-to-levels');

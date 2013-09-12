@@ -15,7 +15,9 @@
 					domNode.removeEventListener('transitionEnd', callback);
 					domNode.removeEventListener('transitionend', callback);
 
-					oldScreen.afterHide();
+					if(oldScreen.afterHide){
+						oldScreen.afterHide();
+					}
 				}
 			};
 
@@ -31,7 +33,9 @@
 					domNode.removeEventListener('transitionEnd', callback);
 					domNode.removeEventListener('transitionend', callback);
 
-					newScreen.afterShow(data);
+					if(newScreen.afterShow){
+						newScreen.afterShow(data);
+					}
 				}
 			};
 
@@ -51,7 +55,9 @@
 			}
 
 			if(visibleScreen) {
-				visibleScreen.beforeHide();
+				if(screen.beforeHide){
+					screen.beforeHide();
+				}
 
 				var afterHide = createAfterHideCallback(visibleScreen);
 				visibleScreen.getDOMNode().addEventListener('webkitTransitionEnd', afterHide);
@@ -62,7 +68,9 @@
 			}
 
 			screen.getDOMNode().style.visibility = 'visible';
-			screen.beforeShow(data);
+			if(screen.beforeShow){
+				screen.beforeShow(data);
+			}
 
 			var afterShow = createAfterShowCallback(screen, data);
 			screen.getDOMNode().addEventListener('webkitTransitionEnd', afterShow);
