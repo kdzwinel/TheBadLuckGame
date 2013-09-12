@@ -81,6 +81,18 @@
 		} else if( n === 'w' && w === 'n' && e === 's' && s === 'e') {
 			tileTypeClass = 'two-turns';
 			this._rotation = 90;
+		} else if( w === 'e' && e === 'w' && s === 'w' && !n) {
+			tileTypeClass =  't-road';
+			this._rotation = 0;
+		} else if( w === 'n' && n === 's' && s === 'n' && !e) {
+			tileTypeClass =  't-road';
+			this._rotation = 90;
+		} else if( w === 'e' && e === 'w' && n === 'e' && !s) {
+			tileTypeClass =  't-road';
+			this._rotation = 180;
+		} else if( n === 's' && s === 'n' && e === 's' && !w) {
+			tileTypeClass =  't-road';
+			this._rotation = 270;
 		}
 
 		this._node.classList.add('tile');
