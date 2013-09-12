@@ -94,9 +94,8 @@
 				{
 					"roads": {
 						"w": "e",
-						"n": "s",
-						"s": "n",
-						"e": "w"
+						"e": "w",
+						"n": "e"
 					},
 					"swappable": true
 				},

@@ -13,7 +13,9 @@
 			printer,
 			listenersMgr,
 			logicInterval,
-			scoreTracker;
+			scoreTracker,
+			pauseScreen,
+			endScreen;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['close']);
@@ -31,8 +33,38 @@
 			var backButton = options.element.querySelector('#back-button');
 			new Tap(backButton);
 			backButton.addEventListener('tap', function () {
-				listenersMgr.trigger('close');
+				pause();
+
 			});
+		}
+
+		function pause() {
+			stopLogicInterval();
+			canvasManager.stopAnimation();
+			pauseScreen.show();
+		}
+
+		function shakeScreen() {
+			setTimeout(function () {
+				options.element.classList.add('shake');
+				setTimeout(function () {
+					options.element.classList.remove('shake');
+				}, 400);
+			}, 70); // do not block ui
+		}
+
+		function stopLogicInterval() {
+			clearInterval(logicInterval);
+			logicInterval = undefined;
+		}
+
+		function startLogicInterval() {
+			if (!logicInterval) {
+				logicInterval = setInterval(function () {
+					carManager.step(canvasManager.getTileSize());
+					collisionDetector.checkCollisions();
+				}, 16);
+			}
 		}
 
 		/**
@@ -43,6 +75,20 @@
 
 			scoreTracker = new ScoreTracker({
 				game: game
+			});
+
+			pauseScreen = new PauseScreen({
+				element: options.element.querySelector('#paused')
+			});
+			//endScreen   = new EndScreen();
+
+			pauseScreen.on('resume-game', function() {
+				startLogicInterval();
+				canvasManager.startAnimation();
+			});
+
+			pauseScreen.on('back-to-levels', function() {
+				listenersMgr.trigger('close');
 			});
 
 			htmlBoard = new HTMLBoard({
@@ -82,13 +128,7 @@
 
 					if (!car.alive) {
 						collisionDetector.removeObject(car);
-						setTimeout(function () {
-							options.element.classList.add('shake');
-							setTimeout(function () {
-								options.element.classList.remove('shake');
-							}, 400);
-						}, 70); // do not block ui
-
+						shakeScreen();
 					}
 				});
 
@@ -100,13 +140,7 @@
 			});
 
 			game.on('game-started', function () {
-				if (!logicInterval) {
-					logicInterval = setInterval(function () {
-
-						carManager.step(canvasManager.getTileSize());
-						collisionDetector.checkCollisions();
-					}, 16);
-				}
+				startLogicInterval()
 			});
 
 			canvasManager.addManager(carManager);
@@ -167,6 +201,9 @@
 
 			canvasManager.destroy();
 			canvasManager = null;
+
+			pauseScreen.destroy();
+			pauseScreen = null;
 
 			clearInterval(logicInterval);
 			logicInterval = null;

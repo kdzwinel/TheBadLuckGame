@@ -1,6 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
 	window.resource = new ResourceLoader();
-	resource.add(['sedan', 'van', 'particle_smoke', 'particle_flare', 'particle_flare_1']);
+	resource.add(['sedan',
+				  'van',
+				  'particle_smoke',
+				  'particle_flare',
+				  'particle_flare_1',
+				  'level-label',
+				  'level-label-inactive',
+				  'star-active',
+				  'star-inactive',
+				  'tiles/junction',
+				  'tiles/straight',
+				  'tiles/t-road',
+				  'tiles/tile',
+				  'tiles/turn',
+				  'tiles/two-turns']);
 	resource.load();
 
 	var introScreen = new IntroScreen({

@@ -45,6 +45,10 @@
 			animate();
 		};
 
+		this.stopAnimation = function () {
+			active = false;
+		}
+
 		this.getWidth = function () {
 			return canvas.width;
 		};
