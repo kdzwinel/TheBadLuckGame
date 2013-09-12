@@ -36,7 +36,7 @@
 
 		this.show = function() {
 			pausedScreen.style.display = 'block';
-		}
+		};
 
 
 		this.on = function (event, callback) {

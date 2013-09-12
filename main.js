@@ -1,6 +1,5 @@
 /*
 
- @codekit-prepend tools/requestAnimationFrame.js
  @codekit-prepend tools/tap.js
  @codekit-prepend tools/DOMHelpers.js
  @codekit-prepend classes/ResourceLoader.class.js

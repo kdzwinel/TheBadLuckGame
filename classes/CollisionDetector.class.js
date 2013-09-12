@@ -94,35 +94,6 @@
 					 max: values[3] }
 		}
 
-		function drawLine(points, color, width, startX, startY) {
-			if(!points.length) {
-				return;
-			}
-
-			color = color   || '#000000';
-			startX = startX || 0;
-			startY = startY || 0;
-			width = width   || 3;
-
-			context.beginPath();
-			context.moveTo(startX +points[0].x, startY +points[0].y);
-
-			points.forEach(function(point) {
-				context.lineTo(startX + point.x, startY + point.y);
-			});
-			
-			context.lineWidth = width;
-			context.strokeStyle = color;
-			context.stroke();
-		}
-
-		function drawDot(x, y) {
-			var canvas = document.getElementById('canvas');
-			var context = canvas.getContext('2d');
-			context.fillStyle = '#800000'; // blue
-			context.fillRect(x + canvas.height, y + canvas.height, 10, 10);
-		}
-
 		function isOverlap(objectOneValues, objectTwoValues) {
 			return objectTwoValues.min <= objectOneValues.max && objectTwoValues.max >= objectOneValues.min;
 		}
@@ -191,17 +162,6 @@
 				}
 			}
 		};
-
-		this.debugPoints = function (context, object) {
-			var point = getObjectPoints(object);
-
-			context.fillStyle = '#00f'; // blue
-			context.fillRect(point.topLeft.x, point.topLeft.y, 3, 3);
-			context.fillRect(point.topRight.x, point.topRight.y, 3, 3);
-			context.fillRect(point.bottomLeft.x, point.bottomLeft.y, 3, 3);
-			context.fillRect(point.bottomRight.x, point.bottomRight.y, 3, 3);
-		}
-
 
 	}
 })(window);

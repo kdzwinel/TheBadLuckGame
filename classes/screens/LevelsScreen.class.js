@@ -2,8 +2,7 @@
 	"use strict";
 
 	window.LevelsScreen = function(options) {
-		var listenersMgr,
-			isVisible = false;
+		var listenersMgr;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['level-chosen']);
@@ -86,22 +85,6 @@
 
 		this.getDOMNode = function() {
 			return options.element;
-		};
-
-		this.beforeShow = function() {
-
-		};
-
-		this.afterShow = function() {
-			isVisible = true;
-		};
-
-		this.beforeHide = function() {
-			isVisible = false;
-		};
-
-		this.afterHide = function() {
-
 		};
 	}
 })();

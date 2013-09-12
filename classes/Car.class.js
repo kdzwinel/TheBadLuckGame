@@ -402,6 +402,5 @@
 		this._updateRotation();
 
 		this._t += this._velocity;
-		// this._velocity *= 1.003;
 	};
 })(window);

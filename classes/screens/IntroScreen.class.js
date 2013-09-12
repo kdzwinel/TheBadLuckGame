@@ -3,8 +3,7 @@
 
 	window.IntroScreen = function (options) {
 		var listenersMgr,
-			loader,
-			isVisible = false;
+			loader;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['start']);
@@ -46,18 +45,6 @@
 
 		this.getDOMNode = function () {
 			return options.element;
-		};
-
-		this.beforeShow = function () {
-
-		};
-
-		this.afterShow = function () {
-			isVisible = true;
-		};
-
-		this.beforeHide = function () {
-			isVisible = false;
 		};
 
 		this.afterHide = function () {
