@@ -10,23 +10,12 @@
     <script src="classes/ResourceLoader.class.js"></script>
     <script src="classes/CollisionDetector.class.js"></script>
     <script src="tools/EventListenersManager.class.js"></script>
-    <script src="tools/jEmitter/utils.js"></script>
-    <script src="tools/jEmitter/vector.js"></script>
-    <script src="tools/jEmitter/particle.js"></script>
-    <script src="tools/jEmitter/particleEmitter.js"></script>
-
-    <!-- PARTICLE EMITTER -->
-    <script src="tools/jEmitter/vector.js"></script>
-    <script src="tools/jEmitter/utils.js"></script>
-    <script src="tools/jEmitter/particle.js"></script>
-    <script src="tools/jEmitter/particleEmitter.js"></script>
 
     <!-- CANVAS -->
     <script src="classes/Car.class.js"></script>
     <script src="classes/CarAppearance.class.js"></script>
     <script src="classes/CarManager.class.js"></script>
     <script src="classes/CanvasManager.class.js"></script>
-    <script src="classes/ParticleEmitterManager.class.js"></script>
 
     <!-- GENERAL GAME CLASSES -->
     <script src="classes/Tile.class.js"></script>
@@ -44,12 +33,8 @@
     <script src="classes/screens/IntroScreen.class.js"></script>
     <script src="classes/screens/LevelsScreen.class.js"></script>
     <script src="classes/screens/PlayScreen.class.js"></script>
-    <script src="classes/screens/PauseScreen.class.js"></script>
+    <script src="classes/screens/pauseScreen.class.js"></script>
     <script src="classes/screens/EndScreen.class.js"></script>
-
-    <!-- DEBUG -->
-    <script src="classes/debug/TextBoardPrinter.class.js"></script>
-    <script src="classes/debug/GameStatusListener.class.js"></script>
 
     <link href='css/main.css' rel='stylesheet' type='text/css'/>
     <link href='css/responsive.css' rel='stylesheet' type='text/css'/>
@@ -87,7 +72,9 @@
 
                 <div class="star-container">
                     <p class="star first inactive"></p>
+
                     <p class="star second inactive"></p>
+
                     <p class="star third inactive"></p>
                 </div>
             </li>
@@ -96,7 +83,9 @@
 
                 <div class="star-container">
                     <p class="star first inactive"></p>
+
                     <p class="star second inactive"></p>
+
                     <p class="star third inactive"></p>
                 </div>
             </li>
@@ -105,7 +94,9 @@
 
                 <div class="star-container">
                     <p class="star first inactive"></p>
+
                     <p class="star second inactive"></p>
+
                     <p class="star third inactive"></p>
                 </div>
             </li>
@@ -114,7 +105,9 @@
 
                 <div class="star-container">
                     <p class="star first inactive"></p>
+
                     <p class="star second inactive"></p>
+
                     <p class="star third inactive"></p>
                 </div>
             </li>
@@ -152,16 +145,18 @@
             </div>
         </div>
 
-	    <div id="win-loose">
-		    <div id="win">
-			    <div class="star-container">
-				    <p class="star first"></p>
-				    <p class="star second"></p>
-				    <p class="star third"></p>
-			    </div>
-			    <p>CONGRATULATIONS</p>
-			    <button id='win-levels-button'>LEVELS</button>
-		    </div>
+        <div id="win-loose">
+            <div id="win">
+                <div class="star-container">
+                    <p class="star first"></p>
+
+                    <p class="star second"></p>
+
+                    <p class="star third"></p>
+                </div>
+                <p>CONGRATULATIONS</p>
+                <button id='win-levels-button'>LEVELS</button>
+            </div>
 
             <div id="loose">
                 <p>BAD LUCK</p>

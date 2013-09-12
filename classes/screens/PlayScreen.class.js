@@ -8,9 +8,7 @@
 			htmlGameStatus,
 			canvasManager,
 			carManager,
-			particleEmitterManager,
 			collisionDetector,
-			printer,
 			listenersMgr,
 			logicInterval,
 			scoreTracker,
@@ -129,7 +127,6 @@
 			});
 
 			carManager = new CarManager(game);
-			particleEmitterManager = new ParticleEmitterManager();
 			collisionDetector = new CollisionDetector();
 
 			game.on('car-added', function (data) {
@@ -137,11 +134,9 @@
 						startX: data.startTile.getX(),
 						startY: data.startTile.getY(),
 						velocity: data.velocity
-					}),
-					emitter = particleEmitterManager.addEmitter(car.appearance.getExplosionObject());
+					});
 
 				car.on('crash', function (car) {
-					emitter.emit(car.x, car.y);
 
 					if (!car.alive) {
 						collisionDetector.removeObject(car);
@@ -179,18 +174,7 @@
 			});
 
 			canvasManager.addManager(carManager);
-			canvasManager.addManager(particleEmitterManager);
 			canvasManager.startAnimation();
-
-			/* DEBUG */
-			printer = new TextBoardPrinter();
-			printer.print(game.getBoard());
-			new GameStatusListener(game);
-
-			window.printer = printer;
-			window.game = game;
-			window.htmlBoard = htmlBoard;
-			window.canvasManager = canvasManager;
 		}
 
 		/**
@@ -231,7 +215,6 @@
 
 			carManager = null;
 
-			particleEmitterManager = null;
 
 			collisionDetector = null;
 

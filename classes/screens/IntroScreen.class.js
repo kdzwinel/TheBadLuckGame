@@ -4,8 +4,7 @@
 	window.IntroScreen = function (options) {
 		var listenersMgr,
 			loader,
-			isVisible = false,
-			emitInterval, canvas, context, screenWidth, screenHeight, emitter;
+			isVisible = false;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['start']);
@@ -32,38 +31,6 @@
 					}
 				});
 			}
-
-			/* Init Emitter */
-			canvas = options.element.querySelector('.particles');
-			context = canvas.getContext('2d');
-			screenWidth = window.innerWidth;
-			screenHeight = window.innerHeight;
-			emitter = new jEmitter.ParticleEmitter({
-				poolSize: 500,
-				spreadX: 400,
-				spreadY: 0,
-				minVelocity: 0.5,
-				maxVelocity: 0.5,
-				minGravity: 0,
-				maxGravity: 0,
-				minWind: 0,
-				maxWind: 0,
-				minSize: 10,
-				maxSize: 30,
-				minSizeStep: -2,
-				maxSizeStep: -4,
-				maxParticleEmit: 5,
-				minParticleEmit: 1,
-				minAlpha: 100,
-				maxAlpha: 100,
-				minVelocityRadius: 50,
-				maxVelocityRadius: 130,
-				colors: ["#000000"]
-			});
-
-			canvas.width = screenWidth;
-			canvas.height = screenHeight;
-			context.globalCompositeOperation = 'lighter';
 		}
 
 		init();
@@ -87,32 +54,13 @@
 
 		this.afterShow = function () {
 			isVisible = true;
-
-			var animate = function () {
-				if (isVisible) {
-					context.clearRect(0, 0, screenWidth, screenHeight);
-					emitter.render(context);
-
-					window.requestAnimationFrame(animate);
-				}
-			};
-			animate();
-
-			emitInterval = setInterval(function () {
-				emitter.emit(screenWidth / 2, screenHeight);
-			}, 100);
 		};
 
 		this.beforeHide = function () {
-			clearInterval(emitInterval);
-			emitInterval = null;
 			isVisible = false;
 		};
 
 		this.afterHide = function () {
-			canvas = null;
-			context = null;
-			emitter = null;
 			DOMHelper.purgeElement(options.element);
 		};
 	}

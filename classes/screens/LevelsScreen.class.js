@@ -3,8 +3,7 @@
 
 	window.LevelsScreen = function(options) {
 		var listenersMgr,
-			isVisible = false,
-			emitInterval, canvas, context, screenWidth, screenHeight, emitter;
+			isVisible = false;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['level-chosen']);
@@ -22,38 +21,6 @@
 			}, false);
 
 			initLevels();
-
-			/* Init Emitter */
-			var image = document.createElement('img');
-			canvas = options.element.querySelector('.particles');
-			context = canvas.getContext('2d');
-			screenWidth = window.innerWidth;
-			screenHeight = window.innerHeight;
-			emitter = new jEmitter.ParticleEmitter({
-				spreadX : 0,
-				spreadY : 800,
-				minVelocity : 0.5,
-				maxVelocity : 0.5,
-				minGravity :  0,
-				maxGravity : 0,
-				minWind	   : 1,
-				maxWind	   : 1,
-				minSize    : 5,
-				maxSize    : 45,
-				maxParticleEmit : 4,
-				minParticleEmit : 1,
-				minAlpha: 50,
-				maxAlpha: 50,
-				minRotateStep : -1,
-				maxRotateStep : 1,
-
-				images : [image]
-			});
-
-			canvas.width = screenWidth;
-			canvas.height = screenHeight;
-			context.globalCompositeOperation = 'lighter';
-			image.src = 'gfx/level-label.png';
 		}
 		init();
 
@@ -127,24 +94,9 @@
 
 		this.afterShow = function() {
 			isVisible = true;
-
-			var animate = function () {
-				context.clearRect(0, 0, screenWidth, screenHeight);
-				emitter.render(context);
-
-				if (isVisible) {
-					window.requestAnimationFrame(animate);
-				}
-			};
-			animate();
-
-			emitInterval = setInterval(function () {
-				emitter.emit(-10, screenHeight/2);
-			}, 100);
 		};
 
 		this.beforeHide = function() {
-			clearInterval(emitInterval);
 			isVisible = false;
 		};
 
