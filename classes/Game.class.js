@@ -86,6 +86,14 @@
 		};
 
 		/**
+		 * Returns true if game has already ended (either was won or lost)
+		 * @returns {boolean}
+		 */
+		this.hasEnded = function() {
+			return (state === 'lost' || state === 'won');
+		};
+
+		/**
 		 * Returns number of cars that have been deployed.
 		 * @returns {number}
 		 */
@@ -123,6 +131,14 @@
 		 */
 		this.getAllCarsCount = function() {
 			return level.carCount;
+		};
+
+		/**
+		 * Returns array with star limits (number of points needed for each star)
+		 * @returns {number[]}
+		 */
+		this.getStarLimits = function() {
+			return level.starLimits;
 		};
 
 		/**

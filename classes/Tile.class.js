@@ -26,6 +26,15 @@
 	};
 
 	/**
+	 * Allows listening to predefined events (lock, unlock, rotate)
+	 * @param {string} event
+	 * @param {function} callback
+	 */
+	Tile.prototype.off = function(event, callback) {
+		this._listenersMgr.removeEventListener(event, callback);
+	};
+
+	/**
 	 * Returns tile's X position on board.
 	 * @returns {number}
 	 */

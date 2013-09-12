@@ -109,5 +109,22 @@
 
 			return map.tiles[y][x];
 		};
+
+		/**
+		 * Return 1D array of all tiles
+		 *
+		 * @returns {Tile[]}
+		 */
+		this.getTiles = function() {
+			var x, y, tiles = [];
+
+			for(y=0; y < map.height; y++) {
+				for(x=0; x < map.width; x++) {
+					tiles.push(map.tiles[y][x]);
+				}
+			}
+
+			return tiles;
+		};
 	};
 }());
