@@ -1,3 +1,36 @@
+/*
+
+ @codekit-prepend tools/requestAnimationFrame.js
+ @codekit-prepend tools/tap.js
+ @codekit-prepend tools/DOMHelpers.js
+ @codekit-prepend classes/ResourceLoader.class.js
+ @codekit-prepend classes/CollisionDetector.class.js
+ @codekit-prepend tools/EventListenersManager.class.js
+
+ @codekit-prepend classes/Car.class.js
+ @codekit-prepend classes/CarAppearance.class.js
+ @codekit-prepend classes/CarManager.class.js
+ @codekit-prepend classes/CanvasManager.class.js
+
+ @codekit-prepend classes/Tile.class.js
+ @codekit-prepend classes/Board.class.js
+ @codekit-prepend classes/Game.class.js
+ @codekit-prepend classes/ScoreTracker.class.js
+ @codekit-prepend classes/ProgressManager.class.js
+
+ @codekit-prepend classes/MapLoader.class.js
+ @codekit-prepend classes/HTMLTile.class.js
+ @codekit-prepend classes/HTMLBoard.class.js
+ @codekit-prepend classes/HTMLGameStatus.class.js
+ @codekit-prepend classes/screens/ScreenManager.class.js
+ @codekit-prepend classes/screens/IntroScreen.class.js
+ @codekit-prepend classes/screens/LevelsScreen.class.js
+ @codekit-prepend classes/screens/pauseScreen.class.js
+ @codekit-prepend classes/screens/EndScreen.class.js
+ @codekit-prepend classes/screens/PlayScreen.class.js
+
+ */
+
 document.addEventListener("DOMContentLoaded", function () {
 	window.resource = new ResourceLoader();
 	resource.add(['sedan',

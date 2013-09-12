@@ -50,4 +50,4 @@
 			listenersMgr = pausedScreen =  resumeButton = levelsButton = undefined;
 		}
 	}
-})()
+})();
