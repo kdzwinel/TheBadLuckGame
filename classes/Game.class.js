@@ -32,6 +32,10 @@
 				throw "Invalid number of cars required to win the game.";
 			}
 
+			if(!level.starLimits || level.starLimits.length !== 3) {
+				throw "Star limits are invalid.";
+			}
+
 			board = new Board(level.map);
 			startTimer = setTimeout(startGame, level.startTimeout);
 		}
