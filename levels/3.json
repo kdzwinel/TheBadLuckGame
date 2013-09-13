@@ -1,52 +1,42 @@
 {
-	"carCount": 2,
-	"carsToWin": 1,
-	"startTimeout": 500,
-	"carTimeout": 500,
-	"starLimits": [60, 80, 90],
+	"carCount": 3,
+	"carsToWin": 3,
+	"startTimeout": 8000,
+	"carTimeout": 5000,
+	"carSpeed": 0.015,
+	"starLimits": [75, 79, 84],
 	"map": {
-		"width": 10,
-		"height": 5,
 		"swapTile": {
 			"roads": {
-				"s": "n",
-				"n": "s"
+				"n":"w",
+				"w":"n",
+				"s":"e",
+				"e":"s"
 			}
 		},
+		"width": 6,
+		"height": 5,
 		"tiles": [
 			[
 				{
 					"roads": {
-						"w": "e",
-						"e": "w"
+						"n":"s",
+						"s":"n"
 					},
-					"start": true
-				},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "s",
-						"s": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w",
-						"s": "n",
-						"n": "s"
-					}
+					"start":true,
+					"cars":[0]
 				},
 				{},
 				{
 					"roads": {
-						"w": "e",
-						"e": "w"
+						"w": "s",
+						"s": "w"
+					}
+				},
+				{
+					"roads": {
+						"n":"s",
+						"s":"n"
 					}
 				},
 				{
@@ -55,123 +45,130 @@
 						"s": "w"
 					}
 				},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w",
-						"n": "e"
-					}
-				},
-				{},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "s",
-						"s": "w"
-					}
-				}
+				{}
 			],
 			[
 				{
+					"roads": {
+						"n":"s",
+						"s":"n"
+					}
+				},
+				{
+					"roads": {
+						"n":"e",
+						"e":"n"
+					},
+					"swappable": true
+				},
+				{
+					"roads": {
+						"n": "s",
+						"s": "n"
+					},
+					"swappable":true
+				},
+				{
+					"roads": {
+						"w": "s",
+						"s": "w"
+					},
+					"swappable":true
+				},
+				{
+					"roads": {
+						"w": "e",
+						"e": "w"
+					}
+				},
+				{}
+			],
+			[
+				{
+					"roads": {
+						"w":"e",
+						"e":"w",
+						"n":"s",
+						"s":"n"
+					},
+					"swappable":true
+				},
+				{
+					"roads": {
+						"w": "s",
+						"s": "w"
+					}
+				},
+				{
+					"roads": {
+						"w": "e",
+						"e": "w"
+					},
+					"swappable":true
+				},
+				{
+					"roads": {
+						"w": "s",
+						"s": "w"
+					},
+					"swappable":true
+				},
+				{
+					"roads": {
+						"n": "e",
+						"e": "n"
+					},
+					"swappable":true
+				},
+				{
+					"roads": {
+						"w": "e",
+						"e": "w"
+					},
 					"end": true
-				},
-				{
-					"roads": {
-						"e": "s",
-						"s": "e"
-					}
-				},
-				{
-					"roads": {
-						"w": "s",
-						"n": "e",
-						"s": "w",
-						"e": "n"
-					}
-				},
-				{
-					"roads": {
-						"w": "s",
-						"n": "e",
-						"s": "w",
-						"e": "n"
-					}
-				},
-				{},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "s",
-						"s": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w",
-						"s": "n",
-						"n": "s"
-					}
-				},
-				{},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "s",
-						"s": "w"
-					}
 				}
 			],
 			[
+				{
+					"roads": {
+						"n": "s",
+						"s": "n"
+					}
+				},
+				{
+					"roads": {
+						"n": "s",
+						"s": "n"
+					}
+				},
+				{
+					"roads": {
+						"w": "e",
+						"e": "w"
+					}
+				},
+				{
+					"roads": {
+						"n": "s",
+						"s": "n"
+					}
+				},
 				{},
+				{}
+			],
+			[
 				{
 					"roads": {
-						"n": "e",
-						"e": "n"
-					}
-				},
-				{
-					"roads": {
-						"e": "n",
-						"w": "s",
-						"n": "e",
-						"s": "w"
-					}
-				},
-				{
-					"roads": {
-						"e": "n",
-						"w": "s",
-						"n": "e",
-						"s": "w"
-					}
-				},
-				{
-					"roads": {
-						"e": "w",
-						"w": "e"
+						"n":"s",
+						"s":"n"
 					},
-					"start": true
+					"start":true,
+					"cars":[1]
 				},
 				{
 					"roads": {
-						"w": "e",
-						"e": "w"
+						"w": "s",
+						"s": "w"
 					}
 				},
 				{
@@ -182,152 +179,24 @@
 				},
 				{
 					"roads": {
-						"w": "e",
-						"e": "w",
-						"s": "n",
-						"n": "s"
-					}
-				},
-				{},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w"
-					}
-				},
-				{
-					"roads": {
 						"w": "s",
 						"s": "w"
-					}
-				}
-			],[
-				{},
-				{
-					"roads": {
-						"n": "e",
-						"e": "n"
-					}
-				},
-				{
-					"roads": {
-						"e": "n",
-						"w": "s",
-						"n": "e",
-						"s": "w"
-					}
-				},
-				{
-					"roads": {
-						"e": "n",
-						"w": "s",
-						"n": "e",
-						"s": "w"
-					}
-				},
-				{
-					"roads": {
-						"e": "w",
-						"w": "e"
 					},
-					"start": true
+					"swappable": true
 				},
 				{
 					"roads": {
-						"w": "e",
-						"e": "w"
+						"n":"s",
+						"s":"n"
 					}
 				},
 				{
 					"roads": {
-						"w": "s",
-						"s": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w",
-						"s": "n",
-						"n": "s"
-					}
-				},
-				{},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "s",
-						"s": "w"
-					}
-				}
-			],[
-				{},
-				{
-					"roads": {
-						"n": "e",
-						"e": "n"
-					}
-				},
-				{
-					"roads": {
-						"e": "n",
-						"w": "s",
-						"n": "e",
-						"s": "w"
-					}
-				},
-				{
-					"roads": {
-						"e": "n",
-						"w": "s",
-						"n": "e",
-						"s": "w"
-					}
-				},
-				{
-					"roads": {
-						"e": "w",
-						"w": "e"
+						"w":"e",
+						"e":"w"
 					},
-					"start": true
-				},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "s",
-						"s": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w",
-						"s": "n",
-						"n": "s"
-					}
-				},
-				{},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "s",
-						"s": "w"
-					}
+					"start": true,
+					"cars":[2]
 				}
 			]
 		]

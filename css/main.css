@@ -643,7 +643,7 @@ PLAY SCREEN STYLES
 }
 
 @-webkit-keyframes blink {
-	50% { opacity: 0.5; }
+	50% { opacity: 0.25; }
 }
 
 .tiles .row .tile.start.car-approaching {

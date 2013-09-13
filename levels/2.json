@@ -1,38 +1,28 @@
 {
-	"carCount": 2,
-	"carsToWin": 2,
-	"startTimeout": 5000,
+	"carCount": 4,
+	"carsToWin": 4,
+	"startTimeout": 8000,
 	"carTimeout": 15000,
-	"starLimits": [60, 80, 90],
+	"carSpeed": 0.012,
+	"starLimits": [60, 66, 70],
 	"map": {
-		"width": 6,
-		"height": 4,
 		"swapTile": {
 			"roads": {
-				"s": "n",
-				"n": "s"
+				"n":"s",
+				"s":"n"
 			}
 		},
+		"width": 6,
+		"height": 5,
 		"tiles": [
 			[
 				{
 					"roads": {
-						"w": "e",
-						"e": "w"
+						"w":"e",
+						"e":"w"
 					},
-					"start": true
-				},
-				{
-					"roads": {
-						"n": "s",
-						"s": "n"
-					}
-				},
-				{
-					"roads": {
-						"n": "e",
-						"e": "n"
-					}
+					"start":true,
+					"cars":[1]
 				},
 				{
 					"roads": {
@@ -40,40 +30,9 @@
 						"s": "w"
 					}
 				},
-				{
-					"roads": {
-						"w": "s",
-						"s": "w"
-					}
-				},
-				{}
-			],
-			[
 				{},
-				{
-					"roads": {
-						"e": "s",
-						"s": "e"
-					}
-				},
-				{
-					"roads": {
-						"n": "e",
-						"e": "n"
-					}
-				},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w"
-					}
-				},
-				{
-					"roads": {
-						"w": "e",
-						"e": "w"
-					}
-				},
+				{},
+				{},
 				{}
 			],
 			[
@@ -86,31 +45,48 @@
 				},
 				{
 					"roads": {
-						"n": "s",
-						"s": "n"
+						"n":"e",
+						"e":"n"
 					}
 				},
 				{
 					"roads": {
-						"w": "n",
-						"n": "w",
-						"s": "e",
-						"e": "s"
-					}
+						"w": "s",
+						"s": "w"
+					},
+					"swappable": true
 				},
 				{
 					"roads": {
-						"w": "n",
-						"n": "w",
-						"s": "e",
-						"e": "s"
-					}
+						"w": "s",
+						"s": "w"
+					},
+					"swappable": true
 				},
-				{
-				}
+				{}
 			],
 			[
-				{},
+				{
+					"roads": {
+						"w":"e",
+						"e":"w"
+					},
+					"start":true,
+					"cars":[0,3]
+				},
+				{
+					"roads": {
+						"w": "e",
+						"e": "w"
+					}
+				},
+				{
+					"roads": {
+						"w": "s",
+						"s": "w"
+					},
+					"swappable": true
+				},
 				{
 					"roads": {
 						"w": "s",
@@ -119,20 +95,10 @@
 				},
 				{
 					"roads": {
+						"w": "e",
+						"e": "w",
 						"n": "s",
 						"s": "n"
-					}
-				},
-				{
-					"roads": {
-						"s": "e",
-						"e": "s"
-					}
-				},
-				{
-					"roads": {
-						"s": "n",
-						"n": "s"
 					}
 				},
 				{
@@ -142,6 +108,56 @@
 					},
 					"end": true
 				}
+			],
+			[
+				{},
+				{
+					"roads": {
+						"w": "s",
+						"s": "w"
+					}
+				},
+				{
+					"roads": {
+						"w": "s",
+						"s": "w"
+					}
+				},
+				{
+					"roads": {
+						"w": "s",
+						"s": "w"
+					},
+					"swappable": true
+				},
+				{
+					"roads": {
+						"w": "s",
+						"s": "w"
+					},
+					"swappable": true
+				},
+				{}
+			],
+			[
+				{
+					"roads": {
+						"w":"e",
+						"e":"w"
+					},
+					"start":true,
+					"cars":[3]
+				},
+				{
+					"roads": {
+						"w": "s",
+						"s": "w"
+					}
+				},
+				{},
+				{},
+				{},
+				{}
 			]
 		]
 	}
