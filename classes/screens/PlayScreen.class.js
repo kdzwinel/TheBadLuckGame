@@ -35,6 +35,7 @@
 		}
 
 		function pause() {
+			game.pause();
 			stopLogicInterval();
 			canvasManager.stopAnimation();
 			pauseScreen.show();
@@ -89,6 +90,7 @@
 			});
 
 			pauseScreen.on('resume-game', function() {
+				game.resume();
 				startLogicInterval();
 				canvasManager.startAnimation();
 			});
@@ -164,7 +166,7 @@
 
 			game.on('game-won', function() {
 				endScreen.showWin(scoreTracker.getNumberOfStars());
-			})
+			});
 
 			game.on('game-lost', function() {
 				endScreen.showLoose();

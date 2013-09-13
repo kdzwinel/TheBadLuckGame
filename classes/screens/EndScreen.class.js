@@ -25,17 +25,17 @@
 			new Tap(looseLevelsButton);
 			new Tap(looseRestartButton);
 
-			looseLevelsButton.addEventListener('tap', function(e) {
+			looseLevelsButton.addEventListener('tap', function() {
 				hideLoose();
 				listenersMgr.trigger('back-to-levels');
 			}, false);
 
-			winLevelsButton.addEventListener('tap', function(e) {
+			winLevelsButton.addEventListener('tap', function() {
 				hideWin();
 				listenersMgr.trigger('back-to-levels');
 			}, false);
 
-			looseRestartButton.addEventListener('tap', function(e) {
+			looseRestartButton.addEventListener('tap', function() {
 				hideLoose();
 				listenersMgr.trigger('restart-level');
 			}, false);
@@ -48,9 +48,10 @@
 		}
 
 		function hideLoose() {
-			endScreen.style.display = 'none';
+			if(endScreen) {
+				endScreen.style.display = 'none';
+			}
 			looseSubScreen.style.display = 'none';
-
 		}
 
 		function updateScore(stars) {

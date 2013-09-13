@@ -38,7 +38,7 @@
 			}
 		}
 
-		function rotateTile(tile, e) {
+		function rotateTile(tile) {
 			if(tile.isLocked()) {
 				return;
 			}
@@ -53,6 +53,9 @@
 		function activateLeftRotation(e) {
 			if(e.keyCode === 32) {
 				leftRotationMode = true;
+
+				e.stopPropagation();
+				e.preventDefault();
 			}
 		}
 
@@ -149,6 +152,8 @@
 
 			swapMode = false;
 			window.removeEventListener('resize', adjustBoardSize);
+			document.removeEventListener('keypress', activateLeftRotation);
+			document.removeEventListener('keyup', deactivateLeftRotation);
 		};
 
 		init();
