@@ -294,6 +294,14 @@ INTRO SCREEN
 /*
 LEVEL SCREEN
 */
+
+#levels-screen p {
+	color: white;
+	margin: 40px 50px;
+	font-size: 1.25em;
+	text-shadow: 0px 0px 8px #000;
+}
+
 .levels {
 	list-style-type: none;
 	margin: 20px;
@@ -358,6 +366,14 @@ LEVEL SCREEN
 }
 
 
+.levels .star-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: -50px;
+	bottom: 30px;
+}
+
 
 .levels li .star.first {
 	top: 36px;
@@ -414,20 +430,29 @@ PLAY SCREEN STYLES
 	opacity: 1;
 }
 
-.tiles .row .tile.start, .color-box.start {
+.tiles .row .tile.start {
 	border-color: greenyellow;
 	/*box-shadow: inset 0px 0px 65px -8px greenyellow;*/
 	/*display:inline-block; */
 }
+.start-color {
+	color: greenyellow;
+}
 
-.tiles .row .tile.end, .color-box.end {
+.tiles .row .tile.end {
 	border-color: deepskyblue;
 	/*box-shadow: inset 0px 0px 65px -8px deepskyblue;*/
+}
+.end-color {
+	color: deepskyblue;
 }
 
 .tiles .row .tile.locked, .color-box.locked {
 	border-color: indianred;
 	/*box-shadow: inset 0px 0px 65px -8px indianred;*/
+}
+.locked-color {
+	color: indianred;
 }
 
 /*.tile {*/

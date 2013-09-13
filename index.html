@@ -81,13 +81,19 @@
 
     <section id='levels-screen' class='screen'>
         <canvas class="particles"></canvas>
+        <p>Help cars to reach the <span class='end-color'>end tiles</span> by rotating and swapping tiles on the board.
+            Note that you can't modify <span class='start-color'>start tiles</span>, <span class='end-color'>end tiles</span> and <span class='locked-color'>tiles</span> that have currently cars over them.
+            Swapping is also limited only to certain tiles. Good luck!</p>
+
         <ul class='levels'>
             <li data-level-name="1">
                 <h1>1</h1>
 
                 <div class="star-container">
                     <p class="star first inactive"></p>
+
                     <p class="star second inactive"></p>
+
                     <p class="star third inactive"></p>
                 </div>
             </li>
@@ -96,7 +102,9 @@
 
                 <div class="star-container">
                     <p class="star first inactive"></p>
+
                     <p class="star second inactive"></p>
+
                     <p class="star third inactive"></p>
                 </div>
             </li>
@@ -105,7 +113,9 @@
 
                 <div class="star-container">
                     <p class="star first inactive"></p>
+
                     <p class="star second inactive"></p>
+
                     <p class="star third inactive"></p>
                 </div>
             </li>
@@ -143,19 +153,21 @@
             </div>
         </div>
 
-	    <div id="win-loose">
-		    <div id="win">
-			    <div class="star-container">
-				    <p class="star first"></p>
-				    <p class="star second"></p>
-				    <p class="star third"></p>
-			    </div>
-			    <p>CONGRATULATIONS</p>
-			    <button id='win-levels-button'>LEVELS</button>
-		    </div>
+        <div id="win-loose">
+            <div id="win">
+                <div class="star-container">
+                    <p class="star first"></p>
+
+                    <p class="star second"></p>
+
+                    <p class="star third"></p>
+                </div>
+                <p>YOU WON!</p>
+                <button id='win-levels-button'>LEVELS</button>
+            </div>
 
             <div id="loose">
-                <p>BAD LUCK</p>
+                <p>LEVEL FAILED</p>
                 <button id='loose-levels-button'>LEVELS</button>
                 <button id='restart-button'>RESTART</button>
             </div>
