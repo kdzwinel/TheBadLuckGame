@@ -135,6 +135,7 @@
 				var swappableTile = new HTMLTile(tile);
 				domNode = swappableTile.getDOMNode();
 
+				options.swapContainer.style.display = 'block';
 				options.swapContainer.appendChild( domNode );
 			} else {
 				options.swapContainer.style.display = 'none';
