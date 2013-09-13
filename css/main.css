@@ -115,26 +115,76 @@ LEVEL SCREEN
 	-webkit-transform: scale(1.1) ;
 }
 
-.levels li.inactive {
-	background-image: url('../gfx/level-label-inactive.png');
-}
+/*i.inactive {*/
+	/*display: block;*/
+	/*background-image: url('../gfx/star-inactive.png');*/
+/*}*/
 
-.levels li.inactive:hover {
-	-webkit-transform: none;
+/*i {*/
+	/*display: block;*/
+	/*background-image: url('../gfx/star-active.png');*/
+	/*position: absolute;*/
+	/*width: 70px;*/
+	/*height: 72px;*/
+/*}*/
+
+i {
+	position: absolute;
+	display: block;
+	width: 0px;
+	height: 0px;
+	border-right:  100px solid transparent;
+	border-bottom: 70px  solid #FFCB27;
+	border-left:   100px solid transparent;
+	-webkit-transform: rotate(20deg) scale(0.4);
+
+
+}
+i:before {
+	border-bottom: 80px solid #FFCB27;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	position: absolute;
+	height: 0;
+	width: 0;
+	top: -45px;
+	left: -65px;
+	display: block;
+	content: '';
+	-webkit-transform: rotate(-35deg);
+
+
+}
+i:after {
+	position: absolute;
+	display: block;
+	color: red;
+	top: 3px;
+	left: -105px;
+	width: 0px;
+	height: 0px;
+	border-right: 100px solid transparent;
+	border-bottom: 70px solid #FFCB27;
+	border-left: 100px solid transparent;
+	-webkit-transform: rotate(-70deg);
+
+	content: '';
 }
 
 i.inactive {
-	display: block;
-	background-image: url('../gfx/star-inactive.png');
+	border-bottom: 70px  solid #444;
 }
 
-i {
-	display: block;
-	background-image: url('../gfx/star-active.png');
-	position: absolute;
-	width: 70px;
-	height: 72px;
+i.inactive:before {
+	border-bottom: 80px solid #444;
 }
+
+i.inactive:after {
+	border-bottom: 70px solid #444;
+}
+
+
+
 
 
 .levels li h1 {
@@ -152,16 +202,16 @@ i {
 
 .levels li i:nth-child(1) {
 	top: 36px;
-	left: -14px;
+	left: -64px;
 }
 
 .levels li i:nth-child(2) {
 	top: 90px;
-	left: 45px
+	left: -15px
 }
 
 .levels li i:nth-child(3) {
-	left: 115px;
+	left: 45px;
 	top: 40px;
 }
 
@@ -176,7 +226,6 @@ PLAY SCREEN STYLES
 .tiles {
 	display: inline-block;
 	line-height: 0;
-	background-image: url(../gfx/tiles/tile.png);
 }
 
 .tiles .row {
@@ -216,23 +265,126 @@ PLAY SCREEN STYLES
 }
 
 .tile.turn {
-	background-image: url(../gfx/tiles/turn.png);
+
+}
+
+.tile.turn:before {
+	display:block;
+	width: 40%;
+	height: 70%;
+	position: absolute;
+	left:50%;
+	margin-left: -20%;
+	content: "";
+	background: #000;
+	bottom: 0px;
+
+}
+
+.tile.turn:after {
+	display:block;
+	width: 50%;
+	height: 40%;
+	position: absolute;
+	top:50%;
+	margin-top: -20%;
+	content: "";
+	background: #000;
 }
 
 .tile.junction {
-	background-image: url(../gfx/tiles/junction.png);
+	position: relative;
 }
 
+.tile.junction:before {
+	display:block;
+	width: 40%;
+	height: 100%;
+	position: absolute;
+	left:50%;
+	margin-left: -20%;
+	content: "";
+	background: #000;
+}
+
+.tile.junction:after {
+	display:block;
+	width: 100%;
+	height: 40%;
+	position: absolute;
+	top:50%;
+	margin-top: -20%;
+	content: "";
+	background: #000;
+}
+
+
 .tile.two-turns {
-	background-image: url(../gfx/tiles/two-turns.png);
+	position: relative;
+}
+
+.tile.two-turns:before {
+	display:block;
+	width: 40%;
+	height: 100%;
+	position: absolute;
+	left:50%;
+	margin-left: -20%;
+	content: "";
+	background: #000;
+}
+
+.tile.two-turns:after {
+	display:block;
+	width: 100%;
+	height: 40%;
+	position: absolute;
+	top:50%;
+	margin-top: -20%;
+	content: "";
+	background: #000;
 }
 
 .tile.straight {
-	background-image: url(../gfx/tiles/straight.png);
+
+}
+
+.tile.straight:after {
+	display:block;
+	width: 100%;
+	height: 40%;
+	position: absolute;
+	top:50%;
+	margin-top: -20%;
+	content: "";
+	background: #000;
 }
 
 .tile.t-road {
-	background-image: url(../gfx/tiles/t-road.png);
+
+}
+
+.tile.t-road:before {
+	display:block;
+	width: 40%;
+	height: 50%;
+	position: absolute;
+	left:50%;
+	margin-left: -20%;
+	content: "";
+	background: #000;
+	bottom: 0px
+}
+
+.tile.t-road:after {
+	display:block;
+	width: 100%;
+	height: 40%;
+	position: absolute;
+	top:50%;
+	margin-top: -20%;
+	content: "";
+	background: #000;
 }
 
 #menu-panel {
@@ -255,7 +407,7 @@ PLAY SCREEN STYLES
 #board-container {
 	position: relative;
 	display: inline-block;
-	background-color: #000;
+	background-color: #A54B77;
 }
 
 #canvas {
@@ -297,27 +449,28 @@ PLAY SCREEN STYLES
 
 #menu-panel .star-container {
 	position: absolute;
-	top: -90px;
+	top: -80px;
 	left: 50%;
 	z-index: 1;
-	margin-left: -105px;
+	margin-left: -150px;
 }
 
 #menu-panel i:nth-child(1), #win i:nth-child(1) {
 	top: 0;
 	left: 0;
+	-webkit-transform: scale(0.5) rotate(25deg);
 }
 
 #menu-panel i:nth-child(2), #win i:nth-child(2) {
 	top: 0;
-	left: 80px;
-	-webkit-transform: scale(0.8);
+	left: 90px;
+	-webkit-transform: scale(0.4) rotate(25deg);
 }
 
 #menu-panel i:nth-child(3), #win i:nth-child(3) {
 	top: 0px;
 	left: 160px;
-	-webkit-transform: scale(0.6);
+	-webkit-transform: scale(0.3) rotate(25deg);
 }
 
 #menu-panel #swap-tile {
@@ -378,10 +531,10 @@ PLAY SCREEN STYLES
 }
 
 #win .star-container {
-	top: -75px;
+	top: -40px;
 	position: absolute;
 	left: 50%;
-	margin-left: -110px;
+	margin-left: -165px;
 }
 
 #win-loose p {
