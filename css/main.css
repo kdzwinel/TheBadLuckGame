@@ -101,18 +101,28 @@ LEVEL SCREEN
 }
 
 .levels li {
-	background-image: url('../gfx/level-label.png');
 	width: 170px;
 	height: 170px;
 	position: relative;
 	display: inline-block;
 	margin: 20px;
-
 	transition: all 0.3s;
+	background: #cc4b73;
+	border-radius: 70px;
+	box-shadow: inset 6px 10px 0px 6px #D77189, 5px 5px 0px 4px #000;
 }
 
 .levels li:hover {
 	-webkit-transform: scale(1.1) ;
+}
+
+.levels li.inactive {
+	background: #3a3a3a;
+	box-shadow: inset 6px 10px 0px 6px #646464, 5px 5px 0px 4px #000;
+}
+
+.levels li.inactive:hover {
+	-webkit-transform: none;
 }
 
 /*i.inactive {*/
@@ -172,15 +182,15 @@ i:after {
 }
 
 i.inactive {
-	border-bottom: 70px  solid #444;
+	border-bottom: 70px  solid #222;
 }
 
 i.inactive:before {
-	border-bottom: 80px solid #444;
+	border-bottom: 80px solid #222;
 }
 
 i.inactive:after {
-	border-bottom: 70px solid #444;
+	border-bottom: 70px solid #222;
 }
 
 
