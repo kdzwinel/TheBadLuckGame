@@ -606,15 +606,11 @@ PLAY SCREEN STYLES
 /*ANIMATIONS*/
 
 @-webkit-keyframes blink {
-	50% { opacity: 0.5; }
+	50% { opacity: 0.25; }
 }
 
 .tiles .row .tile.start.car-approaching {
-	-webkit-animation-name: blink;
-	-webkit-animation-duration: 0.8s;
-	-webkit-transform-origin:50% 50%;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
+	-webkit-animation: blink 0.8s infinite;
 }
 
 
@@ -633,9 +629,6 @@ PLAY SCREEN STYLES
 }
 
 .shake {
-	-webkit-animation-name: shake;
-	-webkit-animation-duration: 0.8s;
-	-webkit-transform-origin:50% 50%;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
+	-webkit-transform-origin: 50% 50%;
+	-webkit-animation: shake 0.8s linear infinite;
 }
