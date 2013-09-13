@@ -156,8 +156,8 @@
 						this._p0.y = offsetY - offsetStart;
 						this._p1.y = offsetY + tileSize / 4;
 						this._p2.y = offsetY + tileSize / 4 * 3; 
-						this._p3.y = offsetY + tileSize - 1;
-						this._p3.x = offsetX + tileSize/2 + offsetEnd;
+						this._p3.y = offsetY + tileSize - 1  + offsetEnd;
+						this._p3.x = offsetX + tileSize/2;
 
 					} else if ( this._endDirection === 'w') {
 						this._p0.x = this._p1.x = offsetX + tileSize / 2;
