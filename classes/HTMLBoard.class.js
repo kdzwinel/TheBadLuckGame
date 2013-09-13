@@ -1,7 +1,8 @@
 (function() {
 	window.HTMLBoard = function(options) {
-		var that = this;
-		var swapMode = false;
+		var that = this,
+			swapMode = false,
+			leftRotationMode = false;
 
 		function init() {
 			that.draw();
@@ -37,15 +38,30 @@
 			}
 		}
 
-		function rotateTile(tile, e) {
+		function rotateTile(tile) {
 			if(tile.isLocked()) {
 				return;
 			}
 
-			if(e.altKey) {
+			if(leftRotationMode) {
 				tile.rotateLeft();
 			} else {
 				tile.rotateRight();
+			}
+		}
+
+		function activateLeftRotation(e) {
+			if(e.keyCode === 32) {
+				leftRotationMode = true;
+
+				e.stopPropagation();
+				e.preventDefault();
+			}
+		}
+
+		function deactivateLeftRotation(e) {
+			if(e.keyCode === 32) {
+				leftRotationMode = false;
 			}
 		}
 
@@ -81,6 +97,8 @@
 			options.swapContainer.addEventListener('tap', toggleSwapMode);
 
 			window.addEventListener('resize', adjustBoardSize);
+			document.addEventListener('keypress', activateLeftRotation);
+			document.addEventListener('keyup', deactivateLeftRotation);
 		}
 
 		this.getDOMNode = function() {
@@ -118,6 +136,8 @@
 				domNode = swappableTile.getDOMNode();
 
 				options.swapContainer.appendChild( domNode );
+			} else {
+				options.swapContainer.style.display = 'none';
 			}
 
 		};
@@ -132,6 +152,8 @@
 
 			swapMode = false;
 			window.removeEventListener('resize', adjustBoardSize);
+			document.removeEventListener('keypress', activateLeftRotation);
+			document.removeEventListener('keyup', deactivateLeftRotation);
 		};
 
 		init();

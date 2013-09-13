@@ -106,19 +106,30 @@
 		}
 
 		/**
+		 * Stops all timeouts
+		 */
+		this.pause = function() {
+			clearTimeout(startTimer);
+			clearTimeout(carTimer);
+		};
+
+		/**
+		 * Resumes all timeouts
+		 */
+		this.resume = function() {
+			if(state === 'running') {
+				carTimer = setTimeout(addCar, level.carTimeout);
+			} else if(state === 'waiting') {
+				startTimer = setTimeout(startGame, level.startTimeout);
+			}
+		};
+
+		/**
 		 * Returns game board.
 		 * @returns {Board}
 		 */
 		this.getBoard = function() {
 			return board;
-		};
-
-		/**
-		 * Returns game state (one of: 'waiting', 'running', 'lost', 'won')
-		 * @returns {string}
-		 */
-		this.getState = function() {
-			return state;
 		};
 
 		/**
