@@ -54,7 +54,7 @@
 		}
 
 		function updateScore(stars) {
-			var starNodes = options.element.querySelectorAll('.star');
+			var starNodes = options.element.querySelectorAll('i');
 
 			for(var i=0; i<3; i++) {
 				if(stars < (i+1)) {

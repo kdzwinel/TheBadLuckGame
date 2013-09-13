@@ -20,7 +20,7 @@
 		function updateScore(data) {
 			options.scoreContainer.innerHTML = data.score;
 
-			var starNodes = options.starsContainer.querySelectorAll('.star');
+			var starNodes = options.starsContainer.querySelectorAll('i');
 
 			for(var i=0; i<3; i++) {
 				if(data.stars < (i+1)) {

@@ -57,14 +57,18 @@
 		}
 
 		function updateLevelNode(node, data) {
+			var i, starNodes = node.querySelectorAll('i');
+
 			if(!data) {
 				node.classList.add('inactive');
+
+				for(i=0; i<3; i++) {
+					starNodes[i].classList.add('inactive');
+				}
 			} else {
 				node.classList.remove('inactive');
 
-				var starNodes = node.querySelectorAll('.star');
-
-				for(var i=0; i<3; i++) {
+				for(i=0; i<3; i++) {
 					if(data.stars < (i+1)) {
 						starNodes[i].classList.add('inactive');
 					} else {

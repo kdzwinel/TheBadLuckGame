@@ -175,7 +175,7 @@ INTRO SCREEN
 
 #loader-wrapper {
 	position: absolute;
-	bottom: 10%;
+	bottom: 50%;
 	left: 50%;
 	margin-left: -200px;
 	width: 400px;
@@ -284,11 +284,13 @@ LEVEL SCREEN
 	-webkit-transform: none;
 }
 
-.star.inactive {
+i.inactive {
+	display: block;
 	background-image: url('../gfx/star-inactive.png');
 }
 
-.star {
+i {
+	display: block;
 	background-image: url('../gfx/star-active.png');
 	position: absolute;
 	width: 70px;
@@ -310,19 +312,17 @@ LEVEL SCREEN
 
 }
 
-
-
-.levels li .star.first {
+.levels li i:nth-child(1) {
 	top: 36px;
 	left: -14px;
 }
 
-.levels li .star.second {
+.levels li i:nth-child(2) {
 	top: 90px;
 	left: 45px
 }
 
-.levels li .star.third {
+.levels li i:nth-child(3) {
 	left: 115px;
 	top: 40px;
 }
@@ -465,18 +465,18 @@ PLAY SCREEN STYLES
 	margin-left: -105px;
 }
 
-#menu-panel .star.first, #win .star.first {
+#menu-panel i:nth-child(1), #win i:nth-child(1) {
 	top: 0;
 	left: 0;
 }
 
-#menu-panel .star.second, #win .star.second {
+#menu-panel i:nth-child(2), #win i:nth-child(2) {
 	top: 0;
 	left: 80px;
 	-webkit-transform: scale(0.8);
 }
 
-#menu-panel .star.third, #win .star.third {
+#menu-panel i:nth-child(3), #win i:nth-child(3) {
 	top: 0px;
 	left: 160px;
 	-webkit-transform: scale(0.6);
