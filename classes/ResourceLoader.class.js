@@ -38,22 +38,17 @@
 				i = images.length;
 
 			while(i--) {
-				//TODO remove timeout when on production
-				(function() {
-					var img = images[i];
-					setTimeout(function() {
-						element = document.createElement('img');
-						element.onload = onLoad;
-						element.src = 'gfx/' + img + '.png';
-						elements[img] = element;
-					}, i * 100);
-				})();
+				var img = images[i];
+				element = document.createElement('img');
+				element.onload = onLoad;
+				element.src = 'gfx/' + img + '.png';
+				elements[img] = element;
 			}
 		};
 
 		this.get = function(name) {
 			if(!elements[name]) {
-				throw 'No "' + name + '" resource in collection';
+				throw 'Invalid image.';
 			}
 			return elements[name]; 
 		};

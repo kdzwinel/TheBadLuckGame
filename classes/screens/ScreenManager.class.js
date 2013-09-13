@@ -11,9 +11,7 @@
 					var domNode = oldScreen.getDOMNode();
 
 					domNode.style.visibility = 'hidden';
-					domNode.removeEventListener('webkitTransitionEnd', callback);
-					domNode.removeEventListener('transitionEnd', callback);
-					domNode.removeEventListener('transitionend', callback);
+					domNode.removeEventListener(DOMHelper.transitionEnd, callback);
 
 					if(oldScreen.afterHide){
 						oldScreen.afterHide();
@@ -29,9 +27,7 @@
 				if(e.target === e.currentTarget) {
 					var domNode = newScreen.getDOMNode();
 
-					domNode.removeEventListener('webkitTransitionEnd', callback);
-					domNode.removeEventListener('transitionEnd', callback);
-					domNode.removeEventListener('transitionend', callback);
+					domNode.removeEventListener(DOMHelper.transitionEnd, callback);
 
 					if(newScreen.afterShow){
 						newScreen.afterShow(data);
@@ -51,7 +47,7 @@
 			var screen = screens[name];
 
 			if(!screen) {
-				throw "Screen '" + name + "' doesn't exist.";
+				throw "Screen invalid.";
 			}
 
 			if(visibleScreen) {
@@ -60,9 +56,7 @@
 				}
 
 				var afterHide = createAfterHideCallback(visibleScreen);
-				visibleScreen.getDOMNode().addEventListener('webkitTransitionEnd', afterHide);
-				visibleScreen.getDOMNode().addEventListener('transitionEnd', afterHide);
-				visibleScreen.getDOMNode().addEventListener('transitionend', afterHide);
+				visibleScreen.getDOMNode().addEventListener(DOMHelper.transitionEnd, afterHide);
 
 				visibleScreen.getDOMNode().classList.remove('visible');
 			}
@@ -73,9 +67,7 @@
 			}
 
 			var afterShow = createAfterShowCallback(screen, data);
-			screen.getDOMNode().addEventListener('webkitTransitionEnd', afterShow);
-			screen.getDOMNode().addEventListener('transitionEnd', afterShow);
-			screen.getDOMNode().addEventListener('transitionend', afterShow);
+			screen.getDOMNode().addEventListener(DOMHelper.transitionEnd, afterShow);
 
 			screen.getDOMNode().classList.add('visible');
 

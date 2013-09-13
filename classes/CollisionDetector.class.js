@@ -3,10 +3,6 @@
 	global.CollisionDetector = function () {
 		var pool = [];
 
-		//debug
-		//var canvas  = document.getElementById('canvas');
-		//var context = canvas.getContext('2d');
-
 		function getObjectPoints(object) {
 			var radianMultiplier = Math.PI / 180,
 				sizeReduce = 0,
@@ -70,23 +66,8 @@
 				bottomLeft = projectVectorOnAxis(axis, pointObject.bottomLeft),
 				bottomRight = projectVectorOnAxis(axis, pointObject.bottomRight),
 
-				// values = [ topLeft.x * axis.x + topLeft.y * axis.y,
-				// 	topRight.x * axis.x + topRight.y * axis.y,
-				// 	bottomLeft.x * axis.x + bottomLeft.y * axis.y,
-				// 	bottomRight.x * axis.x + bottomRight.y * axis.y
-				// ];
-
-			//--------------------------------------------------//
-			//change to scalar values by implement dot project  //
-			//--------------------------------------------------//
 				values = [getVactorLength(topLeft), getVactorLength(topRight), getVactorLength(bottomLeft), getVactorLength(bottomRight)];
 
-			//helpers
-			//drawLine([{x:0, y:0}, topLeft], '#C0C0C0', 3, 5, 5);
-			//drawLine([{x:0, y:0}, bottomRight], '#C0C0C0', 3, 5, 5);
-
-			//line itself
-			//drawLine([topLeft, topRight, bottomLeft, bottomRight], object.color, 6, 5, 5);
 
 			values.sort();
 
@@ -107,14 +88,6 @@
 
 				allAxes = [aAxes[0], aAxes[1], bAxes[0], bAxes[1]],
 				i = allAxes.length;
-
-
-			// drawLine([{x:0,y:0}, aAxes[0]], objectOne.color, 3, objectOne.x, objectOne.y);
-			// drawLine([{x:0,y:0}, aAxes[1]], objectOne.color, 3, objectOne.x, objectOne.y);
-			// drawLine([{x:0,y:0}, bAxes[0]], objectTwo.color, 3, objectTwo.x, objectTwo.y);
-			// drawLine([{x:0,y:0}, bAxes[1]], objectTwo.color, 3, objectTwo.x, objectTwo.y);
-
-			//console.log(aAxes[0], aAxes[1], a, objectOne);
 
 			while (i--) {
 

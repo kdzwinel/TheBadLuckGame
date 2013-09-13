@@ -22,7 +22,7 @@
 				try {
 					gameProgress = JSON.parse(localStorage.gameProgress);
 				} catch(e) {
-					throw "Error parsing game progress.";
+					throw "Error parsing.";
 				}
 			}
 

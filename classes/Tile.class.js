@@ -3,10 +3,10 @@
 
 	window.Tile = function(x, y, options) {
 		if(options.start && options.end) {
-			throw "Tile can't be both a starting and ending tail.";
+			throw "Invalid tile.";
 		}
 		if(options.swappable && (options.start || options.end)) {
-			throw "Starting or ending tile can't be swappable.";
+			throw "Invalid tile.";
 		}
 
 		this._x = x;
@@ -60,7 +60,7 @@
 	 */
 	Tile.prototype.lock = function() {
 		if(this.isStart() || this.isEnd()) {
-			throw "It's impossible to lock start/end tile."
+			throw "Not allowed."
 		}
 
 		this._locked = true;
@@ -72,7 +72,7 @@
 	 */
 	Tile.prototype.unlock = function() {
 		if(this.isStart() || this.isEnd()) {
-			throw "It's impossible to unlock start/end tile."
+			throw "Not allowed."
 		}
 
 		this._locked = false;
@@ -84,7 +84,7 @@
 	 */
 	Tile.prototype.rotateLeft = function() {
 		if(this.isLocked()) {
-			throw "Locked tiles can't be rotated.";
+			throw "Not allowed.";
 		}
 		
 		var translate = function(input) {
@@ -112,7 +112,7 @@
 	 */
 	Tile.prototype.swap = function(otherTile) {
 		if(this.isLocked() || !this.isSwappable()) {
-			throw "Tile can't be swapped.";
+			throw "Not allowed.";
 		}
 
 		this._roads = {
@@ -149,7 +149,7 @@
 	 */
 	Tile.prototype.rotateRight = function() {
 		if(this.isLocked()) {
-			throw "Locked tiles can't be rotated.";
+			throw "Not allowed.";
 		}
 		
 		var translate = function(input) {
@@ -175,7 +175,7 @@
 	 */
 	Tile.prototype.addFlag = function(flagName) {
 		if(this.hasFlag(flagName)) {
-			throw "Flag is already set.";
+			throw "Not allowed.";
 		}
 
 		this._flags.push(flagName);
@@ -188,7 +188,7 @@
 	 */
 	Tile.prototype.removeFlag = function(flagName) {
 		if(!this.hasFlag(flagName)) {
-			throw "Flag isn't set.";
+			throw "Not allowed.";
 		}
 
 		this._flags.splice(this._flags.indexOf(flagName), 1);
@@ -275,7 +275,7 @@
 	 */
 	Tile.prototype.getCarIndexes = function() {
 		if(!this.isStart()) {
-			throw "Can't get car indexes of tile that is not a starting tile.";
+			throw "Not allowed.";
 		}
 
 		return this._cars;

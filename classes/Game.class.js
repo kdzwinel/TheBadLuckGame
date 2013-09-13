@@ -25,15 +25,15 @@
 			]);
 
 			if(level.carCount < 1) {
-				throw "Level needs at least one car.";
+				throw "Level invalid.";
 			}
 
 			if(level.carCount < level.carsToWin) {
-				throw "Invalid number of cars required to win the game.";
+				throw "Level invalid.";
 			}
 
 			if(!level.starLimits || level.starLimits.length !== 3) {
-				throw "Star limits are invalid.";
+				throw "Level invalid.";
 			}
 
 			board = new Board(level.map);
@@ -73,7 +73,7 @@
 			var startTile;
 
 			if(state === 'lost' || state === 'won') {
-				throw "Game is already finished. Can't add cars.";
+				throw "Game finished.";
 			}
 
 			startTile = getNextStartingTile();

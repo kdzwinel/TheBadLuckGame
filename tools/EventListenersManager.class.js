@@ -20,7 +20,7 @@
 
 		this.trigger = function(event, data) {
 			if (listeners[event] === undefined) {
-				throw 'Unknown event "' + event + '"';
+				throw 'Event invalid.';
 			}
 
 			for (var i = 0, l = listeners[event].length; i < l; i++) {
@@ -30,11 +30,11 @@
 
 		this.addEventListener = function(event, callback) {
 			if (listeners[event] === undefined) {
-				throw 'Unknown event "' + event + '"';
+				throw 'Event invalid.';
 			}
 
 			if (typeof callback !== "function") {
-				throw 'Second argument must be a function.';
+				throw 'Event invalid.';
 			}
 
 			listeners[event].push(callback);
@@ -42,7 +42,7 @@
 
 		this.removeEventListener = function(event, callback) {
 			if (event && listeners[event] === undefined) {
-				throw 'Unknown event "' + event + '"';
+				throw 'Event invalid.';
 			} else if(!event) {
 				listeners = [];
 				return;

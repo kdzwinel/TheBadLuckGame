@@ -21,7 +21,14 @@
 		}
 	}
 
+	var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+	var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+
+
 	window.DOMHelper = {
+		isChrome: isChrome,
+		isSafari: isSafari,
+		transitionEnd: (isChrome || isSafari) ? 'webkitTransitionEnd' : 'transitionEnd',
 		unbindAllEvents: unbindAllEvents,
 		getParentByTagName: getParentByTagName,
 		purgeElement: purgeElement

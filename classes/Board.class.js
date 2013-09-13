@@ -16,7 +16,7 @@
 			for(y=0; y < map.height; y++) {
 				for(x=0; x < map.width; x++) {
 					if(!map.tiles[y] || !map.tiles[y][x]) {
-						throw "Map definition is invalid. Tile " + x + "," + y + " doesn't exist.";
+						throw "Map invalid.";
 					}
 
 					tile = new Tile(x, y, map.tiles[y][x]);
@@ -32,10 +32,10 @@
 			}
 
 			if(!startTiles.length) {
-				throw "Map definition is invalid. There are no start tiles.";
+				throw "Map invalid.";
 			}
 			if(!endTiles.length) {
-				throw "Map definition is invalid. There are no end tiles.";
+				throw "Map invalid.";
 			}
 
 			if(map.swapTile) {
@@ -49,7 +49,7 @@
 
 		function failIfInvalidTile(x, y) {
 			if(map.tiles[y] === undefined || map.tiles[y][x] === undefined) {
-				throw 'Invalid area index ' + x + ', ' + y;
+				throw 'Tile invalid';
 			}
 		}
 
