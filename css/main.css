@@ -362,6 +362,7 @@ PLAY SCREEN STYLES
 	margin: 0;
 	border-top: 2px dashed #bebebe;
 	-webkit-transform: rotate(45deg);
+	pointer-events:none;
 }
 
 .tile.straight {
