@@ -129,6 +129,7 @@
 
 		this._node.dataset.x = this._tile.getX();
 		this._node.dataset.y = this._tile.getY();
+		this._node.appendChild(document.createElement('p'));
 	};
 
 	/**

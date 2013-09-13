@@ -355,6 +355,20 @@ PLAY SCREEN STYLES
 	background: #000;
 }
 
+.tile.two-turns p {
+	border-radius: 50%;
+	position: absolute;
+	width: 47%;
+	height: 30%;
+	left: 25%;
+	bottom: 30%;
+	border-bottom: 2px dashed #bebebe;
+	z-index: 1;
+	margin: 0;
+	border-top: 2px dashed #bebebe;
+	-webkit-transform: rotate(45deg);
+}
+
 .tile.straight {
 
 }
@@ -371,7 +385,7 @@ PLAY SCREEN STYLES
 }
 
 .tile.t-road {
-
+ color: #fff;
 }
 
 .tile.t-road:before {
@@ -387,15 +401,41 @@ PLAY SCREEN STYLES
 }
 
 .tile.t-road:after {
-	display:block;
+	display: block;
 	width: 100%;
 	height: 40%;
 	position: absolute;
-	top:50%;
+	top: 50%;
 	margin-top: -20%;
 	content: "";
 	background: #000;
 }
+
+.tile.t-road p {
+	bottom: 0px;
+	left: 40%;
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-top: 9px solid transparent;
+	border-right: 9px solid #fff;
+	-webkit-transform: rotate(170deg);
+}
+.tile.t-road p:after {
+	content: "";
+	position: absolute;
+	border: 0 solid transparent;
+	border-top: 3px solid #fff;
+	border-radius: 20px 0 0 0;
+	top: -16px;
+	left: 0px;
+	width: 12px;
+	height: 12px;
+	-webkit-transform: rotate(270deg);
+
+
+}
+
 
 #menu-panel {
 	height: 60px;
