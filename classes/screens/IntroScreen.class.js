@@ -2,8 +2,7 @@
 	"use strict";
 
 	window.IntroScreen = function (options) {
-		var listenersMgr,
-			loader;
+		var listenersMgr;
 
 		function init() {
 			listenersMgr = new EventListenersManager(['start']);
@@ -13,23 +12,6 @@
 			playButton.addEventListener('tap', function () {
 				listenersMgr.trigger('start');
 			}, false);
-
-			/* Init Loader */
-			var loader = options.element.querySelector('#loader');
-			if(options.loader.getPercentage() === 100) {
-				loader.classList.add('hidden');
-				playButton.classList.remove('hidden');
-			} else {
-				options.loader.on('load', function(percentage) {
-					loader.querySelector('span').innerHTML = percentage + '%';
-					loader.querySelector('.bar').style.width = percentage + '%';
-
-					if(percentage === 100) {
-						loader.classList.add('hidden');
-						playButton.classList.remove('hidden');
-					}
-				});
-			}
 		}
 
 		init();
