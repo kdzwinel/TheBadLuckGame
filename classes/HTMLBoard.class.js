@@ -136,6 +136,7 @@
 				domNode = swappableTile.getDOMNode();
 
 				options.swapContainer.appendChild( domNode );
+				options.swapContainer.style.display = 'block';
 			} else {
 				options.swapContainer.style.display = 'none';
 			}
