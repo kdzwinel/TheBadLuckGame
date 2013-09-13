@@ -15,23 +15,7 @@ body {
 	height: 100%;
 	overflow: hidden;
 
-
-
 	background-image: radial-gradient(circle closest-corner at center, #835B9C 0%, #5A2E75 100%);
-}
-
-#screen-wrapper:after{
-	content: '';
-	z-index: 10;
-	display: block;
-	background-image: url('../gfx/mainscreen/frame.png');
-	width: 100%;
-	height: 100%;
-	pointer-events:none;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background-size: 100% 100%;
 }
 
 button {
@@ -64,7 +48,7 @@ button:hover {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	margin: 0px auto;
+	margin: 0 auto;
 	transition: -webkit-transform 0.5s;
 }
 
@@ -84,94 +68,9 @@ button:hover {
 	-webkit-transform: translate3d(0,0,0);
 }
 
-.particles {
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-
 /*
 INTRO SCREEN
 */
-
-#scene {
-	position: absolute;
-	left: 50%;
-	width: 1000px;
-	margin-left: -500px;
-	top: 50%;
-	height: 600px;
-	margin-top: -350px;
-}
-
-#city, #blue_car, #black_car, #the-bad-luck, #road, #platform, #loader, .button {
-	position: absolute;
-}
-
-#city {
-	background-image: url('../gfx/mainscreen/city.png');
-	width: 789px;
-	height: 396px;
-	opacity: 0.25;
-	left: 50%;
-	margin-left: -400px;
-}
-
-#platform {
-	background-color: #57326e;
-	background-image: linear-gradient(to bottom, #703991 0%, #57326E 100%);
-	width: 1200px;
-	height: 175px;
-	border-radius: 50%;
-	top: 385px;
-}
-
-#scene .particles {
-	width: 100%;
-	bottom: 150px;
-	top: auto;
-	left: auto;
-}
-
-#blue_car {
-	background-image: url('../gfx/mainscreen/car-two-theme.png');
-	width: 512px;
-	height: 211px;
-
-	left: 50%;
-	top: 277px;
-	margin-left: 25px;
-}
-
-#black_car {
-	background-image: url('../gfx/mainscreen/car-one-theme.png');
-	width: 511px;
-	height: 304px;
-
-	left: 50%;
-	margin-left: -450px;
-	top: 250px;
-}
-
-#the-bad-luck {
-	background-image: url('../gfx/mainscreen/the-bad-luck.png');
-	width: 656px;
-	height: 148px;
-
-	left: 50%;
-	margin-left: -433px;
-	top: 212px;
-}
-
-#road {
-	background-image: url('../gfx/mainscreen/road.png');
-	width: 251px;
-	height: 130px;
-
-	left: 50%;
-	margin-left: 199px;
-	top: 222px;
-}
 
 #loader-wrapper {
 	position: absolute;
@@ -296,7 +195,6 @@ i {
 	width: 70px;
 	height: 72px;
 }
-
 
 
 .levels li h1 {
@@ -526,7 +424,7 @@ PLAY SCREEN STYLES
 
 #paused-buttons button {
 	position: absolute;
-	bottom: 0px
+	bottom: 0;
 }
 
 #paused-buttons #resume-button {
@@ -568,14 +466,6 @@ PLAY SCREEN STYLES
 
 /*ANIMATIONS*/
 
-@keyframes blink{
-	50% { opacity: 0.5; }
-}
-
-@-moz-keyframes blink{
-	50% { opacity: 0.5; }
-}
-
 @-webkit-keyframes blink {
 	50% { opacity: 0.5; }
 }
@@ -604,7 +494,6 @@ PLAY SCREEN STYLES
 }
 
 .shake {
-
 	-webkit-animation-name: shake;
 	-webkit-animation-duration: 0.8s;
 	-webkit-transform-origin:50% 50%;

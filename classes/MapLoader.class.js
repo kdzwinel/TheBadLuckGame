@@ -48,26 +48,18 @@
 				level;
 
 			xhr.onreadystatechange = function () {
-				if (xhr.readyState !== 4) {
-					return;
-				}
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					try {
+						/**
+						 * @type {JSONLevel}
+						 */
+						level = JSON.parse(xhr.responseText)
+					} catch (e) {
+						throw "Map invalid.";
+					}
 
-				if (xhr.status !== 200) {
-					listenersMgr.trigger('error', "Error fetching level file.");
-					return;
+					listenersMgr.trigger('load', level);
 				}
-
-				try {
-					/**
-					 * @type {JSONLevel}
-					 */
-					level = JSON.parse(xhr.responseText)
-				} catch (e) {
-					listenersMgr.trigger('error', "Error parsing level file.");
-					return;
-				}
-
-				listenersMgr.trigger('load', level);
 			};
 
 			xhr.open('GET', 'levels/' + name + '.json');

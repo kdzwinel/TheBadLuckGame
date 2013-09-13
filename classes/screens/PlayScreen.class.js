@@ -22,9 +22,6 @@
 
 			mapLoader = new MapLoader();
 			mapLoader.on('load', initLevel);
-			mapLoader.on('error', function (error) {
-				console.error(error);
-			});
 		}
 
 		init();
