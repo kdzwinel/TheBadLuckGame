@@ -68,6 +68,12 @@ button:hover {
 /*
 LEVEL SCREEN
 */
+#levels-screen p {
+	color: white;
+	padding: 0 15px;
+	font-size: 1.5em;
+}
+
 .levels {
 	list-style-type: none;
 	margin: 20px;
@@ -98,19 +104,6 @@ LEVEL SCREEN
 .levels li.inactive:hover {
 	-webkit-transform: none;
 }
-
-/*i.inactive {*/
-	/*display: block;*/
-	/*background-image: url('../gfx/star-inactive.png');*/
-/*}*/
-
-/*i {*/
-	/*display: block;*/
-	/*background-image: url('../gfx/star-active.png');*/
-	/*position: absolute;*/
-	/*width: 70px;*/
-	/*height: 72px;*/
-/*}*/
 
 i {
 	position: absolute;
@@ -235,15 +228,15 @@ PLAY SCREEN STYLES
 	opacity: 1;
 }
 
-.tiles .row .tile.start, .color-box.start {
+.tiles .row .tile.start {
 	border-color: greenyellow;
 }
 
-.tiles .row .tile.end, .color-box.end {
+.tiles .row .tile.end {
 	border-color: deepskyblue;
 }
 
-.tiles .row .tile.locked, .color-box.locked {
+.tiles .row .tile.locked {
 	border-color: indianred;
 }
 
