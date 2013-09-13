@@ -1,7 +1,8 @@
 (function() {
 	window.HTMLBoard = function(options) {
-		var that = this;
-		var swapMode = false;
+		var that = this,
+			swapMode = false,
+			leftRotationMode = false;
 
 		function init() {
 			that.draw();
@@ -42,10 +43,22 @@
 				return;
 			}
 
-			if(e.altKey) {
+			if(leftRotationMode) {
 				tile.rotateLeft();
 			} else {
 				tile.rotateRight();
+			}
+		}
+
+		function activateLeftRotation(e) {
+			if(e.keyCode === 32) {
+				leftRotationMode = true;
+			}
+		}
+
+		function deactivateLeftRotation(e) {
+			if(e.keyCode === 32) {
+				leftRotationMode = false;
 			}
 		}
 
@@ -81,6 +94,8 @@
 			options.swapContainer.addEventListener('tap', toggleSwapMode);
 
 			window.addEventListener('resize', adjustBoardSize);
+			document.addEventListener('keypress', activateLeftRotation);
+			document.addEventListener('keyup', deactivateLeftRotation);
 		}
 
 		this.getDOMNode = function() {
@@ -118,6 +133,8 @@
 				domNode = swappableTile.getDOMNode();
 
 				options.swapContainer.appendChild( domNode );
+			} else {
+				options.swapContainer.style.display = 'none';
 			}
 
 		};
