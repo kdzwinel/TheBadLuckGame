@@ -53,7 +53,7 @@
 						/**
 						 * @type {JSONLevel}
 						 */
-						level = JSON.parse(xhr.responseText)
+						level = JSON.parse(xhr.responseText);
 					} catch (e) {
 						throw "Map invalid.";
 					}

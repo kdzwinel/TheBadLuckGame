@@ -1,6 +1,6 @@
-(function(global, undefined) {
+(function() {
 	
-	global.Car = function(options) {
+	window.Car = function(options) {
 		
 		this.x 	   	= -100;
 		this.y 	   	= -100;
@@ -44,11 +44,11 @@
 	 * @param {string} event
 	 * @param {function} callback
 	 */
-	global.Car.prototype.on = function(event, callback) {
+	window.Car.prototype.on = function(event, callback) {
 		this._listenersMgr.addEventListener(event, callback);
 	};
 
-	global.Car.prototype._updateDirections = function() {
+	window.Car.prototype._updateDirections = function() {
 		var n = this._currentTile.roadFromNorth(),
 			s = this._currentTile.roadFromSouth(),
 			e = this._currentTile.roadFromEast(),
@@ -135,7 +135,7 @@
 		}
 	};
 
-	global.Car.prototype._updateRoadPoints = function(tileSize) {
+	window.Car.prototype._updateRoadPoints = function(tileSize) {
 		var offsetX = this._currentTile.getX() * tileSize,
 			offsetY = this._currentTile.getY() * tileSize,
 			offsetStart = 0,
@@ -259,7 +259,7 @@
 			}
 	};
 
-	global.Car.prototype._updateBezierValues = function() {
+	window.Car.prototype._updateBezierValues = function() {
 		this._cx = 3 * (this._p1.x - this._p0.x);
 		this._bx = 3 * (this._p2.x - this._p1.x) - this._cx;
 		this._ax = this._p3.x - this._p0.x - this._cx - this._bx;
@@ -269,7 +269,7 @@
 		this._ay = this._p3.y - this._p0.y - this._cy - this._by;
 	};
 
-	global.Car.prototype._updateRotation = function() {
+	window.Car.prototype._updateRotation = function() {
 
 		var nextT = this._t + 0.2,
 			nextX = this._getX(nextT),
@@ -282,15 +282,15 @@
 			}
 	};
 
-	global.Car.prototype._getX = function(t) {
+	window.Car.prototype._getX = function(t) {
 		return ~~((this._ax * (t * t * t) + this._bx * (t * t) + this._cx * (t) + this._p0.x) + 0.5);
 	};
 
-	global.Car.prototype._getY = function(t) {
+	window.Car.prototype._getY = function(t) {
 		return ~~((this._ay * (t * t * t) + this._by * (t * t) + this._cy * (t) + this._p0.y) + 0.5);
 	};
 
-	global.Car.prototype.collision = function (collisionObject) {
+	window.Car.prototype.collision = function (collisionObject) {
 		this.alive = false;
 		this._listenersMgr.trigger('crash', this);
 		if (!this._prevTile.isStart() && !this._prevTile.isEnd()) {
@@ -302,7 +302,7 @@
 		}
 	};
 
-	global.Car.prototype.drive = function(tileSize) {
+	window.Car.prototype.drive = function(tileSize) {
 		var nextX, 
 			nextY;
 
@@ -403,4 +403,4 @@
 
 		this._t += this._velocity;
 	};
-})(window);
+})();

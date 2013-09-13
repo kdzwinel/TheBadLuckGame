@@ -1,6 +1,6 @@
-(function (global, undefined) {
+(function () {
 
-	global.CollisionDetector = function () {
+	window.CollisionDetector = function () {
 		var pool = [];
 
 		function getObjectPoints(object) {
@@ -10,24 +10,21 @@
 				half_height = (object.height - sizeReduce) / 2,
 
 				x_l = -half_width,  	//object x cordinate left
-				x_r = half_width, 		//object x cordinate right
 				y_t = -half_height, 	//object y cordinate top
-				y_b = half_height, 		//object y cordinate bottom
-
 				cos = Math.cos(object.rotate * radianMultiplier),
 				sin = Math.sin(object.rotate * radianMultiplier),
 
 				topLeft = { x: ~~((x_l * cos - y_t * sin) + object.x + 0.5),
 					y: ~~((y_t * cos + x_l * sin) + object.y + 0.5) },
 
-				topRight = { x: ~~((x_r * cos - y_t * sin) + object.x + 0.5),
-					y: ~~((y_t * cos + x_r * sin) + object.y + 0.5)},
+				topRight = { x: ~~((half_width * cos - y_t * sin) + object.x + 0.5),
+					y: ~~((y_t * cos + half_width * sin) + object.y + 0.5)},
 
-				bottomLeft = { x: ~~((x_l * cos - y_b * sin) + object.x + 0.5),
-					y: ~~((y_b * cos + x_l * sin) + object.y + 0.5)},
+				bottomLeft = { x: ~~((x_l * cos - half_height * sin) + object.x + 0.5),
+					y: ~~((half_height * cos + x_l * sin) + object.y + 0.5)},
 
-				bottomRight = { x: ~~((x_r * cos - y_b * sin) + object.x + 0.5),
-					y: ~~((y_b * cos + x_r * sin) + object.y + 0.5)};
+				bottomRight = { x: ~~((half_width * cos - half_height * sin) + object.x + 0.5),
+					y: ~~((half_height * cos + half_width * sin) + object.y + 0.5)};
 
 			return { topLeft: topLeft,
 				topRight: topRight,
@@ -137,4 +134,4 @@
 		};
 
 	}
-})(window);
+})();

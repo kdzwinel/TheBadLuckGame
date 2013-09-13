@@ -14,8 +14,8 @@
 			listenersMgr = new EventListenersManager(['back-to-levels', 'restart-level']);
 
 			endScreen = options.element;
-			winSubScreen = endScreen.querySelector(('#win'));
-			looseSubScreen = endScreen.querySelector(('#loose'));
+			winSubScreen = endScreen.querySelector('#win');
+			looseSubScreen = endScreen.querySelector('#loose');
 
 			winLevelsButton   = endScreen.querySelector('#win-levels-button');
 			looseLevelsButton = endScreen.querySelector('#loose-levels-button');

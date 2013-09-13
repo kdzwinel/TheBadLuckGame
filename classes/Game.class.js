@@ -24,15 +24,7 @@
 				'game-lost'
 			]);
 
-			if(level.carCount < 1) {
-				throw "Level invalid.";
-			}
-
-			if(level.carCount < level.carsToWin) {
-				throw "Level invalid.";
-			}
-
-			if(!level.starLimits || level.starLimits.length !== 3) {
+			if(level.carCount < 1 || level.carCount < level.carsToWin || !level.starLimits || level.starLimits.length !== 3) {
 				throw "Level invalid.";
 			}
 

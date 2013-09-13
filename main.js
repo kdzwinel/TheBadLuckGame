@@ -22,7 +22,6 @@
  @codekit-prepend classes/HTMLBoard.class.js
  @codekit-prepend classes/HTMLGameStatus.class.js
  @codekit-prepend classes/screens/ScreenManager.class.js
- @codekit-prepend classes/screens/IntroScreen.class.js
  @codekit-prepend classes/screens/LevelsScreen.class.js
  @codekit-prepend classes/screens/pauseScreen.class.js
  @codekit-prepend classes/screens/EndScreen.class.js
@@ -32,10 +31,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 	var progressManager = new ProgressManager();
-
-	var introScreen = new IntroScreen({
-		element: document.getElementById('intro-screen')
-	});
 
 	var levelsScreen = new LevelsScreen({
 		element: document.getElementById('levels-screen'),
@@ -47,13 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	var screenMgr = new ScreenManager();
-	screenMgr.addScreen(introScreen, 'intro');
 	screenMgr.addScreen(levelsScreen, 'levels');
 	screenMgr.addScreen(playScreen, 'play');
 
-	introScreen.on('start', function () {
-		screenMgr.goToScreen('levels');
-	});
 	levelsScreen.on('level-chosen', function (data) {
 		screenMgr.goToScreen('play', data);
 	});
@@ -64,6 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		progressManager.update(data);
 	});
 
-	screenMgr.goToScreen('intro');
+	screenMgr.goToScreen('levels');
 
 }, false);

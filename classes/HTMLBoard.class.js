@@ -32,7 +32,7 @@
 				tile = options.board.getTile(tileDiv.dataset.x, tileDiv.dataset.y);
 
 			if(!swapMode) {
-				rotateTile(tile, e);
+				rotateTile(tile);
 			} else {
 				swapTile(tile);
 			}

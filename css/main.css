@@ -44,17 +44,13 @@ button:hover {
 	box-shadow: inset -3px -3px 0 3px rgba(255,255,255,0.4);
 }
 
-.screen {
+#screen-wrapper section {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 	margin: 0 auto;
 	transition: -webkit-transform 0.5s;
-}
-
-#intro-screen {
-	-webkit-transform: translate3d(0,-100%,0);
 }
 
 #levels-screen {
@@ -65,31 +61,8 @@ button:hover {
 	-webkit-transform: translate3d(0,100%,0);
 }
 
-#levels-screen.visible, #play-screen.visible, #intro-screen.visible {
+#levels-screen.visible, #play-screen.visible {
 	-webkit-transform: translate3d(0,0,0);
-}
-
-/*
-INTRO SCREEN
-*/
-
-#loader-wrapper {
-	position: absolute;
-	bottom: 50%;
-	left: 50%;
-	margin-left: -200px;
-	width: 400px;
-	height: 60px;
-}
-
-#play-button {
-	position: absolute;
-	left: 50%;
-	margin-left: -100px;
-	opacity: 1;
-	visibility: visible;
-	transition: height 0.3s, box-shadow 0.3s;
-	bottom: 0;
 }
 
 /*
@@ -193,20 +166,21 @@ i.inactive:after {
 }
 
 
-
-
-
-.levels li h1 {
+h1 {
 	font-size: 4em;
 	color: #ffffff;
 	text-shadow: 3px 3px 0 #000;
+	text-align: center;
+}
+
+.levels li h1 {
+	font-size: 4em;
 	position: absolute;
 	left: 50%;
 	margin-left: -35px;
 	width: 70px;
 	text-align: center;
 	top: -15px;
-
 }
 
 .levels li i:nth-child(1) {
@@ -493,7 +467,7 @@ PLAY SCREEN STYLES
 }
 
 
-#menu-panel .star-container {
+#menu-panel .stars {
 	position: absolute;
 	top: -80px;
 	left: 50%;
@@ -576,7 +550,7 @@ PLAY SCREEN STYLES
 	width: 400px;
 }
 
-#win .star-container {
+#win .stars {
 	top: -40px;
 	position: absolute;
 	left: 50%;

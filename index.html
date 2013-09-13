@@ -10,18 +10,13 @@
 </head>
 <body>
 <div id="screen-wrapper">
-    <section id='intro-screen' class='screen'>
-        <div id="loader-wrapper">
-            <button id="play-button" class='hidden'>PLAY</button>
-        </div>
-    </section>
-
-    <section id='levels-screen' class='screen'>
+    <section id='levels-screen'>
+        <h1>The Bad Luck Game</h1>
         <ul class='levels'>
             <li data-level-name="1">
                 <h1>1</h1>
 
-                <div class="star-container">
+                <div class="stars">
                     <i></i>
                     <i></i>
                     <i></i>
@@ -30,7 +25,7 @@
             <li data-level-name="2">
                 <h1>2</h1>
 
-                <div class="star-container">
+                <div class="stars">
                     <i></i>
                     <i></i>
                     <i></i>
@@ -39,7 +34,7 @@
             <li data-level-name="3">
                 <h1>3</h1>
 
-                <div class="star-container">
+                <div class="stars">
                     <i></i>
                     <i></i>
                     <i></i>
@@ -48,22 +43,21 @@
         </ul>
     </section>
 
-    <section id='play-screen' class='screen'>
+    <section id='play-screen'>
 
         <div id="board-container">
             <div class="tiles"></div>
             <canvas id="canvas"></canvas>
         </div>
         <div id="menu-panel">
-            <div class="star-container">
+            <div class="stars">
                 <i></i>
                 <i></i>
                 <i></i>
             </div>
             <div class="info">
-
-                points: <span class='current-score'>1000</span>
-                cars: <span class='cars-deployed'>3/20</span>
+                points: <span class='current-score'></span>
+                cars: <span class='cars-deployed'></span>
             </div>
             <div id='swap-tile'></div>
             <button id='pause-button'>PAUSE</button>
@@ -79,17 +73,17 @@
 
         <div id="win-loose">
             <div id="win">
-                <div class="star-container">
+                <div class="stars">
                     <i></i>
                     <i></i>
                     <i></i>
                 </div>
-                <p>CONGRATULATIONS</p>
+                <p>LEVEL WON!</p>
                 <button id='win-levels-button'>LEVELS</button>
             </div>
 
             <div id="loose">
-                <p>BAD LUCK</p>
+                <p>LEVEL LOST</p>
                 <button id='loose-levels-button'>LEVELS</button>
                 <button id='restart-button'>RESTART</button>
             </div>

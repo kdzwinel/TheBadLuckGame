@@ -1,7 +1,7 @@
-(function (global, undefined) {
+(function () {
 	"use strict";
 
-	global.CanvasManager = function (options) {
+	window.CanvasManager = function (options) {
 		var canvas,
 			tileSize,
 			context,
@@ -29,7 +29,7 @@
 				managers[--i].render(context, tileSize);
 			}
 
-			global.requestAnimationFrame(animate);
+			window.requestAnimationFrame(animate);
 		}
 
 		this.addManager = function (manager, priority) {
@@ -47,7 +47,7 @@
 
 		this.stopAnimation = function () {
 			active = false;
-		}
+		};
 
 		this.getWidth = function () {
 			return canvas.width;
@@ -71,4 +71,4 @@
 		init();
 
 	}
-})(window);
+})();

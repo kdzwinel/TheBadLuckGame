@@ -116,7 +116,7 @@
 				scoreTracker: scoreTracker,
 				carsStatusContainer: options.element.querySelector('.cars-deployed'),
 				scoreContainer: options.element.querySelector('.current-score'),
-				starsContainer: options.element.querySelector('.star-container')
+				starsContainer: options.element.querySelector('.stars')
 			});
 
 			canvasManager = new CanvasManager({

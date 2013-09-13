@@ -1,7 +1,7 @@
-(function (global, undefined) {
+(function () {
 	"use strict";
 
-	global.CarManager = function (game) {
+	window.CarManager = function (game) {
 
 		var _board = game.getBoard(),
 			_startTiles = _board.getStartTiles(),
@@ -91,4 +91,4 @@
 		};
 	}
 
-})(window);
+})();

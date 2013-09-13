@@ -1,7 +1,7 @@
-(function (global, undefined) {
+(function () {
 	"use strict";
 
-	global.CarApperance = function () {
+	window.CarApperance = function () {
 		var canvas, context, img;
 
 		canvas = document.createElement('canvas');
@@ -22,4 +22,4 @@
 		this.skin = img;
 	};
 
-})(window);
+})();
