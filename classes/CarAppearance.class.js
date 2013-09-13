@@ -5,15 +5,21 @@
 		var canvas, context, img;
 
 		canvas = document.createElement('canvas');
-		canvas.width = 100;
-		canvas.height = 33;
+		canvas.width = 50;
+		canvas.height = 30;
 		context = canvas.getContext('2d');
 
-		context.beginPath();
-		context.rect(0,0,100,33);
-		context.fillStyle = 'yellow';
+		context.fillStyle = '#BEBEBE';
+		context.fillRect(0,0,10,5);
+		context.fillRect(40,0,10,5);
+		context.fillRect(0,25,10,5);
+		context.fillRect(40,25,10,5);
+
+		context.fillStyle = '#77B88B';
+		context.rect(0,5,50,20);
+
 		context.fill();
-		context.lineWidth = 7;
+		context.lineWidth = 1;
 		context.strokeStyle = 'black';
 		context.stroke();
 
