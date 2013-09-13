@@ -7,6 +7,7 @@ body {
 	font-family:  "Myriad Pro", "Trebuchet MS", sans-serif;
 	font-style: italic;
 	overflow: hidden;
+	margin: 0;
 }
 
 #screen-wrapper {
@@ -87,8 +88,8 @@ INTRO SCREEN
 	margin-left: -100px;
 	opacity: 1;
 	visibility: visible;
-	transition: opacity 0.3s 0.3s, visibility 0, height 0.3s, box-shadow 0.3s;
-	bottom: 0px;
+	transition: height 0.3s, box-shadow 0.3s;
+	bottom: 0;
 }
 
 /*
@@ -109,7 +110,7 @@ LEVEL SCREEN
 	transition: all 0.3s;
 	background: #cc4b73;
 	border-radius: 70px;
-	box-shadow: inset 6px 10px 0px 6px #D77189, 5px 5px 0px 4px #000;
+	box-shadow: inset 6px 10px 0 6px #D77189, 5px 5px 0 4px #000;
 }
 
 .levels li:hover {
@@ -118,7 +119,7 @@ LEVEL SCREEN
 
 .levels li.inactive {
 	background: #3a3a3a;
-	box-shadow: inset 6px 10px 0px 6px #646464, 5px 5px 0px 4px #000;
+	box-shadow: inset 6px 10px 0 6px #646464, 5px 5px 0 4px #000;
 }
 
 .levels li.inactive:hover {
@@ -141,8 +142,8 @@ LEVEL SCREEN
 i {
 	position: absolute;
 	display: block;
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	border-right:  100px solid transparent;
 	border-bottom: 70px  solid #FFCB27;
 	border-left:   100px solid transparent;
@@ -162,8 +163,6 @@ i:before {
 	display: block;
 	content: '';
 	-webkit-transform: rotate(-35deg);
-
-
 }
 i:after {
 	position: absolute;
@@ -274,10 +273,6 @@ PLAY SCREEN STYLES
 	border-color: indianred;
 }
 
-.tile.turn {
-
-}
-
 .tile.turn:before {
 	display:block;
 	width: 40%;
@@ -287,7 +282,7 @@ PLAY SCREEN STYLES
 	margin-left: -20%;
 	content: "";
 	background: #000;
-	bottom: 0px;
+	bottom: 0;
 
 }
 
@@ -355,10 +350,6 @@ PLAY SCREEN STYLES
 	background: #000;
 }
 
-.tile.straight {
-
-}
-
 .tile.straight:after {
 	display:block;
 	width: 100%;
@@ -370,10 +361,6 @@ PLAY SCREEN STYLES
 	background: #000;
 }
 
-.tile.t-road {
-
-}
-
 .tile.t-road:before {
 	display:block;
 	width: 40%;
@@ -383,7 +370,7 @@ PLAY SCREEN STYLES
 	margin-left: -20%;
 	content: "";
 	background: #000;
-	bottom: 0px
+	bottom: 0;
 }
 
 .tile.t-road:after {
@@ -505,7 +492,7 @@ PLAY SCREEN STYLES
 	border: none;
 	width: 120px;
 	height: 120px;
-	box-shadow: inset 0px 0px 20px 0px #000;
+	box-shadow: inset 0 0 20px 0 #000;
 }
 
 #paused, #win-loose {
@@ -513,7 +500,7 @@ PLAY SCREEN STYLES
 	height: 100%;
 	position: absolute;
 	background: rgba(0,0,0,0.7);
-	top: 0px;
+	top: 0;
 	z-index: 1;
 	display: none;
 }
